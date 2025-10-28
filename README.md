@@ -4,6 +4,6 @@ Official website for **Lambda, IIT Hyderabad** — a student community for codin
 
 ## 🧩 Tech Stack
 
-- **React + Vite** for a fast, modern frontend
+- **NextJS** for a fast, modern frontend
 - **Tailwind CSS** for utility-first styling
 - **TypeScript** for type safety and maintainability
