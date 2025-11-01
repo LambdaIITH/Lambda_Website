@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -11,41 +12,42 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Lambda - IITH",
   description: "Made by Lambda",
+  icons: {
+    icon: [
+      {
+        url: "/favicon_assets/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/favicon_assets/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      { url: "/favicon_assets/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: "/favicon_assets/apple-touch-icon.png",
+    other: {
+      rel: "manifest",
+      url: "/favicon_assets/site.webmanifest",
+    },
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <Head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="favicon_assets/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="favicon_assets/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="favicon_assets/favicon-16x16.png"
-        />
-        <link
-          rel="icon"
-          type="image/x-icon"
-          href="favicon_assets/favicon.ico"
-        />
-        <link rel="manifest" href="favicon_assets/site.webmanifest" />
-      </Head>
-      <body className={`${montserrat.variable} antialiased`}>{children}</body>
+      <body
+        className={`${montserrat.variable} antialiased flex flex-col min-h-screen`}
+      >
+        <Navbar />
+        <main className="grow pt-20 pb-10">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
