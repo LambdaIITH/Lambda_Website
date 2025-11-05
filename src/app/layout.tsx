@@ -42,10 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} antialiased flex flex-col min-h-screen`}
+        className={`${montserrat.variable} antialiased flex flex-col min-h-screen bg-[#0E0018] text-white`}
       >
         <Navbar />
-        <main className="grow pt-20 pb-10">{children}</main>
+        <main className="grow">{children}</main>
         <Footer />
       </body>
     </html>

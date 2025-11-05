@@ -1,91 +1,508 @@
+"use client";
+
+import Image from "next/image";
+import {
+  Laptop,
+  PenTool,
+  Users,
+  Lightbulb,
+  Rocket,
+  ArrowRight,
+  ChevronUp,
+} from "lucide-react";
+import Card from "@/components/home/Card";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<"projects" | "blogs">("projects");
+  const [activeFilter, setActiveFilter] = useState<"ongoing" | "complete">(
+    "ongoing"
+  );
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const features = [
+    {
+      icon: Laptop,
+      title: "Development",
+      description:
+        "Building innovative web and mobile applications with cutting-edge technologies",
+    },
+    {
+      icon: PenTool,
+      title: "Design",
+      description:
+        "Creating beautiful user interfaces with modern design principles",
+    },
+    {
+      icon: Users,
+      title: "Community",
+      description:
+        "Growing together through collaboration and knowledge sharing",
+    },
+    {
+      icon: Lightbulb,
+      title: "Innovation",
+      description:
+        "Pushing boundaries with creative solutions and new technologies",
+    },
+  ];
+
+  const projects = [
+    {
+      title: "Dashboard",
+      subtitle: "IIT Hyderabad",
+      technologies: [
+        {
+          name: "Angular",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        },
+        {
+          name: "JavaScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        },
+        {
+          name: "TypeScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        },
+        {
+          name: "Tailwind",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+        },
+        {
+          name: "Figma",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        },
+      ],
+    },
+    {
+      title: "KRC",
+      subtitle: "IIT Hyderabad",
+      technologies: [
+        {
+          name: "Angular",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        },
+        {
+          name: "JavaScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        },
+        {
+          name: "TypeScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        },
+        {
+          name: "Tailwind",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+        },
+        {
+          name: "Figma",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        },
+      ],
+    },
+    {
+      title: "Main Gate",
+      subtitle: "IIT Hyderabad",
+      technologies: [
+        {
+          name: "Angular",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        },
+        {
+          name: "JavaScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        },
+        {
+          name: "TypeScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        },
+        {
+          name: "Tailwind",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+        },
+        {
+          name: "Figma",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        },
+      ],
+    },
+  ];
+
+  const blogs = [
+    {
+      title: "Getting Started with Next.js",
+      date: "Nov 3, 2025",
+      author: "Lambda Team",
+      category: "Web Development",
+      readTime: "5 min read",
+    },
+    {
+      title: "Building Scalable Applications",
+      date: "Oct 28, 2025",
+      author: "Lambda Team",
+      category: "Architecture",
+      readTime: "8 min read",
+    },
+    {
+      title: "UI/UX Design Principles",
+      date: "Oct 15, 2025",
+      author: "Lambda Team",
+      category: "Design",
+      readTime: "6 min read",
+    },
+  ];
+
+  const impactStats = [
+    {
+      number: "20+",
+      title: "Active Projects",
+      description: "Innovative Solutions in Development",
+    },
+    {
+      number: "20+",
+      title: "Active Projects",
+      description: "Innovative Solutions in Development",
+    },
+    {
+      number: "20+",
+      title: "Active Projects",
+      description: "Innovative Solutions in Development",
+    },
+    {
+      number: "20+",
+      title: "Active Projects",
+      description: "Innovative Solutions in Development",
+    },
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
+    <main className="bg-[#0E0018] w-full pb-[8vh]">
+      {/* Hero Section */}
+      <div className="relative w-full min-h-screen">
+        <Image
+          src="/home_assets/bg_overlay.svg"
+          alt="BG Overlay"
+          fill
+          priority
+          className="object-cover z-0"
+        />
 
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
-        </p>
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(22,0,31,0.9),rgba(1,1,1,0.9))] z-10" />
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-          >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            Join the Club
-          </a>
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
+        {/* content */}
+        <div className="pt-[20vh] relative z-20 flex flex-col items-center justify-start min-h-screen text-white pb-[10vh]">
+          {/* hero */}
+          <div className="flex flex-col items-center mb-[12vh]">
+            <Image
+              src="/home_assets/lambda_logo_home.svg"
+              alt="Lambda Logo"
+              width={90}
+              height={90}
+              className="mb-[3vh] mt-[15vh]"
+            />
+            <div className="text-center text-[4.5vw] font-bold mb-[1vh] tracking-wider">
+              Lambda
+            </div>
+            <div className="text-[1.2vw] text-center text-[#D2A8FF]">
+              Building the future of technology at IIT Hyderabad. <br />
+              Join us in creating innovative solutions and <br />
+              shaping tomorrow's digital landscape.
+            </div>
+          </div>
+
+          {/* cards */}
+          <div className="flex gap-[1.5vw] mb-[6vh]">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Our Work Section */}
+      <div className="w-full bg-[#0E0018] py-[8vh] px-[4vw]">
+        <div className="max-w-[90vw] mx-auto">
+          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[6vh]">
+            Our Work
+          </h2>
+
+          {/* Toggle Buttons */}
+          <div className="flex justify-center mb-[8vh]">
+            <div className="flex bg-[#4A1968] rounded-full p-[0.3vh]">
+              <button
+                onClick={() => setActiveTab("projects")}
+                className={`px-[2.5vw] py-[1.5vh] rounded-full font-semibold transition-all cursor-pointer ${
+                  activeTab === "projects"
+                    ? "bg-[#C49EE8] text-[#16001F]"
+                    : "text-white hover:bg-[#5A2278]"
+                }`}
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => setActiveTab("blogs")}
+                className={`px-[2.5vw] py-[1.5vh] rounded-full font-semibold transition-all cursor-pointer ${
+                  activeTab === "blogs"
+                    ? "bg-[#C49EE8] text-[#16001F]"
+                    : "text-white hover:bg-[#5A2278]"
+                }`}
+              >
+                Blogs
+              </button>
+            </div>
+          </div>
+
+          {/* Filter Tabs and Project Cards - Side by Side */}
+          <div className="flex gap-[4vw]">
+            {/* Filter Tabs - Left Side */}
+            <div className="flex flex-col gap-[3vh] min-w-[12vw]">
+              <button
+                onClick={() => setActiveFilter("ongoing")}
+                className={`text-left text-[1.2vw] font-medium transition-colors cursor-pointer ${
+                  activeFilter === "ongoing"
+                    ? "text-[#D05CFF]"
+                    : "text-white/60 hover:text-white"
+                }`}
+              >
+                Ongoing
+              </button>
+              <button
+                onClick={() => setActiveFilter("complete")}
+                className={`text-left text-[1.2vw] font-medium transition-colors cursor-pointer ${
+                  activeFilter === "complete"
+                    ? "text-[#D05CFF]"
+                    : "text-white/60 hover:text-white"
+                }`}
+              >
+                Complete
+              </button>
+            </div>
+
+            {/* Project Cards - Right Side */}
+            <div className="flex-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.5vw] mb-[6vh]">
+                {activeTab === "projects"
+                  ? projects.map((project, index) => (
+                      <div
+                        key={index}
+                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[1.5vw] p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                      >
+                        <div>
+                          <p className="text-[#C49EE8] text-[0.9vw] mb-[1vh]">
+                            {project.subtitle}
+                          </p>
+                          <h3 className="text-white text-[2.5vw] font-bold mb-[3vh]">
+                            {project.title}
+                          </h3>
+                        </div>
+                        <div className="flex gap-[0.5vw]">
+                          {project.technologies.map((tech, techIndex) => (
+                            <div
+                              key={techIndex}
+                              className="w-[2vw] h-[2vw] bg-white rounded flex items-center justify-center p-[0.2vw]"
+                            >
+                              <Image
+                                src={tech.logo}
+                                alt={tech.name}
+                                width={32}
+                                height={32}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  : blogs.map((blog, index) => (
+                      <div
+                        key={index}
+                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[1.5vw] p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                      >
+                        <div>
+                          <div className="flex items-center gap-[1vw] mb-[1vh]">
+                            <span className="text-[#C49EE8] text-[0.8vw] bg-[#C49EE8]/20 px-[1vw] py-[0.5vh] rounded-full">
+                              {blog.category}
+                            </span>
+                            <span className="text-white/60 text-[0.8vw]">
+                              {blog.readTime}
+                            </span>
+                          </div>
+                          <h3 className="text-white text-[1.5vw] font-bold mb-[2vh]">
+                            {blog.title}
+                          </h3>
+                        </div>
+                        <div className="flex items-center justify-between text-[0.8vw]">
+                          <span className="text-white/60">{blog.author}</span>
+                          <span className="text-[#C49EE8]">{blog.date}</span>
+                        </div>
+                      </div>
+                    ))}
+              </div>
+
+              {/* View All Link */}
+              <div className="flex justify-center">
+                <Link
+                  href={activeTab === "projects" ? "/projects" : "/blog"}
+                  className="text-white text-[1.1vw] font-medium flex items-center gap-[0.5vw] hover:text-[#C49EE8] transition-colors cursor-pointer"
+                >
+                  {activeTab === "projects"
+                    ? "View All Projects"
+                    : "View All Blogs"}{" "}
+                  <ArrowRight className="w-[1.2vw] h-[1.2vw]" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Contributions Section */}
+      <div className="w-full bg-[#0E0018] py-[10vh] px-[4vw]">
+        <div className="max-w-[85vw] mx-auto">
+          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[8vh]">
+            Our Contributions
+          </h2>
+
+          {/* Activity Heatmap */}
+          <div className="bg-linear-to-br from-[#1E0A2E]/50 to-transparent border border-[#7B3FAD]/30 rounded-[2vw] p-[3vw]">
+            <div className="flex justify-end items-center mb-[4vh]">
+              <div className="flex items-center gap-[1vw]">
+                <span className="text-white/60 text-[0.85vw]">Less</span>
+                <div className="flex gap-[0.3vw]">
+                  <div className="w-[1.2vw] h-[1.2vw] bg-[#1E0A2E] rounded border border-[#3A1A5A]"></div>
+                  <div className="w-[1.2vw] h-[1.2vw] bg-[#5A2D7A] rounded"></div>
+                  <div className="w-[1.2vw] h-[1.2vw] bg-[#8B4FC3] rounded"></div>
+                  <div className="w-[1.2vw] h-[1.2vw] bg-[#C49EE8] rounded"></div>
+                </div>
+                <span className="text-white/60 text-[0.85vw]">More</span>
+              </div>
+            </div>
+
+            {/* Months Row */}
+            <div className="flex gap-[0.3vw] mb-[1vh]">
+              {[
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+              ].map((month, i) => (
+                <div
+                  key={month}
+                  className="flex-1 text-center text-white/50 text-[0.7vw] font-medium"
+                >
+                  {month}
+                </div>
+              ))}
+            </div>
+
+            {/* Grid with Week Labels */}
+            <div className="flex gap-[1vw] overflow-hidden">
+              {/* Week Labels */}
+              <div className="flex flex-col justify-around text-white/50 text-[0.7vw] pr-[0.5vw] shrink-0">
+                <span>Mon</span>
+                <span>Wed</span>
+                <span>Fri</span>
+              </div>
+
+              {/* Contribution Grid */}
+              <div className="flex-1 grid grid-rows-7 grid-flow-col gap-[0.3vw] max-w-full">
+                {Array.from({ length: 364 }).map((_, i) => {
+                  const random = Math.random();
+                  let colorClass = "bg-[#1E0A2E] border border-[#3A1A5A]";
+                  if (random > 0.7) colorClass = "bg-[#C49EE8]";
+                  else if (random > 0.5) colorClass = "bg-[#8B4FC3]";
+                  else if (random > 0.3) colorClass = "bg-[#5A2D7A]";
+
+                  return (
+                    <div
+                      key={i}
+                      className={`aspect-square rounded-sm ${colorClass} hover:scale-110 transition-transform cursor-pointer min-w-0`}
+                      title={`${Math.floor(random * 20)} contributions`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Our Impact Section */}
+      <div className="w-full bg-[#0E0018] py-[8vh] px-[4vw]">
+        <div className="max-w-[90vw] mx-auto">
+          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[8vh]">
+            Our Impact
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2vw]">
+            {impactStats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-[3vh]">
+                  <Rocket
+                    className="w-[4vw] h-[4vw] text-white"
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <h3 className="text-[3.5vw] font-bold text-white mb-[2vh]">
+                  {stat.number}
+                </h3>
+                <p className="text-[1.3vw] font-semibold text-white mb-[1vh]">
+                  {stat.title}
+                </p>
+                <p className="text-[0.9vw] text-white/70">{stat.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-[13vh] right-[3vw] bg-[#1E0A2E] border-2 border-white/20 text-white px-[1.5vw] py-[1.2vh] rounded-lg hover:bg-[#2D0F47] hover:border-white/40 transition-all flex items-center gap-[0.5vw] text-[0.9vw] font-medium cursor-pointer z-50 shadow-lg ${
+          showBackToTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-[2vh] pointer-events-none"
+        }`}
+        aria-label="Back to Top"
+      >
+        Back to Top
+        <ChevronUp className="w-[1.2vw] h-[1.2vw]" />
+      </button>
     </main>
   );
 }
