@@ -1,91 +1,205 @@
-export default function HomePage() {
+import TeamSection from "@/components/team-components/TeamSection"
+import Footer from "@/components/common/Footer"
+import BackToTop from "@/components/common/BackToTop"
+import TeamSidebar from "@/components/team-components/TeamSidebar"
+
+export default function TeamPage() {
+
+  const mentors = [
+    {
+      name: "Dr. Amit Shah",
+      role: "Faculty Advisor",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+    {
+      name: "Prof. Sarah Jenkins",
+      role: "Technical Advisor",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCPO2A1UqmlgXyqxe4-iQdIVbl23jNI3dbqN3P5oPD3ODbrKItsi2PrEA3KiUp3xgZewX6Atv-TxDHfIKdo8mV5gSWV0W28ET8y3F93xfD0sMsrj_wuQTqWSL_XbC2glNxeYLD4GTohfXIQDfRx9s58QpTPP5KRbCUlRnrH72V6cXY0mIXXseApBkzO4F2sioYkxSQ4tzVkHodbuLkmS1MH9zeKjTs0_Hy818XNrsBvI11AMPaDXpq4K_3dApbjkBszO_dLmjD9XSYy",
+    },
+    {
+      name: "Dr. Vikrant Roy",
+      role: "Research Mentor",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBF5BoLHnMCLwIi89rf2RlS23FZZ1XbtLYq-HkHLNpnK1zD9Z1sVya2W11bGrzlg9HOuDvhHRH0R0nWFPnCTOq7bbRGE2G6QdGa_6hiQImLTDo_Rh2p0SepmqN6gkBvxcgZ2IXzA0Q2jHusLO0V8lqDxQZtZvIqgrWj32YMhNBg_Bh2tBiwZ4mc7PqXfgPuKK5Fc7DVrabr0wUImRp9boewOewRXKMX0Wb01K7eJHkD4JXBH9I6PNLgMjTjOz3RvLviRrDGc6V5TLSq",
+    },
+    {
+      name: "Prof. Anita Gupta",
+      role: "Industry Liaison",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBRDlznegneNwftLN_E9li0VVvzmPgQPXVCrei77gFpw21AXRusDupzPSB3gp9PpvrcE7sY1dA0wQ7wAc9-oU6-Y_wS5sb1uSRV98TwqeVozMmoS6Xq9FKnWxWDcPH-2MkiscSynHV-U2XZ3s-u8_xpjNfVDx_s8biejcyvTcmg3IXwxmfPoTNTHF73ieiKHyWBGE5GkRMNBRsLlzaLgBWI7OBJlSojqnsC8nyI92ko1lZqpOEUYhgQ-wdPENn9RMc9GNM8DiTQ_fws",
+    },
+  ]
+
+  const heads = [
+    {
+      name: "Sanya Gupta",
+      role: "Overall Coordinator",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCPO2A1UqmlgXyqxe4-iQdIVbl23jNI3dbqN3P5oPD3ODbrKItsi2PrEA3KiUp3xgZewX6Atv-TxDHfIKdo8mV5gSWV0W28ET8y3F93xfD0sMsrj_wuQTqWSL_XbC2glNxeYLD4GTohfXIQDfRx9s58QpTPP5KRbCUlRnrH72V6cXY0mIXXseApBkzO4F2sioYkxSQ4tzVkHodbuLkmS1MH9zeKjTs0_Hy818XNrsBvI11AMPaDXpq4K_3dApbjkBszO_dLmjD9XSYy",
+    },
+    {
+      name: "Rohan Mehta",
+      role: "Technical Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBF5BoLHnMCLwIi89rf2RlS23FZZ1XbtLYq-HkHLNpnK1zD9Z1sVya2W11bGrzlg9HOuDvhHRH0R0nWFPnCTOq7bbRGE2G6QdGa_6hiQImLTDo_Rh2p0SepmqN6gkBvxcgZ2IXzA0Q2jHusLO0V8lqDxQZtZvIqgrWj32YMhNBg_Bh2tBiwZ4mc7PqXfgPuKK5Fc7DVrabr0wUImRp9boewOewRXKMX0Wb01K7eJHkD4JXBH9I6PNLgMjTjOz3RvLviRrDGc6V5TLSq",
+    },
+    {
+      name: "Aditi Sharma",
+      role: "Events Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+    {
+      name: "Vikram Singh",
+      role: "Design Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD70WJob-bYiOXd3D4kZgVuOavL4zoQDBKQmMfDv4LxHsfAPvIjX8Gh8KvULhi2x05wJu5sQ4A1CbKR_oM4GTYOXwuYwA__MKjiDMlPxAyBxfqAW7WDJVH21CJkPFCcIhNdPaYZVDsmCO-mhf0CPpj3lUpv7awjDA71LItUKQXnyofwluUuyzJS4r9z8buT_5AH4nC-62o-VpwNduKXjwkxQ_esfJRjSULY8DpKMvxz4X0IT3VWhAYYwcvlluKcmtvBQ4E4TeOqesDA",
+    },
+    {
+      name: "Kabir Das",
+      role: "Finance Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBRDlznegneNwftLN_E9li0VVvzmPgQPXVCrei77gFpw21AXRusDupzPSB3gp9PpvrcE7sY1dA0wQ7wAc9-oU6-Y_wS5sb1uSRV98TwqeVozMmoS6Xq9FKnWxWDcPH-2MkiscSynHV-U2XZ3s-u8_xpjNfVDx_s8biejcyvTcmg3IXwxmfPoTNTHF73ieiKHyWBGE5GkRMNBRsLlzaLgBWI7OBJlSojqnsC8nyI92ko1lZqpOEUYhgQ-wdPENn9RMc9GNM8DiTQ_fws",
+    },
+    {
+      name: "Isha Reddy",
+      role: "Public Relations",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCPO2A1UqmlgXyqxe4-iQdIVbl23jNI3dbqN3P5oPD3ODbrKItsi2PrEA3KiUp3xgZewX6Atv-TxDHfIKdo8mV5gSWV0W28ET8y3F93xfD0sMsrj_wuQTqWSL_XbC2glNxeYLD4GTohfXIQDfRx9s58QpTPP5KRbCUlRnrH72V6cXY0mIXXseApBkzO4F2sioYkxSQ4tzVkHodbuLkmS1MH9zeKjTs0_Hy818XNrsBvI11AMPaDXpq4K_3dApbjkBszO_dLmjD9XSYy",
+    },
+    {
+      name: "Nitin Verma",
+      role: "Operations Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBF5BoLHnMCLwIi89rf2RlS23FZZ1XbtLYq-HkHLNpnK1zD9Z1sVya2W11bGrzlg9HOuDvhHRH0R0nWFPnCTOq7bbRGE2G6QdGa_6hiQImLTDo_Rh2p0SepmqN6gkBvxcgZ2IXzA0Q2jHusLO0V8lqDxQZtZvIqgrWj32YMhNBg_Bh2tBiwZ4mc7PqXfgPuKK5Fc7DVrabr0wUImRp9boewOewRXKMX0Wb01K7eJHkD4JXBH9I6PNLgMjTjOz3RvLviRrDGc6V5TLSq",
+    },
+    {
+      name: "Priya Nair",
+      role: "App Head",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+  ]
+
+  const coreMembers = [
+    {
+      name: "Ananya Rao",
+      role: "Full Stack Dev",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD70WJob-bYiOXd3D4kZgVuOavL4zoQDBKQmMfDv4LxHsfAPvIjX8Gh8KvULhi2x05wJu5sQ4A1CbKR_oM4GTYOXwuYwA__MKjiDMlPxAyBxfqAW7WDJVH21CJkPFCcIhNdPaYZVDsmCO-mhf0CPpj3lUpv7awjDA71LItUKQXnyofwluUuyzJS4r9z8buT_5AH4nC-62o-VpwNduKXjwkxQ_esfJRjSULY8DpKMvxz4X0IT3VWhAYYwcvlluKcmtvBQ4E4TeOqesDA",
+    },
+    {
+      name: "Kabir Das",
+      role: "Cloud Architect",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBRDlznegneNwftLN_E9li0VVvzmPgQPXVCrei77gFpw21AXRusDupzPSB3gp9PpvrcE7sY1dA0wQ7wAc9-oU6-Y_wS5sb1uSRV98TwqeVozMmoS6Xq9FKnWxWDcPH-2MkiscSynHV-U2XZ3s-u8_xpjNfVDx_s8biejcyvTcmg3IXwxmfPoTNTHF73ieiKHyWBGE5GkRMNBRsLlzaLgBWI7OBJlSojqnsC8nyI92ko1lZqpOEUYhgQ-wdPENn9RMc9GNM8DiTQ_fws",
+    },
+    {
+      name: "Meera Joshi",
+      role: "Frontend Expert",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCPO2A1UqmlgXyqxe4-iQdIVbl23jNI3dbqN3P5oPD3ODbrKItsi2PrEA3KiUp3xgZewX6Atv-TxDHfIKdo8mV5gSWV0W28ET8y3F93xfD0sMsrj_wuQTqWSL_XbC2glNxeYLD4GTohfXIQDfRx9s58QpTPP5KRbCUlRnrH72V6cXY0mIXXseApBkzO4F2sioYkxSQ4tzVkHodbuLkmS1MH9zeKjTs0_Hy818XNrsBvI11AMPaDXpq4K_3dApbjkBszO_dLmjD9XSYy",
+    },
+    {
+      name: "Rahul Kumar",
+      role: "Backend Dev",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBF5BoLHnMCLwIi89rf2RlS23FZZ1XbtLYq-HkHLNpnK1zD9Z1sVya2W11bGrzlg9HOuDvhHRH0R0nWFPnCTOq7bbRGE2G6QdGa_6hiQImLTDo_Rh2p0SepmqN6gkBvxcgZ2IXzA0Q2jHusLO0V8lqDxQZtZvIqgrWj32YMhNBg_Bh2tBiwZ4mc7PqXfgPuKK5Fc7DVrabr0wUImRp9boewOewRXKMX0Wb01K7eJHkD4JXBH9I6PNLgMjTjOz3RvLviRrDGc6V5TLSq",
+    },
+    {
+      name: "Siddharth Roy",
+      role: "AI Enthusiast",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+    {
+      name: "Sara Khan",
+      role: "DevOps Engineer",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+    {
+      name: "Arjun Gupta",
+      role: "Web3 Dev",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuD70WJob-bYiOXd3D4kZgVuOavL4zoQDBKQmMfDv4LxHsfAPvIjX8Gh8KvULhi2x05wJu5sQ4A1CbKR_oM4GTYOXwuYwA__MKjiDMlPxAyBxfqAW7WDJVH21CJkPFCcIhNdPaYZVDsmCO-mhf0CPpj3lUpv7awjDA71LItUKQXnyofwluUuyzJS4r9z8buT_5AH4nC-62o-VpwNduKXjwkxQ_esfJRjSULY8DpKMvxz4X0IT3VWhAYYwcvlluKcmtvBQ4E4TeOqesDA",
+    },
+    {
+      name: "Ishan Sharma",
+      role: "Security Lead",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBRDlznegneNwftLN_E9li0VVvzmPgQPXVCrei77gFpw21AXRusDupzPSB3gp9PpvrcE7sY1dA0wQ7wAc9-oU6-Y_wS5sb1uSRV98TwqeVozMmoS6Xq9FKnWxWDcPH-2MkiscSynHV-U2XZ3s-u8_xpjNfVDx_s8biejcyvTcmg3IXwxmfPoTNTHF73ieiKHyWBGE5GkRMNBRsLlzaLgBWI7OBJlSojqnsC8nyI92ko1lZqpOEUYhgQ-wdPENn9RMc9GNM8DiTQ_fws",
+    },
+    {
+      name: "Tanmay Singh",
+      role: "UI/UX Designer",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBF5BoLHnMCLwIi89rf2RlS23FZZ1XbtLYq-HkHLNpnK1zD9Z1sVya2W11bGrzlg9HOuDvhHRH0R0nWFPnCTOq7bbRGE2G6QdGa_6hiQImLTDo_Rh2p0SepmqN6gkBvxcgZ2IXzA0Q2jHusLO0V8lqDxQZtZvIqgrWj32YMhNBg_Bh2tBiwZ4mc7PqXfgPuKK5Fc7DVrabr0wUImRp9boewOewRXKMX0Wb01K7eJHkD4JXBH9I6PNLgMjTjOz3RvLviRrDGc6V5TLSq",
+    },
+    {
+      name: "Riya Patel",
+      role: "Data Scientist",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuA8MmaEe0M1h10UOrG-d4UQZeXJJcsuu-LjVaLWzlClg1a6RXjxsuNsELQPSrUQGWFDt4T7kb63Jfp8lCG_Tw-jE44-_R3DhVAR4DJz5VP7spYshVkuv6Z42vbyaguZmrbXn5zKQ67zUWsmjMHj_Be6drNmb8tZY8EvYLNvhWsM_FlUe4n6r4V73x4nkhGNEBrHwqW6K_yCsOVwPY0Sj5bMBrNr466zrLJ4roApwaEN0NTIrTsHvjhWdugSaxaPIJ_VYWYSmNSlCFXn",
+    },
+  ]
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
+    <>
+      <main className="pt-40 pb-32 px-6 grid-background min-h-screen w-full">
 
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
-        </p>
+        {/* Title */}
+        <div className="max-w-5xl mx-auto text-center mb-16">
+          <h1 className="text-5xl md:text-[60px] font-bold tracking-tighter text-[#D2A8FF]">
+            Our Team
+          </h1>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-          >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            Join the Club
-          </a>
+          <div className="mt-6 bg-[#5C2DA0] py-2 px-5 rounded-2xl inline-flex items-center gap-3">
+            <p className="text-white font-medium text-xl">Team 2025–26</p>
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+              <path
+                d="M16.25 1.25L8.75 9.82L1.25 1.25"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
+
+        {/* Two column layout */}
+        <div className="max-w-7xl mx-auto grid grid-cols-[220px_1fr] gap-12">
+
+          <TeamSidebar/>
+
+          {/* Right content */}
+          <div className="space-y-28 mr-10">
+
+            <section id="mentors">
+              <TeamSection title="Mentors" members={mentors} />
+            </section>
+
+            <section id="heads">
+              <TeamSection title="Club Heads" members={heads} />
+            </section>
+
+            <section id="core">
+              <TeamSection title="Core Members" members={coreMembers} />
+            </section>
+
+            <section id="uiux">
+              <TeamSection title="UI/UX Team" members={coreMembers.slice(0, 4)} />
+            </section>
+
+          </div>
         </div>
-      </div>
-    </main>
-  );
+      </main>
+
+      <BackToTop />
+    </>
+  )
 }
