@@ -149,7 +149,7 @@ export default function TeamPage() {
 
   return (
     <>
-      <main className="pt-40 pb-32 px-6 grid-background min-h-screen w-full">
+      <main className="pt-30 pb-32 px-6 grid-background min-h-screen w-full">
 
         {/* Title */}
         <div className="max-w-5xl mx-auto text-center mb-16">
