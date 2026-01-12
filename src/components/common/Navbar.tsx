@@ -8,9 +8,8 @@ import { useState } from "react";
 
 export default function Navbar() {
   const path = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   if (!path) return null;
-
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -31,57 +30,37 @@ export default function Navbar() {
   ];
 
   return (
-    <nav>
-      {/* main nav container */}
-      <div
-        className="fixed top-2 left-1/2 -translate-x-1/2
-             flex justify-between items-center
-             w-[95vw] h-[6vh] min-h-[50px] max-h-[70px]
-             bg-[rgba(66,0,100,0.7)] text-white rounded-full z-50
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
-             lg:px-[2vw] px-[5vw]"
-      >
+    <nav className="fixed top-[2vw] sm:top-[1.5vw] lg:top-[1vw] left-1/2 -translate-x-1/2 w-[95vw] z-50">
+      <div className="flex justify-between items-center h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[4vw] bg-[#420064] text-white rounded-full shadow-2xl backdrop-blur-xl px-[5vw] sm:px-[4vw] md:px-[3vw] lg:px-[2vw]">
         {/* left logo */}
-        <div className="flex items-center gap-[0.5vw]">
-          <Link href="/" className="flex items-center gap-[0.4vw]">
-            <Image
-              src="navbar_assets/lambda_logo.svg"
-              alt="Lambda Logo"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                width: "clamp(15px, 1.2vw, 22px)",
-                height: "auto",
-              }}
-              priority
-            />
-            <span
-              className="font-semibold"
-              style={{
-                fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
-              }}
-            >
-              Lambda IITH
-            </span>
-          </Link>
+        <div className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw] lg:gap-[0.5vw]">
+          <Image
+            src="navbar_assets/lambda_logo.svg"
+            alt="Lambda Logo"
+            width={20}
+            height={20}
+            className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.2vw] h-auto"
+            priority
+          />
+          <span className="font-semibold text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw]">
+            Lambda IITH
+          </span>
         </div>
 
-        {/* center (desktop only) */}
-        <div className="hidden lg:flex justify-center items-center h-full">
-          <ul className="relative flex justify-around items-center gap-[1.2vw]">
+        {/* center navigation */}
+        <div className="hidden md:flex justify-center items-center h-full">
+          <ul className="relative flex justify-around items-center gap-[2vw] md:gap-[1.5vw] lg:gap-[1.2vw]">
             {navLinks.map((link) => {
               const isActive = path === link.href;
               return (
                 <li
                   key={link.href}
-                  className="relative px-[0.9vw] py-[0.3vw] rounded-2xl"
+                  className="relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw] flex justify-center items-center"
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 bg-white rounded-2xl"
+                      className="absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]"
                       transition={{
                         type: "spring",
                         stiffness: 120,
@@ -92,12 +71,9 @@ export default function Navbar() {
                   )}
                   <Link
                     href={link.href}
-                    className={`relative z-10 transition-colors duration-300 ${
-                      isActive ? "text-black italic" : ""
+                    className={`relative z-10 transition-colors duration-300 text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] ${
+                      isActive ? "text-black" : ""
                     }`}
-                    style={{
-                      fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
-                    }}
                   >
                     {link.name}
                   </Link>
@@ -107,86 +83,83 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* right side */}
-        <div className="flex items-center gap-4">
-          {/* icons (always visible) */}
-          <div className="flex items-center justify-end gap-[3vw] lg:gap-[1.2vw]">
-            {rightIcons.map((icon) => (
-              <Link
-                key={icon.alt}
-                href={icon.href}
-                className="flex items-center justify-center"
-              >
-                <Image
-                  src={icon.src}
-                  alt={icon.alt}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    width: "clamp(16px, 1.3vw, 22px)",
-                    height: "auto",
-                  }}
-                  priority
-                />
-              </Link>
-            ))}
-          </div>
-
-          {/* hamburger (mobile only) */}
+        {/* right icons */}
+        <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
+          {/* Mobile menu button */}
+          {rightIcons.map((icon) => (
+            <Link
+              key={icon.alt}
+              href={icon.href}
+              className="flex items-center justify-center"
+            >
+              <Image
+                src={icon.src}
+                alt={icon.alt}
+                width={20}
+                height={20}
+                className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
+                priority
+              />
+            </Link>
+          ))}
           <button
-            className="lg:hidden flex flex-col justify-center items-center gap-1"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex flex-col justify-center items-center gap-[1vw] w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw]"
+            aria-label="Toggle menu"
           >
-            <motion.span
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-transform duration-300 ${
+                isMobileMenuOpen
+                  ? "rotate-45 translate-y-[1.5vw] sm:translate-y-[1.1vw]"
+                  : ""
+              }`}
             />
-            <motion.span
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-opacity duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : ""
+              }`}
             />
-            <motion.span
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-transform duration-300 ${
+                isMobileMenuOpen
+                  ? "-rotate-45 -translate-y-[1.5vw] sm:-translate-y-[1.1vw]"
+                  : ""
+              }`}
             />
           </button>
         </div>
       </div>
 
-      {/* mobile dropdown */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {isMobileMenuOpen && (
           <motion.div
-            key="dropdown"
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden fixed left-1/2 -translate-x-1/2
-             top-[calc(6vh+2.5rem)] sm:top-[calc(6vh+3rem)] md:top-[calc(6vh+3.5rem)]
-             w-[90vw] sm:w-[80vw] md:w-[60vw]
-             text-white rounded-3xl
-             flex flex-col items-center p-4 z-40
-             bg-[rgba(66,0,100,0.7)]
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-[14vw] sm:top-[12vw] left-1/2 -translate-x-1/2 w-[90vw] bg-[#420064] rounded-[3vw] shadow-2xl backdrop-blur-xl overflow-hidden"
           >
-            {navLinks.map((link) => {
-              const isActive = path === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`py-2 w-full text-center transition-colors ${
-                    isActive ? "text-black bg-white/80 rounded-xl italic" : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+            <ul className="flex flex-col py-[3vw] sm:py-[2vw]">
+              {navLinks.map((link) => {
+                const isActive = path === link.href;
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block px-[6vw] py-[3vw] sm:px-[5vw] sm:py-[2.5vw] text-[4vw] sm:text-[3vw] transition-colors duration-300 ${
+                        isActive
+                          ? "bg-[#D6AFFF] text-black font-semibold"
+                          : "text-white hover:bg-[#5a0a87]"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>

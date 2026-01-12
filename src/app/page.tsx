@@ -8,38 +8,16 @@ import {
   Lightbulb,
   Rocket,
   ArrowRight,
-  ChevronUp,
 } from "lucide-react";
 import Card from "@/components/home/Card";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"projects" | "blogs">("projects");
   const [activeFilter, setActiveFilter] = useState<"ongoing" | "complete">(
     "ongoing"
   );
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowBackToTop(true);
-      } else {
-        setShowBackToTop(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   const features = [
     {
@@ -175,24 +153,28 @@ export default function HomePage() {
 
   const impactStats = [
     {
+      icon: Rocket,
       number: "20+",
       title: "Active Projects",
       description: "Innovative Solutions in Development",
     },
     {
-      number: "20+",
-      title: "Active Projects",
-      description: "Innovative Solutions in Development",
+      icon: Users,
+      number: "50+",
+      title: "Club Members",
+      description: "Passionate developers and designers",
     },
     {
-      number: "20+",
-      title: "Active Projects",
-      description: "Innovative Solutions in Development",
+      icon: Laptop,
+      number: "100+",
+      title: "Workshops",
+      description: "Technical sessions conducted",
     },
     {
-      number: "20+",
-      title: "Active Projects",
-      description: "Innovative Solutions in Development",
+      icon: Lightbulb,
+      number: "10+",
+      title: "Technologies",
+      description: "Modern tech stack expertise",
     },
   ];
 
@@ -219,12 +201,12 @@ export default function HomePage() {
               alt="Lambda Logo"
               width={90}
               height={90}
-              className="mb-[3vh] mt-[15vh]"
+              className="mb-[3vh] mt-[15vh] w-[20vw] sm:w-[15vw] md:w-[12vw] lg:w-[90px] h-auto"
             />
-            <div className="text-center text-[4.5vw] font-bold mb-[1vh] tracking-wider">
+            <div className="text-center text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[4.5vw] font-bold mb-[1vh] tracking-wider">
               Lambda
             </div>
-            <div className="text-[1.2vw] text-center text-[#D2A8FF]">
+            <div className="text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.2vw] text-center text-[#D2A8FF] px-[4vw]">
               Building the future of technology at IIT Hyderabad. <br />
               Join us in creating innovative solutions and <br />
               shaping tomorrow's digital landscape.
@@ -232,7 +214,7 @@ export default function HomePage() {
           </div>
 
           {/* cards */}
-          <div className="flex gap-[1.5vw] mb-[6vh]">
+          <div className="flex md:flex-row flex-col gap-[1.5vw] mb-[6vh]">
             {features.map((feature, index) => (
               <Card
                 key={index}
@@ -248,7 +230,7 @@ export default function HomePage() {
       {/* Our Work Section */}
       <div className="w-full bg-[#0E0018] py-[8vh] px-[4vw]">
         <div className="max-w-[90vw] mx-auto">
-          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[6vh]">
+          <h2 className="text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] font-bold text-white text-center mb-[6vh]">
             Our Work
           </h2>
 
@@ -257,7 +239,7 @@ export default function HomePage() {
             <div className="flex bg-[#4A1968] rounded-full p-[0.3vh]">
               <button
                 onClick={() => setActiveTab("projects")}
-                className={`px-[2.5vw] py-[1.5vh] rounded-full font-semibold transition-all cursor-pointer ${
+                className={`px-[6vw] py-[2vh] sm:px-[4vw] md:px-[3vw] lg:px-[2.5vw] rounded-full text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-base font-semibold transition-all cursor-pointer ${
                   activeTab === "projects"
                     ? "bg-[#C49EE8] text-[#16001F]"
                     : "text-white hover:bg-[#5A2278]"
@@ -267,7 +249,7 @@ export default function HomePage() {
               </button>
               <button
                 onClick={() => setActiveTab("blogs")}
-                className={`px-[2.5vw] py-[1.5vh] rounded-full font-semibold transition-all cursor-pointer ${
+                className={`px-[6vw] py-[2vh] sm:px-[4vw] md:px-[3vw] lg:px-[2.5vw] rounded-full text-[4vw] sm:text-[3vwheatmap] md:text-[2vw] lg:text-base font-semibold transition-all cursor-pointer ${
                   activeTab === "blogs"
                     ? "bg-[#C49EE8] text-[#16001F]"
                     : "text-white hover:bg-[#5A2278]"
@@ -279,12 +261,12 @@ export default function HomePage() {
           </div>
 
           {/* Filter Tabs and Project Cards - Side by Side */}
-          <div className="flex gap-[4vw]">
+          <div className="flex flex-col md:flex-row gap-[4vw]">
             {/* Filter Tabs - Left Side */}
-            <div className="flex flex-col gap-[3vh] min-w-[12vw]">
+            <div className="flex flex-row md:flex-col gap-[4vw] md:gap-[3vh] md:min-w-[12vw] mb-[4vh] md:mb-0">
               <button
                 onClick={() => setActiveFilter("ongoing")}
-                className={`text-left text-[1.2vw] font-medium transition-colors cursor-pointer ${
+                className={`text-left text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.2vw] font-medium transition-colors cursor-pointer ${
                   activeFilter === "ongoing"
                     ? "text-[#D05CFF]"
                     : "text-white/60 hover:text-white"
@@ -294,7 +276,7 @@ export default function HomePage() {
               </button>
               <button
                 onClick={() => setActiveFilter("complete")}
-                className={`text-left text-[1.2vw] font-medium transition-colors cursor-pointer ${
+                className={`text-left text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.2vw] font-medium transition-colors cursor-pointer ${
                   activeFilter === "complete"
                     ? "text-[#D05CFF]"
                     : "text-white/60 hover:text-white"
@@ -306,26 +288,26 @@ export default function HomePage() {
 
             {/* Project Cards - Right Side */}
             <div className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.5vw] mb-[6vh]">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[4vw] md:gap-[2.5vw] lg:gap-[1.5vw] mb-[6vh]">
                 {activeTab === "projects"
                   ? projects.map((project, index) => (
                       <div
                         key={index}
-                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[1.5vw] p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
                       >
                         <div>
-                          <p className="text-[#C49EE8] text-[0.9vw] mb-[1vh]">
+                          <p className="text-[#C49EE8] text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw] mb-[1vh]">
                             {project.subtitle}
                           </p>
-                          <h3 className="text-white text-[2.5vw] font-bold mb-[3vh]">
+                          <h3 className="text-white text-[6vw] sm:text-[5vw] md:text-[4vw] lg:text-[2.5vw] font-bold mb-[3vh]">
                             {project.title}
                           </h3>
                         </div>
-                        <div className="flex gap-[0.5vw]">
+                        <div className="flex gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw]">
                           {project.technologies.map((tech, techIndex) => (
                             <div
                               key={techIndex}
-                              className="w-[2vw] h-[2vw] bg-white rounded flex items-center justify-center p-[0.2vw]"
+                              className="w-[8vw] h-[8vw] sm:w-[6vw] sm:h-[6vw] md:w-[4vw] md:h-[4vw] lg:w-[2vw] lg:h-[2vw] bg-white rounded flex items-center justify-center p-[0.2vw]"
                             >
                               <Image
                                 src={tech.logo}
@@ -342,22 +324,22 @@ export default function HomePage() {
                   : blogs.map((blog, index) => (
                       <div
                         key={index}
-                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[1.5vw] p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
                       >
                         <div>
-                          <div className="flex items-center gap-[1vw] mb-[1vh]">
-                            <span className="text-[#C49EE8] text-[0.8vw] bg-[#C49EE8]/20 px-[1vw] py-[0.5vh] rounded-full">
+                          <div className="flex items-center gap-[2vw] md:gap-[1vw] mb-[1vh]">
+                            <span className="text-[#C49EE8] text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw] bg-[#C49EE8]/20 px-[2.5vw] md:px-[1.5vw] lg:px-[1vw] py-[0.5vh] rounded-full">
                               {blog.category}
                             </span>
-                            <span className="text-white/60 text-[0.8vw]">
+                            <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
                               {blog.readTime}
                             </span>
                           </div>
-                          <h3 className="text-white text-[1.5vw] font-bold mb-[2vh]">
+                          <h3 className="text-white text-[5vw] sm:text-[4vw] md:text-[3vw] lg:text-[1.5vw] font-bold mb-[2vh]">
                             {blog.title}
                           </h3>
                         </div>
-                        <div className="flex items-center justify-between text-[0.8vw]">
+                        <div className="flex items-center justify-between text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
                           <span className="text-white/60">{blog.author}</span>
                           <span className="text-[#C49EE8]">{blog.date}</span>
                         </div>
@@ -369,12 +351,12 @@ export default function HomePage() {
               <div className="flex justify-center">
                 <Link
                   href={activeTab === "projects" ? "/projects" : "/blog"}
-                  className="text-white text-[1.1vw] font-medium flex items-center gap-[0.5vw] hover:text-[#C49EE8] transition-colors cursor-pointer"
+                  className="text-white text-[4.5vw] sm:text-[3.5vw] md:text-[2vw] lg:text-[1.1vw] font-medium flex items-center gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw] hover:text-[#C49EE8] transition-colors cursor-pointer"
                 >
                   {activeTab === "projects"
                     ? "View All Projects"
                     : "View All Blogs"}{" "}
-                  <ArrowRight className="w-[1.2vw] h-[1.2vw]" />
+                  <ArrowRight className="w-[5vw] h-[5vw] sm:w-[4vw] sm:h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[1.2vw] lg:h-[1.2vw]" />
                 </Link>
               </div>
             </div>
@@ -385,27 +367,31 @@ export default function HomePage() {
       {/* Our Contributions Section */}
       <div className="w-full bg-[#0E0018] py-[10vh] px-[4vw]">
         <div className="max-w-[85vw] mx-auto">
-          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[8vh]">
+          <h2 className="text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] font-bold text-white text-center mb-[8vh]">
             Our Contributions
           </h2>
 
           {/* Activity Heatmap */}
-          <div className="bg-linear-to-br from-[#1E0A2E]/50 to-transparent border border-[#7B3FAD]/30 rounded-[2vw] p-[3vw]">
+          <div className="bg-linear-to-br from-[#1E0A2E]/50 to-transparent border border-[#7B3FAD]/30 rounded-[4vw] md:rounded-[3vw] lg:rounded-[2vw] p-[5vw] md:p-[4vw] lg:p-[3vw]">
             <div className="flex justify-end items-center mb-[4vh]">
-              <div className="flex items-center gap-[1vw]">
-                <span className="text-white/60 text-[0.85vw]">Less</span>
-                <div className="flex gap-[0.3vw]">
-                  <div className="w-[1.2vw] h-[1.2vw] bg-[#1E0A2E] rounded border border-[#3A1A5A]"></div>
-                  <div className="w-[1.2vw] h-[1.2vw] bg-[#5A2D7A] rounded"></div>
-                  <div className="w-[1.2vw] h-[1.2vw] bg-[#8B4FC3] rounded"></div>
-                  <div className="w-[1.2vw] h-[1.2vw] bg-[#C49EE8] rounded"></div>
+              <div className="flex items-center gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw]">
+                <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.85vw]">
+                  Less
+                </span>
+                <div className="flex gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw]">
+                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#1E0A2E] rounded border border-[#3A1A5A]"></div>
+                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#5A2D7A] rounded"></div>
+                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#8B4FC3] rounded"></div>
+                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#C49EE8] rounded"></div>
                 </div>
-                <span className="text-white/60 text-[0.85vw]">More</span>
+                <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.85vw]">
+                  More
+                </span>
               </div>
             </div>
 
             {/* Months Row */}
-            <div className="flex gap-[0.3vw] mb-[1vh]">
+            <div className="flex gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw] mb-[1vh]">
               {[
                 "Jan",
                 "Feb",
@@ -422,7 +408,7 @@ export default function HomePage() {
               ].map((month, i) => (
                 <div
                   key={month}
-                  className="flex-1 text-center text-white/50 text-[0.7vw] font-medium"
+                  className="flex-1 text-center text-white/50 text-[2.5vw] sm:text-[1.8vw] md:text-[1.2vw] lg:text-[0.7vw] font-medium"
                 >
                   {month}
                 </div>
@@ -430,16 +416,16 @@ export default function HomePage() {
             </div>
 
             {/* Grid with Week Labels */}
-            <div className="flex gap-[1vw] overflow-hidden">
+            <div className="flex gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw] overflow-hidden">
               {/* Week Labels */}
-              <div className="flex flex-col justify-around text-white/50 text-[0.7vw] pr-[0.5vw] shrink-0">
+              <div className="flex flex-col justify-around text-white/50 text-[2.5vw] sm:text-[1.8vw] md:text-[1.2vw] lg:text-[0.7vw] pr-[1vw] md:pr-[0.5vw] shrink-0">
                 <span>Mon</span>
                 <span>Wed</span>
                 <span>Fri</span>
               </div>
 
               {/* Contribution Grid */}
-              <div className="flex-1 grid grid-rows-7 grid-flow-col gap-[0.3vw] max-w-full">
+              <div className="flex-1 grid grid-rows-7 grid-flow-col gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw] max-w-full">
                 {Array.from({ length: 364 }).map((_, i) => {
                   const random = Math.random();
                   let colorClass = "bg-[#1E0A2E] border border-[#3A1A5A]";
@@ -464,45 +450,36 @@ export default function HomePage() {
       {/* Our Impact Section */}
       <div className="w-full bg-[#0E0018] py-[8vh] px-[4vw]">
         <div className="max-w-[90vw] mx-auto">
-          <h2 className="text-[3.5vw] font-bold text-white text-center mb-[8vh]">
+          <h2 className="text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] font-bold text-white text-center mb-[8vh]">
             Our Impact
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2vw]">
-            {impactStats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex justify-center mb-[3vh]">
-                  <Rocket
-                    className="w-[4vw] h-[4vw] text-white"
-                    strokeWidth={1.5}
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[8vw] md:gap-[4vw] lg:gap-[2vw]">
+            {impactStats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="flex justify-center mb-[3vh]">
+                    <IconComponent
+                      className="w-[15vw] h-[15vw] sm:w-[12vw] sm:h-[12vw] md:w-[8vw] md:h-[8vw] lg:w-[4vw] lg:h-[4vw] text-white"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3 className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold text-white mb-[2vh]">
+                    {stat.number}
+                  </h3>
+                  <p className="text-[5vw] sm:text-[4vw] md:text-[2.5vw] lg:text-[1.3vw] font-semibold text-white mb-[1vh]">
+                    {stat.title}
+                  </p>
+                  <p className="text-[3.5vw] sm:text-[2.8vw] md:text-[1.8vw] lg:text-[0.9vw] text-white/70">
+                    {stat.description}
+                  </p>
                 </div>
-                <h3 className="text-[3.5vw] font-bold text-white mb-[2vh]">
-                  {stat.number}
-                </h3>
-                <p className="text-[1.3vw] font-semibold text-white mb-[1vh]">
-                  {stat.title}
-                </p>
-                <p className="text-[0.9vw] text-white/70">{stat.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
-
-      {/* Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-[13vh] right-[3vw] bg-[#1E0A2E] border-2 border-white/20 text-white px-[1.5vw] py-[1.2vh] rounded-lg hover:bg-[#2D0F47] hover:border-white/40 transition-all flex items-center gap-[0.5vw] text-[0.9vw] font-medium cursor-pointer z-50 shadow-lg ${
-          showBackToTop
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-[2vh] pointer-events-none"
-        }`}
-        aria-label="Back to Top"
-      >
-        Back to Top
-        <ChevronUp className="w-[1.2vw] h-[1.2vw]" />
-      </button>
     </main>
   );
 }
