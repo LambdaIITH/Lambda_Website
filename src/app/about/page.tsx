@@ -1,91 +1,134 @@
-export default function HomePage() {
+import { Users, Rocket, Trophy, Settings } from "lucide-react";
+import EventCard from "@/components/about-components/EventCard";
+import TestimonialCard from "@/components/about-components/TestimonialCard";
+
+export default function AboutPage() {
+
+  const events = [
+    {
+      date: "9/15/25",
+      title: "Annual Hackathon",
+      description:
+        "48 hour coding marathon with exciting prizes and etc etc etc however long whatever needs to be added da da da da.",
+    },
+    {
+      date: "9/15/25",
+      title: "Tech Talk Series",
+      description:
+        "Industry experts share insights on emerging technologies.",
+    },
+    {
+      date: "9/15/25",
+      title: "Code for a Cause",
+      description:
+        "Developing solutions for local non-profit organizations.",
+    },
+    {
+      date: "9/15/25",
+      title: "Winter of Code",
+      description:
+        "Month-long program to contribute to open source projects.",
+    },
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
-
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-          >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            Join the Club
-          </a>
+    <>
+      <main className="pt-30 pb-32 px-6 grid-background min-h-screen w-full">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-5xl text-[#D2A8FF] font-bold">Who are we?</p>
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
+        <div className="flex justify-center mt-14 px-6">
+          <p className="max-w-[900px] text-center text-[#D2A8FF] text-xl leading-relaxed font-semibold">
+            Lambda is the premier developer club at IIT Hyderabad, fostering innovation and technical excellence.
+            Our community of passionate coders, designers, and tech enthusiasts work together to push the boundaries
+            of what's possible in software development.
+          </p>
         </div>
-      </div>
-    </main>
+        <div className="flex flex-col justify-center items-center mt-40">
+          <p className="text-5xl text-[#D2A8FF] font-bold">Our Achievements</p>
+        </div>
+        <div className="mt-24 flex justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-x-24 text-[#D2A8FF]">
+
+            {/* Active Members */}
+            <div className="flex flex-col items-center lg:border-r lg:border-white lg:pr-18">
+              <Users size={36} strokeWidth={1.5} color="white" />
+              <p className="mt-4 text-2xl font-bold text-white">40</p>
+              <p className="mt-2 text-sm tracking-wide text-white">Active Members</p>
+            </div>
+
+            {/* Projects */}
+            <div className="flex flex-col items-center lg:border-r lg:border-white lg:pr-18">
+              <Rocket size={36} strokeWidth={1.5} color="white" />
+              <p className="mt-4 text-2xl font-bold text-white">25</p>
+              <p className="mt-2 text-sm tracking-wide text-white">Projects Completed</p>
+            </div>
+
+            {/* Hackathons */}
+            <div className="flex flex-col items-center lg:border-r lg:border-white lg:pr-18">
+              <Trophy size={36} strokeWidth={1.5} color="white" />
+              <p className="mt-4 text-2xl font-bold text-white">15</p>
+              <p className="mt-2 text-sm tracking-wide text-white">Hackathons Won</p>
+            </div>
+
+            {/* Technologies */}
+            <div className="flex flex-col items-center lg:pr-8">
+              <Settings size={36} strokeWidth={1.5} color="white" />
+              <p className="mt-4 text-2xl font-bold text-white">100</p>
+              <p className="mt-2 text-sm tracking-wide text-white">Technologies</p>
+            </div>
+
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center mt-40">
+          <p className="text-5xl text-[#D2A8FF] font-bold">Upcoming Events</p>
+        </div>
+        <div className="mt-20 flex justify-center">
+          <div className="w-[900px] flex flex-col">
+
+            {events.map((event, i) => (
+              <div key={i} className="relative flex items-start gap-10">
+
+                {/* Date */}
+                <p className="w-[90px] text-right pr-4 text-white/70 text-sm mt-6">
+                  {event.date}
+                </p>
+
+                {/* Card wrapper (this owns the timeline) */}
+                <div className="relative pl-12 border-l pb-10 border-purple-500/60">
+
+                  {/* Dot */}
+                  <div className="absolute -left-[9px] top-6 flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-fuchsia-500 shadow-[0_0_12px_#d946ef]" />
+                    <div className="absolute w-9 h-9 rounded-full border border-fuchsia-500/40" />
+                  </div>
+
+                  <EventCard {...event} />
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center mt-40">
+          <p className="text-5xl text-[#D2A8FF] font-bold">
+            What Our Members Say
+          </p>
+        </div>
+        <div className="mt-16 flex justify-center gap-12 flex-wrap">
+          <TestimonialCard
+            name="Adhith T"
+            role="Club Head"
+            quote="Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects."
+          />
+
+          <TestimonialCard
+            name="Zara Khan"
+            role="Web Development"
+            quote="Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects."
+          />
+        </div>
+      </main>
+    </>
   );
 }
