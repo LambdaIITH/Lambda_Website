@@ -53,15 +53,15 @@ export default function AboutPage() {
   const testimonials = [
     {
       quote:
-        "Lambda has been an incredible platform for me to grow and enhance my skills. The supportive community has helped me become more confident in problem-solving and collaboration.",
+        "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
       author: "Adhith T",
-      role: "Club Member",
+      role: "Club Head",
     },
     {
       quote:
-        "Joining Lambda was the best decision. It's amazing to see how our community collaborates towards a common goal. I've learned so much from my peers!",
+        "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
       author: "Zara Khan",
-      role: "Club Member",
+      role: "Web Development",
     },
   ];
 
@@ -121,44 +121,36 @@ export default function AboutPage() {
             Upcoming Events
           </h2>
 
-          <div className="relative max-w-[85vw] lg:max-w-[70vw] mx-auto">
-            {/* Central Timeline Line */}
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[0.3vw] bg-linear-to-b from-[#D2A8FF] via-[#9B5FCD] to-[#7B3FAD]"></div>
+          <div className="relative max-w-[90vw] lg:max-w-[70vw] mx-auto pl-[15vw] sm:pl-[12vw] lg:pl-[8vw]">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-[7vw] sm:left-[6vw] lg:left-[4vw] top-0 bottom-0 w-[0.4vw] sm:w-[0.3vw] lg:w-[0.2vw] bg-white"></div>
 
-            <div className="space-y-[8vw] sm:space-y-[6vw] md:space-y-[5vw] lg:space-y-[4vw]">
+            <div className="space-y-[10vw] sm:space-y-[8vw] lg:space-y-[5vw]">
               {events.map((event, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col lg:flex-row gap-[4vw] lg:gap-[3vw] items-center ${
-                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
-                >
-                  {/* Event Card - Left or Right */}
-                  <div className="w-full lg:w-[45%]">
-                    <div className="bg-linear-to-br from-[#3D1054] to-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] sm:rounded-[3vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[6vw] sm:p-[5vw] md:p-[4vw] lg:p-[2vw] hover:border-[#D2A8FF] hover:shadow-[0_0_2vw_0.5vw_rgba(210,168,255,0.2)] transition-all duration-300 group">
-                      <div className="flex items-start gap-[3vw] lg:gap-[1vw] mb-[3vw] lg:mb-[1vw]">
-                        <div className="bg-[#D2A8FF]/20 rounded-[2vw] lg:rounded-[0.8vw] p-[2vw] lg:p-[0.8vw] group-hover:bg-[#D2A8FF]/30 transition-all">
-                          <div className="text-[4.5vw] sm:text-[3.5vw] md:text-[2.5vw] lg:text-[1.2vw] font-bold text-[#D2A8FF]">
-                            {event.date}
-                          </div>
-                        </div>
-                      </div>
-                      <h3 className="text-[6vw] sm:text-[5vw] md:text-[3.5vw] lg:text-[1.8vw] font-bold mb-[3vw] sm:mb-[2.5vw] md:mb-[2vw] lg:mb-[1vw] text-white group-hover:text-[#D2A8FF] transition-colors">
-                        {event.title}
-                      </h3>
-                      <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.5vw] lg:text-[1vw] text-white/70 leading-relaxed">
-                        {event.description}
-                      </p>
+                <div key={index} className="relative">
+                  {/* Date positioned absolutely to the left on desktop, above card on mobile */}
+                  <div className="lg:absolute lg:left-[-9vw] lg:top-[0.3vw] lg:w-[6vw] mb-[3vw] lg:mb-0">
+                    <span className="text-[3.5vw] sm:text-[3vw] lg:text-[1vw] font-medium text-white">
+                      {event.date}
+                    </span>
+                  </div>
+
+                  {/* Timeline Node */}
+                  <div className="absolute left-[-9.5vw] sm:left-[-6.7vw] lg:left-[-4.7vw] top-[1vw] sm:top-[0.8vw] lg:top-[0.5vw] z-10">
+                    <div className="w-[3.5vw] h-[3.5vw] sm:w-[3vw] sm:h-[3vw] lg:w-[1.6vw] lg:h-[1.6vw] rounded-full border-[0.3vw] sm:border-[0.25vw] lg:border-[0.1vw] border-[#CF5CFF]/40 flex items-center justify-center">
+                      <div className="w-[2.5vw] h-[2.5vw] sm:w-[2vw] sm:h-[2vw] lg:w-[1vw] lg:h-[1vw] bg-[#CF5CFF] rounded-full border-[0.5vw] sm:border-[0.4vw] lg:border-[0.2vw] border-[#0E0018]"></div>
                     </div>
                   </div>
 
-                  {/* Center Dot */}
-                  <div className="hidden lg:flex items-center justify-center shrink-0 relative z-10">
-                    <div className="w-[2vw] h-[2vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-linear-to-br from-[#D2A8FF] to-[#9B5FCD] rounded-full border-[0.3vw] lg:border-[0.2vw] border-[#0E0018] shadow-[0_0_1.5vw_0.5vw_rgba(210,168,255,0.4)]"></div>
+                  {/* Event Card */}
+                  <div className="bg-[#28013C] border border-[#8B4FC3]/50 rounded-[4vw] sm:rounded-[3vw] lg:rounded-[1.5vw] p-[6vw] sm:p-[5vw] lg:p-[2.5vw] transition-all duration-300">
+                    <h3 className="text-[5.5vw] sm:text-[4.5vw] lg:text-[2vw] font-bold mb-[3vw] sm:mb-[2.5vw] lg:mb-[1vw] text-[#CF5CFF]">
+                      {event.title}
+                    </h3>
+                    <p className="text-[4vw] sm:text-[3.2vw] lg:text-[1.1vw] text-white/80 leading-relaxed">
+                      {event.description}
+                    </p>
                   </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden lg:block w-[45%]"></div>
                 </div>
               ))}
             </div>

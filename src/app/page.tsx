@@ -11,13 +11,26 @@ import {
 } from "lucide-react";
 import Card from "@/components/home/Card";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"projects" | "blogs">("projects");
   const [activeFilter, setActiveFilter] = useState<"ongoing" | "complete">(
     "ongoing"
   );
+  const [heatmapData, setHeatmapData] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Generate heatmap data on client side only
+    const data = Array.from({ length: 364 }).map(() => {
+      const random = Math.random();
+      if (random > 0.7) return "bg-[#C49EE8]";
+      if (random > 0.5) return "bg-[#8B4FC3]";
+      if (random > 0.3) return "bg-[#5A2D7A]";
+      return "bg-[#1E0A2E] border border-[#3A1A5A]";
+    });
+    setHeatmapData(data);
+  }, []);
 
   const features = [
     {
@@ -201,7 +214,7 @@ export default function HomePage() {
               alt="Lambda Logo"
               width={90}
               height={90}
-              className="mb-[3vh] mt-[15vh] w-[20vw] sm:w-[15vw] md:w-[12vw] lg:w-[90px] h-auto"
+              className="mb-[3vh] mt-[1vh] md:mt-[10vh] w-[20vw] sm:w-[15vw] md:w-[12vw] lg:w-[90px] h-auto"
             />
             <div className="text-center text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[4.5vw] font-bold mb-[1vh] tracking-wider">
               Lambda
@@ -214,7 +227,7 @@ export default function HomePage() {
           </div>
 
           {/* cards */}
-          <div className="flex md:flex-row flex-col gap-[1.5vw] mb-[6vh]">
+          <div className="md:flex grid grid-cols-2 gap-[5vw] md:gap-[1.5vw] mb-[6vh]">
             {features.map((feature, index) => (
               <Card
                 key={index}
@@ -241,7 +254,7 @@ export default function HomePage() {
                 onClick={() => setActiveTab("projects")}
                 className={`px-[6vw] py-[2vh] sm:px-[4vw] md:px-[3vw] lg:px-[2.5vw] rounded-full text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-base font-semibold transition-all cursor-pointer ${
                   activeTab === "projects"
-                    ? "bg-[#C49EE8] text-[#16001F]"
+                    ? "bg-[#D589F5] text-[#16001F]"
                     : "text-white hover:bg-[#5A2278]"
                 }`}
               >
@@ -251,7 +264,7 @@ export default function HomePage() {
                 onClick={() => setActiveTab("blogs")}
                 className={`px-[6vw] py-[2vh] sm:px-[4vw] md:px-[3vw] lg:px-[2.5vw] rounded-full text-[4vw] sm:text-[3vwheatmap] md:text-[2vw] lg:text-base font-semibold transition-all cursor-pointer ${
                   activeTab === "blogs"
-                    ? "bg-[#C49EE8] text-[#16001F]"
+                    ? "bg-[#D589F5] text-[#16001F]"
                     : "text-white hover:bg-[#5A2278]"
                 }`}
               >
@@ -293,55 +306,91 @@ export default function HomePage() {
                   ? projects.map((project, index) => (
                       <div
                         key={index}
-                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                        className="group relative bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:bg-[#912FC2] transition-all duration-300 h-[25vh] flex flex-col justify-between cursor-pointer overflow-hidden"
                       >
-                        <div>
-                          <p className="text-[#C49EE8] text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw] mb-[1vh]">
-                            {project.subtitle}
-                          </p>
-                          <h3 className="text-white text-[6vw] sm:text-[5vw] md:text-[4vw] lg:text-[2.5vw] font-bold mb-[3vh]">
-                            {project.title}
-                          </h3>
+                        {/* Default Content */}
+                        <div className="group-hover:opacity-0 group-hover:invisible transition-all duration-300">
+                          <div>
+                            <p className="text-[#C49EE8] text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw] mb-[1vh]">
+                              {project.subtitle}
+                            </p>
+                            <h3 className="text-white text-[6vw] sm:text-[5vw] md:text-[4vw] lg:text-[2.5vw] font-bold mb-[3vh]">
+                              {project.title}
+                            </h3>
+                          </div>
+                          <div className="flex gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw]">
+                            {project.technologies.map((tech, techIndex) => (
+                              <div
+                                key={techIndex}
+                                className="w-[8vw] h-[8vw] sm:w-[6vw] sm:h-[6vw] md:w-[4vw] md:h-[4vw] lg:w-[2vw] lg:h-[2vw] bg-white rounded flex items-center justify-center p-[0.2vw]"
+                              >
+                                <Image
+                                  src={tech.logo}
+                                  alt={tech.name}
+                                  width={32}
+                                  height={32}
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <div className="flex gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw]">
-                          {project.technologies.map((tech, techIndex) => (
-                            <div
-                              key={techIndex}
-                              className="w-[8vw] h-[8vw] sm:w-[6vw] sm:h-[6vw] md:w-[4vw] md:h-[4vw] lg:w-[2vw] lg:h-[2vw] bg-white rounded flex items-center justify-center p-[0.2vw]"
-                            >
-                              <Image
-                                src={tech.logo}
-                                alt={tech.name}
-                                width={32}
-                                height={32}
-                                className="w-full h-full object-contain"
-                              />
-                            </div>
-                          ))}
+
+                        {/* Hover Content */}
+                        <div className="absolute inset-0 p-[5vw] md:p-[3vw] lg:p-[2vw] flex flex-col justify-center gap-[3vh] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                          <p className="text-white text-[3.5vw] sm:text-[2.5vw] md:text-[1.8vw] lg:text-[1vw] leading-relaxed text-left">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Sed do eiusmod tempor incididunt ut labore.
+                          </p>
+                          <Link
+                            href="#"
+                            className="text-white text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.1vw] font-semibold flex items-center gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw] hover:gap-[3vw] md:hover:gap-[1.5vw] lg:hover:gap-[0.7vw] transition-all"
+                          >
+                            View Project{" "}
+                            <ArrowRight className="w-[5vw] h-[5vw] sm:w-[4vw] sm:h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[1.2vw] lg:h-[1.2vw]" />
+                          </Link>
                         </div>
                       </div>
                     ))
                   : blogs.map((blog, index) => (
                       <div
                         key={index}
-                        className="bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:border-[#9B5FCD] transition-all h-[25vh] flex flex-col justify-between cursor-pointer"
+                        className="group relative bg-[#2D0F47] border-2 border-[#7B3FAD] rounded-[4vw] md:rounded-[2.5vw] lg:rounded-[1.5vw] p-[5vw] md:p-[3vw] lg:p-[2vw] hover:bg-[#912FC2] transition-all duration-300 h-[25vh] flex flex-col justify-between cursor-pointer overflow-hidden"
                       >
-                        <div>
-                          <div className="flex items-center gap-[2vw] md:gap-[1vw] mb-[1vh]">
-                            <span className="text-[#C49EE8] text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw] bg-[#C49EE8]/20 px-[2.5vw] md:px-[1.5vw] lg:px-[1vw] py-[0.5vh] rounded-full">
-                              {blog.category}
-                            </span>
-                            <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
-                              {blog.readTime}
-                            </span>
+                        {/* Default Content */}
+                        <div className="group-hover:opacity-0 group-hover:invisible transition-all duration-300">
+                          <div>
+                            <div className="flex items-center gap-[2vw] md:gap-[1vw] mb-[1vh]">
+                              <span className="text-[#C49EE8] text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw] bg-[#C49EE8]/20 px-[2.5vw] md:px-[1.5vw] lg:px-[1vw] py-[0.5vh] rounded-full">
+                                {blog.category}
+                              </span>
+                              <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
+                                {blog.readTime}
+                              </span>
+                            </div>
+                            <h3 className="text-white text-[5vw] sm:text-[4vw] md:text-[3vw] lg:text-[1.5vw] font-bold mb-[2vh]">
+                              {blog.title}
+                            </h3>
                           </div>
-                          <h3 className="text-white text-[5vw] sm:text-[4vw] md:text-[3vw] lg:text-[1.5vw] font-bold mb-[2vh]">
-                            {blog.title}
-                          </h3>
+                          <div className="flex items-center justify-between text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
+                            <span className="text-white/60">{blog.author}</span>
+                            <span className="text-[#C49EE8]">{blog.date}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-between text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.8vw]">
-                          <span className="text-white/60">{blog.author}</span>
-                          <span className="text-[#C49EE8]">{blog.date}</span>
+
+                        {/* Hover Content */}
+                        <div className="absolute inset-0 p-[5vw] md:p-[3vw] lg:p-[2vw] flex flex-col justify-center gap-[3vh] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                          <p className="text-white text-[3.5vw] sm:text-[2.5vw] md:text-[1.8vw] lg:text-[1vw] leading-relaxed text-left">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Sed do eiusmod tempor incididunt ut labore.
+                          </p>
+                          <Link
+                            href="#"
+                            className="text-white text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-[1.1vw] font-semibold flex items-center gap-[2vw] md:gap-[1vw] lg:gap-[0.5vw] hover:gap-[3vw] md:hover:gap-[1.5vw] lg:hover:gap-[0.7vw] transition-all"
+                          >
+                            Read Article{" "}
+                            <ArrowRight className="w-[5vw] h-[5vw] sm:w-[4vw] sm:h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[1.2vw] lg:h-[1.2vw]" />
+                          </Link>
                         </div>
                       </div>
                     ))}
@@ -372,75 +421,72 @@ export default function HomePage() {
           </h2>
 
           {/* Activity Heatmap */}
-          <div className="bg-linear-to-br from-[#1E0A2E]/50 to-transparent border border-[#7B3FAD]/30 rounded-[4vw] md:rounded-[3vw] lg:rounded-[2vw] p-[5vw] md:p-[4vw] lg:p-[3vw]">
+          <div className="bg-linear-to-br from-[#1E0A2E]/50 to-transparent border border-[#7B3FAD]/30 rounded-[4vw] md:rounded-[3vw] lg:rounded-[2vw] p-[6vw] sm:p-[5vw] md:p-[4vw] lg:p-[3vw]">
             <div className="flex justify-end items-center mb-[4vh]">
-              <div className="flex items-center gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw]">
-                <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.85vw]">
+              <div className="flex items-center gap-[3vw] sm:gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw]">
+                <span className="text-white/60 text-[4vw] sm:text-[3vw] md:text-[1.5vw] lg:text-[0.85vw]">
                   Less
                 </span>
-                <div className="flex gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw]">
-                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#1E0A2E] rounded border border-[#3A1A5A]"></div>
-                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#5A2D7A] rounded"></div>
-                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#8B4FC3] rounded"></div>
-                  <div className="w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#C49EE8] rounded"></div>
+                <div className="flex gap-[2vw] sm:gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw]">
+                  <div className="w-[5vw] h-[5vw] sm:w-[3.5vw] sm:h-[3.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#1E0A2E] rounded border border-[#3A1A5A]"></div>
+                  <div className="w-[5vw] h-[5vw] sm:w-[3.5vw] sm:h-[3.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#5A2D7A] rounded"></div>
+                  <div className="w-[5vw] h-[5vw] sm:w-[3.5vw] sm:h-[3.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#8B4FC3] rounded"></div>
+                  <div className="w-[5vw] h-[5vw] sm:w-[3.5vw] sm:h-[3.5vw] md:w-[1.8vw] md:h-[1.8vw] lg:w-[1.2vw] lg:h-[1.2vw] bg-[#C49EE8] rounded"></div>
                 </div>
-                <span className="text-white/60 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[0.85vw]">
+                <span className="text-white/60 text-[4vw] sm:text-[3vw] md:text-[1.5vw] lg:text-[0.85vw]">
                   More
                 </span>
               </div>
             </div>
 
-            {/* Months Row */}
-            <div className="flex gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw] mb-[1vh]">
-              {[
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-              ].map((month, i) => (
-                <div
-                  key={month}
-                  className="flex-1 text-center text-white/50 text-[2.5vw] sm:text-[1.8vw] md:text-[1.2vw] lg:text-[0.7vw] font-medium"
-                >
-                  {month}
-                </div>
-              ))}
-            </div>
-
-            {/* Grid with Week Labels */}
-            <div className="flex gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw] overflow-hidden">
-              {/* Week Labels */}
-              <div className="flex flex-col justify-around text-white/50 text-[2.5vw] sm:text-[1.8vw] md:text-[1.2vw] lg:text-[0.7vw] pr-[1vw] md:pr-[0.5vw] shrink-0">
-                <span>Mon</span>
-                <span>Wed</span>
-                <span>Fri</span>
-              </div>
-
-              {/* Contribution Grid */}
-              <div className="flex-1 grid grid-rows-7 grid-flow-col gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw] max-w-full">
-                {Array.from({ length: 364 }).map((_, i) => {
-                  const random = Math.random();
-                  let colorClass = "bg-[#1E0A2E] border border-[#3A1A5A]";
-                  if (random > 0.7) colorClass = "bg-[#C49EE8]";
-                  else if (random > 0.5) colorClass = "bg-[#8B4FC3]";
-                  else if (random > 0.3) colorClass = "bg-[#5A2D7A]";
-
-                  return (
+            {/* Scrollable Container */}
+            <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-[#7B3FAD] scrollbar-track-transparent pb-[2vh]">
+              <div className="min-w-max">
+                {/* Months Row */}
+                <div className="flex gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw] mb-[1vh] pl-[10vw] sm:pl-[8vw] md:pl-[6vw] lg:pl-[3vw]">
+                  {[
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                  ].map((month, i) => (
                     <div
-                      key={i}
-                      className={`aspect-square rounded-sm ${colorClass} hover:scale-110 transition-transform cursor-pointer min-w-0`}
-                      title={`${Math.floor(random * 20)} contributions`}
-                    />
-                  );
-                })}
+                      key={month}
+                      className="flex-1 min-w-[7vw] text-center text-white/50 text-[3.5vw] sm:text-[2.5vw] md:text-[1.2vw] lg:text-[0.7vw] font-medium"
+                    >
+                      {month}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Grid with Week Labels */}
+                <div className="flex gap-[3vw] sm:gap-[2vw] md:gap-[1.5vw] lg:gap-[1vw]">
+                  {/* Week Labels */}
+                  <div className="flex flex-col justify-around text-white/50 text-[3.5vw] sm:text-[2.5vw] md:text-[1.2vw] lg:text-[0.7vw] pr-[2vw] sm:pr-[1vw] md:pr-[0.5vw] shrink-0">
+                    <span>Mon</span>
+                    <span>Wed</span>
+                    <span>Fri</span>
+                  </div>
+
+                  {/* Contribution Grid */}
+                  <div className="flex-1 grid grid-rows-7 grid-flow-col gap-[1.5vw] sm:gap-[1vw] md:gap-[0.5vw] lg:gap-[0.3vw]">
+                    {heatmapData.map((colorClass, i) => (
+                      <div
+                        key={i}
+                        className={`aspect-square rounded-sm ${colorClass} hover:scale-110 transition-transform cursor-pointer w-[3.5vw] h-[3.5vw] sm:w-[2.5vw] sm:h-[2.5vw] md:w-auto md:h-auto`}
+                        title="Contributions"
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -458,7 +504,14 @@ export default function HomePage() {
             {impactStats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="text-center">
+                <div
+                  key={index}
+                  className={`text-center ${
+                    index !== impactStats.length - 1
+                      ? "md:border-r md:border-white/20"
+                      : ""
+                  }`}
+                >
                   <div className="flex justify-center mb-[3vh]">
                     <IconComponent
                       className="w-[15vw] h-[15vw] sm:w-[12vw] sm:h-[12vw] md:w-[8vw] md:h-[8vw] lg:w-[4vw] lg:h-[4vw] text-white"
