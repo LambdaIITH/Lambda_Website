@@ -1,12 +1,20 @@
-import { Mail, Instagram,LinkedinIcon,Github} from "lucide-react"
-
+import { Mail, Instagram, LinkedinIcon, Github } from "lucide-react"
+import { StaticImageData } from "next/image"
+import Image from "next/image"
 type Member = {
     name: string
     role: string
-    image: string
+    image: StaticImageData
+    socialLinks: {
+        github?: string;
+        linkedin?: string;
+        twitter?: string;
+        instagram?: string;
+        email?: string;
+    };
 }
 
-export default function MemberCard({ name, role, image }: Member) {
+export default function MemberCard({ name, role, image, socialLinks }: Member) {
     return (
         <div
             className="
@@ -24,7 +32,7 @@ export default function MemberCard({ name, role, image }: Member) {
             {/* Avatar */}
             <div className="w-full flex justify-center mb-6">
                 <div className="w-36 h-36 rounded-full bg-[#e5e5e5] overflow-hidden">
-                    <img
+                    <Image
                         src={image}
                         alt={name}
                         className="w-full h-full object-cover"
@@ -42,10 +50,32 @@ export default function MemberCard({ name, role, image }: Member) {
 
             {/* Icons */}
             <div className="flex justify-center gap-4 text-white">
-                <Mail className="w-5 h-5 text-[#16001F]  bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
-                <Github className="w-5 h-5 text-[#16001F] fill-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
-                <Instagram className="w-5 h-5 rounded-sm text-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
-                <LinkedinIcon strokeWidth={1} className="w-5 h-5 text-[#16001F] fill-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
+                {socialLinks.email && (
+                    <a href={`mailto:${socialLinks.email}`}>
+                        <Mail className="w-5 h-5 text-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
+                    </a>
+                )}
+
+                {socialLinks.github && (
+                    <a href={socialLinks.github} target="_blank">
+                        <Github className="w-5 h-5 text-[#16001F] fill-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
+                    </a>
+                )}
+
+                {socialLinks.instagram && (
+                    <a href={socialLinks.instagram} target="_blank">
+                        <Instagram className="w-5 h-5 rounded-sm text-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform" />
+                    </a>
+                )}
+
+                {socialLinks.linkedin && (
+                    <a href={socialLinks.linkedin} target="_blank">
+                        <LinkedinIcon
+                            strokeWidth={1}
+                            className="w-5 h-5 text-[#16001F] fill-[#16001F] bg-white cursor-pointer hover:scale-[1.1] transition-transform"
+                        />
+                    </a>
+                )}
             </div>
 
         </div>
