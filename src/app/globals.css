@@ -1,36 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A0A0B;
+  --foreground: #9433EC;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #9433EC;
+  --color-background-dark: #0A0A0B;
+  --color-card-dark: #161618;
+  --font-family-sans: Geist, sans-serif;
+  --font-family-mono: "Geist Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: linear-gradient(
-      #16001F 0%,
-      #010101 100%
-    );
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family-sans);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-html{
-  scroll-behavior: smooth;
-}
+/* Grid Background */
+@layer utilities {
 
-section{
-  scroll-margin-top: 120px;
+  .grid-background {
+    background:
+      radial-gradient(circle at 2px 2px,
+        rgba(148, 51, 236, 0.05) 1px,
+        transparent 0),
+      #0A0A0B;
+
+    background-size: 32px 32px;
+  }
+
+
+  /* Glass Dropdown */
+  .glass-dropdown {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px) !important;
+    background: rgba(148, 51, 236, 0.08) !important;
+    border: 1px solid rgba(148, 51, 236, 0.4) !important;
+    box-shadow: 0 0 25px rgba(148, 51, 236, 0.15) !important;
+  }
+
+  /* Member Card */
+  .member-card {
+    background: rgba(22, 22, 24, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .member-card:hover {
+    border-color: rgba(148, 51, 236, 0.6);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 40px -10px rgba(148, 51, 236, 0.25);
+  }
+
+  /* Glow Avatar */
+  .glow-avatar {
+    box-shadow: 0 0 15px -5px rgba(148, 51, 236, 0.2);
+  }
+
+  .member-card:hover .glow-avatar {
+    box-shadow: 0 0 30px -2px rgba(148, 51, 236, 0.5);
+  }
+
+  /* Social Icon */
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgb(148 163 184);
+    transition: all 0.3s;
+  }
+
+  .social-icon:hover {
+    color: var(--color-primary);
+    background-color: rgba(148, 51, 236, 0.1);
+  }
+
+  .social-icon svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+  }
+
+  .social-icon .material-symbols-outlined {
+    font-size: 18px;
+  }
 }

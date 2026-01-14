@@ -3,100 +3,107 @@ import { useState } from "react"
 import TeamSection from "@/components/team-components/TeamSection"
 import Footer from "@/components/common/Footer"
 import BackToTop from "@/components/common/BackToTop"
-import TeamSidebar from "@/components/team-components/TeamSidebar"
 import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "./data"
 
 export default function TeamPage() {
   const [teamYear, setTeamYear] = useState<"2024-25" | "2025-26">("2025-26");
-  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <main className="pt-30 pb-32 px-6 grid-background min-h-screen w-full">
-
-        {/* Title */}
-        <div className="max-w-5xl mx-auto text-center mb-16">
-          <h1 className="text-5xl md:text-[60px] font-bold tracking-tighter text-[#D2A8FF]">
-            Our Team
+      <main className="pt-30 pb-32 px-6 grid-background min-h-screen">
+        {/* Title Section */}
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className="text-primary font-mono text-sm tracking-[0.3em] uppercase mb-4">
+            Our Developers
+          </h2>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white">
+            The Lambda Team
           </h1>
 
-          <div className="relative inline-block mt-6">
+          {/* Dropdown */}
+          <div className="relative inline-block text-left group">
             <button
-              onClick={() => setOpen(!open)}
-              className="bg-[#5C2DA0] py-2 px-5 rounded-2xl inline-flex items-center gap-3 hover:bg-[#6a38b0] transition"
+              className="glass-dropdown flex items-center gap-4 px-10 py-4 rounded-2xl text-lg font-black text-white border-2 border-primary hover:bg-primary/10 transition-all shadow-[0_0_30px_rgba(148,51,236,0.3)] ring-1 ring-primary/50"
             >
-              <p className="text-white font-medium text-xl">
-                {teamYear === "2025-26" ? "Team 2025-26" : "Team 2024-25"}
-              </p>
-              <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
-                className={`transition-transform ${open ? "rotate-180" : ""}`}
-              >
-                <path d="M16.25 1.25L8.75 9.82L1.25 1.25" stroke="white" strokeWidth="2.5" />
-              </svg>
+
+              <span className="tracking-widest">
+                {teamYear === "2025-26" ? "2025-2026" : "2024-2025"}
+              </span>
+              <span className="material-symbols-outlined text-2xl text-primary font-bold">expand_more</span>
             </button>
+
+            <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-64 rounded-2xl glass-dropdown overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="p-2 space-y-1">
+                  <button
+                    onClick={() => setTeamYear("2025-26")}
+                    className={`flex items-center justify-between px-5 py-3 text-sm font-black rounded-xl w-full ${
+                      teamYear === "2025-26"
+                        ? "text-white bg-primary/40"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    } transition-colors`}
+                  >
+                    <span>2025-2026</span>
+                    {teamYear === "2025-26" && (
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setTeamYear("2024-25")}
+                    className={`flex items-center justify-between px-5 py-3 text-sm font-medium rounded-xl w-full ${
+                      teamYear === "2024-25"
+                        ? "text-white bg-primary/40"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    } transition-colors`}
+                  >
+                    <span>2024-2025</span>
+                    {teamYear === "2024-25" && (
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span>
+                    )}
+                  </button>
+                </div>
+              </div>
           </div>
-          {open && (
-            <div className="absolute left-1/2 -translate-x-1/2 mt-2 px-7 bg-[#5C2DA0] rounded-xl shadow-xl z-50 py-1">
-              <button
-                onClick={() => { setTeamYear("2025-26"); setOpen(false); }}
-                className="w-full px-4 py-2 flex justify-between items-center text-white hover:bg-[#6a38b0]"
-              >
-                Team 2025-26
-                {teamYear === "2025-26" && "✓"}
-              </button>
-
-              <button
-                onClick={() => { setTeamYear("2024-25"); setOpen(false); }}
-                className="w-full px-4 py-2 flex justify-between items-center text-white hover:bg-[#6a38b0]"
-              >
-                Team 2024-25
-                {teamYear === "2024-25" && "✓"}
-              </button>
-            </div>
-          )}
-
         </div>
 
-        {/* Two column layout */}
-        <div className="max-w-7xl mx-auto grid grid-cols-[220px_1fr] gap-12">
-
-          <TeamSidebar />
-
-          {/* Right content */}
-          <div className="space-y-28 mr-10">
+        {/* Sections */}
+        <div className="max-w-7xl mx-auto space-y-28">
+          {/* Mentors */}
+          {teamYear === "2025-26" && (
             <section id="mentors">
-              {teamYear !== '2024-25' && (
-                <TeamSection title="mentors" members={mentors} />
-              )}
+              <TeamSection title="Mentors" members={mentors} />
             </section>
-            <section id="heads">
-              {teamYear === '2025-26' ? (
-                <TeamSection title="Club Heads" members={heads} />
-              ) :
-                (
-                  <TeamSection title="Club Heads" members={heads_last} />
-                )}
-            </section>
-            <section id="core">
-              {teamYear === '2025-26' ? (
-                <TeamSection title="Core Members" members={cores} />
-              ) :
-                (
-                  <TeamSection title="Core Members" members={cores_last} />
-                )}
-            </section>
-            <section id="uiux">
-              {teamYear === '2025-26' ? (
-                <TeamSection title="UI/UX Team" members={uiux} />
-              ) :
-                (
-                  <TeamSection title="UI/UX Team" members={uiux_last} />
-                )}
-            </section>
-          </div>
+          )}
+
+          {/* Heads */}
+          <section id="heads">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="Heads" members={heads} />
+            ) : (
+              <TeamSection title="Heads" members={heads_last} />
+            )}
+          </section>
+
+          {/* Core Members */}
+          <section id="core">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="Core Members" members={cores} />
+            ) : (
+              <TeamSection title="Core Members" members={cores_last} />
+            )}
+          </section>
+
+          {/* UI/UX Team */}
+          <section id="uiux">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="UI/UX Team" members={uiux} />
+            ) : (
+              <TeamSection title="UI/UX Team" members={uiux_last} />
+            )}
+          </section>
         </div>
       </main>
 
+      <Footer />
       <BackToTop />
     </>
   )
