@@ -19,7 +19,15 @@ export default function Footer() {
             />
           </div>
           <div className="md:ml-auto text-[5vw] sm:text-[4vw] md:text-[2vw] lg:text-[1vw]">
-            Placeholder
+            <a
+              href="https://status.iith.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-[2vw] md:gap-[0.5vw] text-white hover:text-purple-300 transition-colors"
+            >
+              <span className="w-[3vw] h-[3vw] md:w-[0.8vw] md:h-[0.8vw] rounded-full bg-yellow-500 animate-pulse"></span>
+              <span>Some systems are down</span>
+            </a>
           </div>
         </div>
 
@@ -46,7 +54,7 @@ export default function Footer() {
 
           <div className="flex justify-center md:justify-end items-center gap-[6vw] sm:gap-[5vw] md:gap-[2.5vw] lg:gap-[1vw]">
             <a
-              href="mailto:yourname@example.com"
+              href="mailto:web@iith.dev"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -55,7 +63,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/LambdaIITH"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -64,7 +72,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.instagram.com/yourusername/"
+              href="https://www.instagram.com/lambdaiith"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -73,7 +81,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/yourusername/"
+              href="https://www.linkedin.com/company/lambda-iit-hyderabad/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
