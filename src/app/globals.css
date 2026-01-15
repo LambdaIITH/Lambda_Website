@@ -14,6 +14,7 @@
   --font-family-sans: Geist, sans-serif;
   --font-family-mono: "Geist Mono", monospace;
   --font-family-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-family-plus-jakarta: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
 }
 
 @layer base {
@@ -125,5 +126,91 @@
   /* Project Card Hover */
   .project-card:hover {
     transform: translateY(-8px);
+  }
+
+  /* About Page Styles */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(148, 51, 236, 0.4);
+  }
+
+  .timeline-line {
+    background: linear-gradient(to bottom, #9433EC, #9433EC 70%, transparent 100%);
+    box-shadow: 0 0 15px rgba(148, 51, 236, 0.3);
+  }
+
+  .glass-card {
+    background: rgba(18, 11, 30, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 51, 236, 0.1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(148, 51, 236, 0.3);
+    background: rgba(18, 11, 30, 0.8);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(148, 51, 236, 0.2);
+  }
+
+  .dot-glow {
+    box-shadow: 0 0 10px #9433EC, 0 0 20px rgba(148, 51, 236, 0.4);
+  }
+
+  .surface-dark {
+    background-color: #120b1e;
+  }
+
+  .background-light {
+    background-color: #f8f9fa;
+  }
+
+  /* Timeline Animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .timeline-item-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .timeline-item-right {
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .timeline-dot {
+    animation: fadeInScale 0.4s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
   }
 }

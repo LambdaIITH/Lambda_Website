@@ -1,47 +1,32 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { UserIcon } from "lucide-react";
-
-type TestimonialCardProps = {
-  name: string;
-  role: string;
-  quote: string;
-};
-
 export default function TestimonialCard({
   name,
   role,
   quote,
-}: TestimonialCardProps) {
+  avatar,
+}: {
+  name: string;
+  role: string;
+  quote: string;
+  avatar?: string;
+}) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.4 }}
-      className="relative bg-linear-to-br from-[#2a0038] to-[#3b0055] border border-[#A855F7]/60 rounded-2xl p-5 w-[480px] overflow-hidden group"
-    >
-      {/* glow */}
-      <div className="absolute inset-0 bg-purple-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition" />
-
-      <div className="relative flex gap-6 items-start">
-        {/* Avatar */}
-        <div className="shrink-0 w-23 h-23 rounded-full bg-white/90 flex items-center justify-center">
-        <UserIcon className="w-15 h-15 text-black" fill="black" color="black" />
-        </div>
-
-        {/* Text */}
+    <div className="glass-card p-8 rounded-3xl flex flex-col justify-between transition-all duration-500 cursor-pointer">
+      <p className="text-white/70 italic mb-8 leading-loose font-light">
+        "{quote}"
+      </p>
+      <div className="flex items-center gap-4">
+        <img
+          alt={`${name} avatar`}
+          className="size-10 rounded-full bg-primary/20 object-cover"
+          src={avatar || "https://via.placeholder.com/40"}
+        />
         <div>
-          <p className="text-white/80 text-sm leading-relaxed">
-            {quote}
+          <p className="text-sm font-bold">{name}</p>
+          <p className="text-[10px] text-primary uppercase tracking-wider">
+            {role}
           </p>
-
-          <p className="mt-4 text-white font-semibold">{name}</p>
-          <p className="text-[#D39FE9] text-sm">{role}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
