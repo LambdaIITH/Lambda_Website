@@ -97,7 +97,8 @@ export default function BlogPage() {
       text-white flex flex-col items-center
       ${geist.className}`}
     >
-
+      <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
+      <div className="fixed bottom-0 left-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4"></div>
       {/* Title */}
       <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-20">
         <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white">
