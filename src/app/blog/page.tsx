@@ -148,7 +148,7 @@ export default function BlogPage() {
             className='block'
           >
             <article
-              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 min-h-[520px]"
+              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[520px]"
             >
             
             {/* Big category + badges */}
