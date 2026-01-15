@@ -1,0 +1,31 @@
+{
+  "blogs": [
+    {
+      "slug": "duckdb",
+      "title": "DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics",
+      "published_date": "2025-10-17",
+      "author": "Arjun Mehta",
+      "tags": ["Database", "Analytics"],
+      "shortDescription": "Why DuckDB is becoming the go-to local analytics engine.",
+      "markdown": "/blogs/duckdb.md"
+    },
+    {
+      "slug": "dns",
+      "title": "DNS Basics - The Internet's Phone Book",
+      "published_date": "2025-10-15",
+      "author": "Isha Sharma",
+      "tags": ["Networking", "Infrastructure"],
+      "shortDescription": "Learn DNS basics with memes + examples and hands-on commands",
+      "markdown": "/blogs/dns.md"
+    },
+    {
+      "slug": "git101",
+      "title": "Git 101",
+      "published_date": "2025-10-20",
+      "author": "XYZ",
+      "tags": ["Git", "Version Control"],
+      "shortDescription": "A Beginner’s Guide to Version Control",
+      "markdown": "/blogs/git101.md"
+    }
+  ]
+}
