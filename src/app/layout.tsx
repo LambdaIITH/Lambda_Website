@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 
-const montserrat = Montserrat({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-geist",
+  weight: ['100','200','300','400','500','600','700','800','900']
 });
 
 export const metadata: Metadata = {
@@ -41,8 +42,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+      </head>
       <body
-        className={`${montserrat.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geist.variable} antialiased flex flex-col min-h-screen`}
       >
         <Navbar />
         <main className="grow pt-20 pb-10">{children}</main>
