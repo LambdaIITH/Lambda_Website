@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Geist } from 'next/font/google';
 import blogData from '@/data/blogData.json';
@@ -27,12 +27,14 @@ type BlogPost = {
 };
 
 export default function BlogPage() {
+  const POSTS_PER_PAGE = 6;
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortLatestFirst, setSortLatestFirst] = useState(true);
 
   /* ---------- FORMAT BLOG DATA ---------- */
   const posts: BlogPost[] = blogData.blogs.map((b: any) => ({
-    id: b.slug, // IMPORTANT: slug
+    id: b.slug,
     title: b.title,
     author: b.author,
     tags: b.tags,
@@ -72,6 +74,18 @@ export default function BlogPage() {
     return sortLatestFirst ? dateB - dateA : dateA - dateB;
   });
 
+  /* ---------- PAGINATION LOGIC ---------- */
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
+  const paginatedPosts = sortedPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTags, sortLatestFirst]);
+
   const derivedTags = Array.from(
     new Set(posts.flatMap(post => post.tags))
   );
@@ -104,7 +118,6 @@ export default function BlogPage() {
             All Topics
           </button>
 
-
           {derivedTags.map(tag => {
             const isSelected = selectedTags.includes(tag);
             return (
@@ -124,8 +137,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-
-      {/* Sort*/}
+      {/* Sort */}
       <section className="flex justify-end items-center w-[90vw] md:w-[80vw] mb-8">
         <button
           onClick={() => setSortLatestFirst(prev => !prev)}
@@ -141,7 +153,7 @@ export default function BlogPage() {
 
       {/* Posts */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10 w-[90vw] md:w-[80vw] mb-24">
-        {sortedPosts.map((post, i) => (
+        {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
             href={`/blog/${post.id}`} 
@@ -150,64 +162,106 @@ export default function BlogPage() {
             <article
               className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[520px]"
             >
-            
-            {/* Big category + badges */}
-            <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
-              <span className="text-[#9433EC]/10 text-9xl font-black absolute select-none">{post.category}</span>
-              <div className="relative z-10 flex gap-2">
-                {post.badges.map((b, idx) => (
-                  <span key={idx} className="px-3 py-1 rounded-full bg-[#9433EC]/10 border border-[#9433EC]/30 text-[#9433EC] text-[10px] font-bold uppercase tracking-wider">{b}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-10 flex flex-col flex-1">
-              <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
-                <span>{post.date}</span>
-                <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-                <span>{post.readTime}</span>
-              </div>
-              <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer">{post.title}</h3>
-              {post.desc && <p className="text-slate-400 text-base leading-relaxed mb-10 font-light line-clamp-3">{post.desc}</p>}
-
-              {/* Footer */}
-              <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
-                <div className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
-                    <img alt="Author" src={post.authorImg} className="w-full h-full object-cover"/>
-                  </div>
-                  <span className="text-xs font-semibold text-slate-200">{post.author}</span>
+              {/* Big category + badges */}
+              <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
+                <span className="text-[#9433EC]/10 text-9xl font-black absolute select-none">
+                  {post.category}
+                </span>
+                <div className="relative z-10 flex gap-2">
+                  {post.badges.map((b, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 rounded-full bg-[#9433EC]/10 border border-[#9433EC]/30 text-[#9433EC] text-[10px] font-bold uppercase tracking-wider"
+                    >
+                      {b}
+                    </span>
+                  ))}
                 </div>
-                {/* <Link 
-                  key={post.id}
-                  href={`/blog/${post.id}`} 
-                  className='block'
-                > */}
-                <button className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group cursor-pointer">
-                  Read Article <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </button>
-                {/* </Link> */}
               </div>
-            </div>
-          </article>
-          </Link>))}
+
+              {/* Content */}
+              <div className="p-10 flex flex-col flex-1">
+                <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
+                  <span>{post.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                  <span>{post.readTime}</span>
+                </div>
+
+                <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer">
+                  {post.title}
+                </h3>
+
+                {post.desc && (
+                  <p className="text-slate-400 text-base leading-relaxed mb-10 font-light line-clamp-3">
+                    {post.desc}
+                  </p>
+                )}
+
+                {/* Footer */}
+                <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
+                      <img alt="Author" src={post.authorImg} className="w-full h-full object-cover" />
+                    </div>
+                    <span className="text-xs font-semibold text-slate-200">{post.author}</span>
+                  </div>
+
+                  {/* Read Article Button */}
+                  <button className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group cursor-pointer">
+                    Read Article 
+                    <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
+                      arrow_forward
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </Link>
+        ))}
       </section>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-12 mb-20">
-        <button className="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold group">
-          <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">west</span> Previous
-        </button>
-        <div className="flex items-center gap-6">
-          <span className="text-sm font-black text-[#9433EC] border-b-2 border-[#9433EC] pb-1">01</span>
-          <span className="text-sm font-medium text-slate-600 hover:text-slate-300 cursor-pointer transition-colors">02</span>
-          <span className="text-sm font-medium text-slate-600 hover:text-slate-300 cursor-pointer transition-colors">03</span>
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-12 mb-20">
+
+          {currentPage > 1 && (
+            <button
+              onClick={() => setCurrentPage(p => p - 1)}
+              className="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold group"
+            >
+              <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">west</span> Previous
+            </button>
+          )}
+
+          <div className="flex items-center gap-6">
+            {Array.from({ length: totalPages }).map((_, i) => {
+              const page = i + 1;
+              return (
+                <span
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`text-sm font-medium cursor-pointer transition-colors ${
+                    page === currentPage
+                      ? 'font-black text-[#9433EC] border-b-2 border-[#9433EC] pb-1'
+                      : 'text-slate-600 hover:text-slate-300'
+                  }`}
+                >
+                  {page.toString().padStart(2, '0')}
+                </span>
+              );
+            })}
+          </div>
+
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage(p => p + 1)}
+              className="text-slate-400 hover:text-[#9433EC] transition-colors flex items-center gap-2 text-sm font-bold group"
+            >
+              Next <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+            </button>
+          )}
         </div>
-        <button className="text-slate-400 hover:text-[#9433EC] transition-colors flex items-center gap-2 text-sm font-bold group">
-          Next <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
-        </button>
-      </div>
+      )}
     </main>
   );
 }
