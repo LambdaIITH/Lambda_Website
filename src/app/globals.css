@@ -2,7 +2,7 @@
 
 :root {
   --background: #0A0A0B;
-  --foreground: #9433EC;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -13,6 +13,7 @@
   --color-card-dark: #161618;
   --font-family-sans: Geist, sans-serif;
   --font-family-mono: "Geist Mono", monospace;
+  --font-family-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
 }
 
 @layer base {
@@ -40,6 +41,10 @@
     background-size: 32px 32px;
   }
 
+  /* Font Display */
+  .font-display {
+    font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  }
 
   /* Glass Dropdown */
   .glass-dropdown {
@@ -99,5 +104,26 @@
 
   .social-icon .material-symbols-outlined {
     font-size: 18px;
+  }
+
+  /* Hero Glow */
+  .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(148, 51, 236, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+  }
+
+  /* Glass Nav */
+  .glass-nav {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+  }
+
+  /* Terminal Shadow */
+  .terminal-shadow {
+    box-shadow: 0 0 40px -10px rgba(148, 51, 236, 0.3);
+  }
+
+  /* Project Card Hover */
+  .project-card:hover {
+    transform: translateY(-8px);
   }
 }
