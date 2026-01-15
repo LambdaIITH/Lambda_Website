@@ -3,7 +3,7 @@ import { useState } from "react"
 import TeamSection from "@/components/team-components/TeamSection"
 import Footer from "@/components/common/Footer"
 import BackToTop from "@/components/common/BackToTop"
-import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "./data"
+import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "../../../public/team_data/data"
 
 export default function TeamPage() {
   const [teamYear, setTeamYear] = useState<"2024-25" | "2025-26">("2025-26");

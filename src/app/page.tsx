@@ -158,17 +158,11 @@ export default function HomePage() {
                 <h2 className="text-4xl font-bold mb-4">Latest Blogs</h2>
                 <p className="text-slate-500">Insights, tutorials, and deep-dives from our members.</p>
               </div>
-              <Link href="/blogs" className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg font-bold text-sm transition-all cursor-pointer transform hover:scale-105 hover:border-primary/30">
+              <Link href="/blog" className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg font-bold text-sm transition-all cursor-pointer transform hover:scale-105 hover:border-primary/30">
                 View More Blogs
               </Link>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
-              <BlogCard
-                category="Engineering"
-                readDuration="7"
-                title="Fixing CORS Errors in Google Apps Script"
-                desc="A Practical Guide to Understanding and Resolving Cross-Origin Resource Sharing Issues"
-              />
               <BlogCard
                 category="Article"
                 readDuration="5"
@@ -181,6 +175,12 @@ export default function HomePage() {
                 title="DNS Basics - The Internet's Phone Book"
                 desc="Learn DNS basics with memes + examples and hands-on commands"
               />  
+              <BlogCard
+                category="Security"
+                readDuration="7"
+                title="SSH Advanced: Tunneling, Port Forwarding, and Pro Tips"
+                desc="Master secure SSH tunnels and port forwarding to safely expose, access, and debug remote services like a pro."
+              />
             </div>
           </div>
         </section>
@@ -188,8 +188,8 @@ export default function HomePage() {
         {/* Collaboration Section */}
         <section className="py-24 px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="relative rounded-[2rem] bg-[#0d0d0d] border border-white/10 overflow-hidden p-12 lg:p-20">
-              <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+            <div className="relative rounded-4xl bg-[#0d0d0d] border border-white/10 overflow-hidden p-12 lg:p-20">
+              <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/10 to-transparent pointer-events-none"></div>
               <div className="absolute -top-24 -right-24 size-96 bg-primary/20 rounded-full blur-[100px]"></div>
               <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                 <div>
