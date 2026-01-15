@@ -168,18 +168,21 @@ export default function HomePage() {
                 readDuration="5"
                 title="DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics"
                 desc="A practical introduction to DuckDB, the SQLite for analytics"
+                redirect="duckdb"
               />
               <BlogCard
                 category="Engineering"
                 readDuration="6"
                 title="DNS Basics - The Internet's Phone Book"
                 desc="Learn DNS basics with memes + examples and hands-on commands"
+                redirect="dns-basics"
               />  
               <BlogCard
                 category="Security"
                 readDuration="7"
                 title="SSH Advanced: Tunneling, Port Forwarding, and Pro Tips"
                 desc="Master secure SSH tunnels and port forwarding to safely expose, access, and debug remote services like a pro."
+                redirect="ssh-adv"
               />
             </div>
           </div>
