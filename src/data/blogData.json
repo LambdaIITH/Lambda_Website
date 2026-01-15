@@ -7,7 +7,9 @@
       "author": "Arjun Mehta",
       "tags": ["Database", "Analytics"],
       "shortDescription": "Why DuckDB is becoming the go-to local analytics engine.",
-      "markdown": "/blogs/duckdb.md"
+      "markdown": "/blogs/duckdb.md",
+      "readTime": "8 min read",
+      "category": "DB"
     },
     {
       "slug": "dns",
@@ -16,7 +18,9 @@
       "author": "Isha Sharma",
       "tags": ["Networking", "Infrastructure"],
       "shortDescription": "Learn DNS basics with memes + examples and hands-on commands",
-      "markdown": "/blogs/dns.md"
+      "markdown": "/blogs/dns.md",
+      "readTime": "6 min read",
+      "category": "NETWORK"
     },
     {
       "slug": "git101",
@@ -24,8 +28,10 @@
       "published_date": "2025-10-20",
       "author": "XYZ",
       "tags": ["Git", "Version Control"],
-      "shortDescription": "A Beginner’s Guide to Version Control",
-      "markdown": "/blogs/git101.md"
+      "shortDescription": "A Beginner's Guide to Version Control",
+      "markdown": "/blogs/git101.md",
+      "readTime": "10 min read",
+      "category": "DEV"
     }
   ]
 }

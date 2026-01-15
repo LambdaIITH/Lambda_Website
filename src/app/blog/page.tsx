@@ -43,8 +43,8 @@ export default function BlogPage() {
       year: 'numeric'
     }),
     desc: b.shortDescription,
-    readTime: '5 min read',
-    category: 'WEB',
+    readTime: b.readTime,
+    category: b.category,
     badges: b.tags,
     authorImg: '/blog_assets/avatar.png'
   }));
