@@ -153,7 +153,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
@@ -165,14 +165,14 @@ export default function BlogPage() {
             >
               {/* Big category + badges */}
               <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
-                <span className="text-[#9433EC]/10 text-9xl font-black absolute select-none">
+                <span className="text-[#9433EC]/20 text-7xl font-black absolute select-none">
                   {post.category}
                 </span>
                 <div className="relative z-10 flex gap-2">
                   {post.badges.map((b, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 rounded-full bg-[#9433EC]/10 border border-[#9433EC]/30 text-[#9433EC] text-[10px] font-bold uppercase tracking-wider"
+                      className="px-3 py-1 rounded-full bg-[#9433EC]/10 border border-[#9433EC]/30 text-[#cfc6d6] text-[10px] font-bold uppercase tracking-wider"
                     >
                       {b}
                     </span>

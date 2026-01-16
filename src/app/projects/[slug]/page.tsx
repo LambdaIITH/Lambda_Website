@@ -4,44 +4,44 @@ import Link from "next/link";
 import { Geist } from "next/font/google";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css";
 
-import blogData from "@/data/blogData.json";
+import projectData from "@/data/projectData.json";
 
 const geist = Geist({
   subsets: ["latin"],
   weight: ["100","200","300","400","500","600","700","800","900"],
 });
 
-interface BlogPageProps {
+interface ProjectPageProps {
   params: {
     slug: string;
   };
 }
 
-export async function generateStaticParams() {
-  return blogData.blogs.map((blog) => ({
-    slug: blog.slug,
+export async function generateStaticParams_one() {
+  return projectData.projects.map((project) => ({
+    slug: project.slug,
   }));
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
-  const blog = blogData.blogs.find((b) => b.slug === slug);
+  const project = projectData.projects.find((p) => p.slug === slug);
 
-  if (!blog) {
+  if (!project) {
     return (
       <div
-        className={`min-h-screen w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
+        className={`min-h-screen w-screen bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
         text-white flex items-center justify-center ${geist.className}`}
       >
         <div className="text-center">
           <h1 className="text-6xl font-black mb-4">404</h1>
-          <p className="text-slate-400 mb-8">Blog not found</p>
-          <Link href="/blog" className="text-[#9433EC] hover:underline">
-            ← Back to all blogs
+          <p className="text-slate-400 mb-8">Project not found</p>
+          <Link href="/projects" className="text-[#9433EC] hover:underline">
+            ← Back to all projects
           </Link>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const filePath = path.join(
     process.cwd(),
     "public",
-    blog.markdown.replace(/^\/+/, "")
+    project.markdown.replace(/^\/+/, "")
   );
 
   const markdownContent = fs.readFileSync(filePath, "utf-8");
@@ -79,7 +79,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <article className="w-[90vw] md:w-[70vw] mx-auto py-12 pb-24">
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {blog.tags.map((tag: string, idx: number) => (
+          {project.technologies.map((tag: string, idx: number) => (
             <span
               key={idx}
               className="px-3 py-1 rounded-full bg-[#9433EC]/10 border border-[#9433EC]/30
@@ -92,30 +92,46 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
         {/* Title */}
         <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
-          {blog.title}
+          {project.name}
           <span className="text-[#9433EC]">.</span>
         </h1>
 
+        {/* Project Link Box */}
+        {project.link && (
+          <div className="mb-8 inline-block">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-white/20 rounded-lg text-slate-300 text-sm font-medium
+              hover:border-[#9433EC] hover:text-[#9433EC] hover:bg-[#9433EC]/5
+              transition-all duration-200"
+            >
+              View Project →
+            </a>
+          </div>
+        )}
+
         {/* Meta Info */}
         <div className="flex items-center gap-4 mb-12 pb-8 border-b border-white/10">
-          <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
+          {/* <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
             <img
               src="/blog_assets/avatar.png"
               alt="Author"
               className="w-full h-full object-cover"
             />
-          </div>
+          </div> */}
           <div>
             <div className="text-sm font-semibold text-slate-200">
-              {blog.author}
+              {project.author}
             </div>
             <div className="text-xs text-slate-500">
-              {new Date(blog.published_date).toLocaleDateString("en-US", {
+              {new Date(project.date).toLocaleDateString("en-US", {
                 month: "short",
                 day: "2-digit",
                 year: "numeric",
               })}{" "}
-              · {blog.readTime} min read
+              · {project.readTime}
             </div>
           </div>
         </div>
@@ -124,6 +140,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         <div className="prose prose-invert prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
             components={{
               h1: ({ ...props }) => (
                 <h1 className="text-5xl font-black mt-12 mb-6" {...props} />
@@ -155,44 +172,15 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   {...props}
                 />
               ),
-              code: ({ inline, className, children, ...props }: any) => {
-                const match = /language-(\w+)/.exec(className || "");
-                const language = match ? match[1] : "";
-
-                return !inline && language ? (
-                  <div className="my-8 overflow-hidden rounded-lg border border-white/10">
-                    <SyntaxHighlighter
-                      style={tomorrow}
-                      language={language}
-                      PreTag="div"
-                      customStyle={{
-                        margin: 0,
-                        padding: "1.5rem",
-                        fontSize: "0.875rem",
-                        lineHeight: "1.7",
-                        background: "#1d1f21",
-                      }}
-                      showLineNumbers={true}
-                      wrapLines={true}
-                      codeTagProps={{
-                        style: {
-                          fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
-                        }
-                      }}
-                      {...props}
-                    >
-                      {String(children).replace(/\n$/, "")}
-                    </SyntaxHighlighter>
-                  </div>
-                ) : (
+              code: ({ inline, ...props }: any) =>
+                inline ? (
                   <code
-                    className="bg-slate-800/50 border border-slate-700/50 px-2 py-0.5 rounded text-sm font-mono text-slate-200"
+                    className="bg-white/10 px-2 py-1 rounded text-sm font-mono text-[#9433EC]"
                     {...props}
-                  >
-                    {children}
-                  </code>
-                );
-              },
+                  />
+                ) : (
+                  <code {...props} />
+                ),
             }}
           >
             {markdownContent}
