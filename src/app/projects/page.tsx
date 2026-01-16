@@ -102,7 +102,7 @@ export default function ProjectPage() {
         <div className="flex flex-wrap gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
           <button
             onClick={() => setSelectedTags([])}
-            className="px-5 py-2 rounded-xl bg-[#9433EC] text-white text-sm font-bold"
+            className="px-5 py-2 rounded-xl bg-[#9433EC] text-white text-sm font-bold cursor-pointer"
           >
             All Topics
           </button>
@@ -113,7 +113,7 @@ export default function ProjectPage() {
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-[#9433EC] text-white'
                     : 'text-slate-400 hover:text-white hover:bg-white/10'
