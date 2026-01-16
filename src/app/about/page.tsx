@@ -13,24 +13,24 @@ export default function AboutPage() {
     <>
       <main className={`overflow-x-hidden ${plusJakartaSans.className}`}>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 pt-32 pb-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(148,51,236,0.1),transparent_50%)]" />
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(148,51,236,0.1),transparent_50%)] animate-pulse-slow" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase border border-white/10 rounded-full bg-white/5 text-white/60">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase border border-white/10 rounded-full bg-white/5 text-white/60 animate-fade-in-down">
               Premier Developer Club
             </span>
-            <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1]">
+            <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1] animate-fade-in-up">
               About <span className="text-white text-glow">Lambda</span> <br />
               <span className="text-primary">IIT Hyderabad</span>
             </h1>
-            <p className="text-lg lg:text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-lg lg:text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in">
               A collective of builders, thinkers, and innovators pushing the boundaries of technology at the heart of IITH.
             </p>
           </div>
         </section>
 
         {/* Mission & Vision */}
-        <section className="px-6 lg:px-24 py-24">
+        <section className="px-6 lg:px-24 py-24 animate-fade-in">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
             <MissionVisionCard
               icon="explore"
@@ -89,7 +89,7 @@ export default function AboutPage() {
         </section>
 
         {/* Testimonials */}
-        <section className="px-6 lg:px-24 py-32">
+        <section className="px-6 lg:px-24 py-32 animate-fade-in">
           <div className="max-w-7xl mx-auto">
             <div className="mb-20">
               <h2 className="text-4xl font-bold mb-4">Member Insights</h2>
@@ -114,30 +114,6 @@ export default function AboutPage() {
                 quote="From late-night debugging to winning international hackathons together, Lambda has been the highlight of my IITH life."
                 avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA78XuD-53xyHQ2pggzKQFwlAufhGb5uLOsUv2aBBJwsofWv1qXyfZ7vi8Uj4wgPbE48T51skByQguJN2xHk_Mw7OllAsA3CJGok-uFMe5yOroVhiEi3726GiPy8N0v6Dugn15SABnkSzwR-_mbtbetC3QDeOM4tRj7CJTIX6nf5TRy-O29Zi8X-v_ZlHtx0PCex9u1FTUSQZyVFvSjSv3yhV6CkmjRtFF-9gitmKSmybWmy3xZd4wKifGFoK7WzjbncTTVE6dbOJg4"
               />
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="px-6 lg:px-24 py-40">
-          <div className="max-w-5xl mx-auto rounded-[3rem] p-12 md:p-24 border border-primary/20 bg-linear-to-b from-primary/10 to-transparent text-center relative overflow-hidden">
-            <div className="absolute -top-24 -left-24 size-64 bg-primary/20 blur-[120px] rounded-full" />
-            <div className="absolute -bottom-24 -right-24 size-64 bg-primary/20 blur-[120px] rounded-full" />
-            <div className="relative z-10">
-              <h2 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tighter">
-                Join the <br /> Community
-              </h2>
-              <p className="text-white/60 text-lg max-w-xl mx-auto mb-12 font-light">
-                We are always looking for passionate builders. Whether you're into low-level systems, high-level apps, or AI research.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <button className="w-full sm:w-auto px-12 h-14 bg-primary text-white font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(148,51,236,0.4)] cursor-pointer">
-                  Apply Now
-                </button>
-                <button className="w-full sm:w-auto px-12 h-14 border border-white/10 text-white font-bold rounded-full hover:bg-white/5 transition-all duration-300 cursor-pointer hover:border-primary/30">
-                  Explore Openings
-                </button>
-              </div>
             </div>
           </div>
         </section>
