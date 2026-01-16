@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Geist } from "next/font/google";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/github-dark.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import projectData from "@/data/projectData.json";
 
@@ -20,7 +20,7 @@ interface ProjectPageProps {
   };
 }
 
-export async function generateStaticParams_one() {
+export async function generateStaticParams() {
   return projectData.projects.map((project) => ({
     slug: project.slug,
   }));
@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     return (
       <div
-        className={`min-h-screen w-screen bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
+        className={`min-h-screen w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
         text-white flex items-center justify-center ${geist.className}`}
       >
         <div className="text-center">
@@ -48,7 +48,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     );
   }
 
-  // Read markdown file from /public
   const filePath = path.join(
     process.cwd(),
     "public",
@@ -65,14 +64,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Back Button */}
       <div className="w-[90vw] md:w-[70vw] mx-auto pt-12">
         <Link
-          href="/blog"
+          href="/projects"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-[#9433EC]
           transition-colors text-sm font-medium group"
         >
           <span className="material-symbols-outlined text-base group-hover:-translate-x-1 transition-transform">
             west
           </span>
-          Back to all posts
+          Back to all projects
         </Link>
       </div>
 
@@ -96,7 +95,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <span className="text-[#9433EC]">.</span>
         </h1>
 
-        {/* Project Link Box */}
+        {/* Project Link */}
         {project.link && (
           <div className="mb-8 inline-block">
             <a
@@ -112,15 +111,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         )}
 
-        {/* Meta Info */}
+        {/* Meta */}
         <div className="flex items-center gap-4 mb-12 pb-8 border-b border-white/10">
-          {/* <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
-            <img
-              src="/blog_assets/avatar.png"
-              alt="Author"
-              className="w-full h-full object-cover"
-            />
-          </div> */}
           <div>
             <div className="text-sm font-semibold text-slate-200">
               {project.author}
@@ -136,11 +128,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
 
-        {/* Markdown Content */}
+        {/* Markdown */}
         <div className="prose prose-invert prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeHighlight]}
             components={{
               h1: ({ ...props }) => (
                 <h1 className="text-5xl font-black mt-12 mb-6" {...props} />
@@ -160,9 +151,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               ol: ({ ...props }) => (
                 <ol className="list-decimal ml-6 mb-6 text-slate-300" {...props} />
               ),
-              li: ({ ...props }) => (
-                <li className="mb-2" {...props} />
-              ),
+              li: ({ ...props }) => <li className="mb-2" {...props} />,
               a: ({ ...props }) => (
                 <a className="text-[#9433EC] underline font-medium" {...props} />
               ),
@@ -172,15 +161,45 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {...props}
                 />
               ),
-              code: ({ inline, ...props }: any) =>
-                inline ? (
-                  <code
-                    className="bg-white/10 px-2 py-1 rounded text-sm font-mono text-[#9433EC]"
-                    {...props}
-                  />
+              code: ({ inline, className, children, ...props }: any) => {
+                const match = /language-(\w+)/.exec(className || "");
+                const language = match ? match[1] : "";
+
+                return !inline && language ? (
+                  <div className="my-8 overflow-hidden rounded-lg border border-white/10">
+                    <SyntaxHighlighter
+                      style={tomorrow}
+                      language={language}
+                      PreTag="div"
+                      customStyle={{
+                        margin: 0,
+                        padding: "1.5rem",
+                        fontSize: "0.875rem",
+                        lineHeight: "1.7",
+                        background: "#1d1f21",
+                      }}
+                      showLineNumbers
+                      wrapLines
+                      codeTagProps={{
+                        style: {
+                          fontFamily:
+                            'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+                        },
+                      }}
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  </div>
                 ) : (
-                  <code {...props} />
-                ),
+                  <code
+                    className="bg-slate-800/50 border border-slate-700/50 px-2 py-0.5 rounded text-sm font-mono text-slate-200"
+                    {...props}
+                  >
+                    {children}
+                  </code>
+                );
+              },
             }}
           >
             {markdownContent}
