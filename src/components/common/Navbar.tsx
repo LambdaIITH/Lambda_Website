@@ -4,19 +4,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
 });
 
 export default function Navbar() {
   const path = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  if (!path) return null;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -43,13 +47,13 @@ export default function Navbar() {
     <nav className={montserrat.className}>
       {/* main nav container */}
       <div
-        className="fixed top-[1.6vh] left-1/2 -translate-x-1/2
+        className="fixed top-[2vw] md:top-[1vw] left-1/2 -translate-x-1/2
              flex justify-between items-center
              w-[95vw] h-[6vh]
-             bg-[rgba(66,0,100,0.7)] text-white rounded-full z-50
+             bg-[rgba(66,0,100,0.7)] dark:bg-[rgba(30,0,45,0.8)] text-white dark:text-gray-100 rounded-full
              shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
-             lg:px-[2vw] px-[5vw]"
+             backdrop-blur-xl border border-[rgba(255,255,255,0.18)] dark:border-[rgba(255,255,255,0.1)]
+             lg:px-[2vw] px-[5vw] z-100000 transition-colors duration-300"
       >
         {/* left logo */}
         <Link
@@ -109,7 +113,7 @@ export default function Navbar() {
 
         {/* right icons */}
         <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
-          {rightIcons.map((icon) => (
+          {/* {rightIcons.map((icon) => (
             <Link
               key={icon.alt}
               href={icon.href}
@@ -124,13 +128,11 @@ export default function Navbar() {
                 priority
               />
             </Link>
-          ))}
+          ))} */}
 
           {/* Dark mode toggle button */}
           <button
-            onClick={() => {
-              /* TODO: Add dark mode toggle logic */
-            }}
+            onClick={}
             className="flex items-center justify-center cursor-pointer"
             aria-label="Toggle dark mode"
           >
@@ -196,7 +198,7 @@ export default function Navbar() {
                 duration: 0.3,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className="md:hidden absolute top-[14vw] sm:top-[12vw] left-1/2 -translate-x-1/2 w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064] rounded-[4vw] sm:rounded-[3vw] shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30"
+              className="md:hidden absolute top-[17vw] left-1/2 -translate-x-1/2 w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064] rounded-[4vw] sm:rounded-[3vw] shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30 z-100"
             >
               <div className="p-[4vw] sm:p-[3vw]">
                 <ul className="flex flex-col gap-[1vw]">

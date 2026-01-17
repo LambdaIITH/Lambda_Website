@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { Montserrat } from 'next/font/google';
+import { useState, useMemo } from "react";
+import { Montserrat } from "next/font/google";
 
 // REAL ICONS FROM REACT-ICONS
 import {
@@ -18,9 +18,9 @@ import {
 import { TbBrandSvelte } from "react-icons/tb";
 
 const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
 });
 
 interface Project {
@@ -28,7 +28,7 @@ interface Project {
   title: string;
   subtitle: string;
   description: string;
-  status: 'Ongoing' | 'Complete';
+  status: "Ongoing" | "Complete";
   techs: string[];
   github?: string;
   content: string;
@@ -59,20 +59,20 @@ export default function ProjectsPageClient({
   statuses,
 }: ProjectsPageClientProps) {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [statusFilter, setStatusFilter] = useState(statuses[0] || 'Ongoing');
+  const [statusFilter, setStatusFilter] = useState(statuses[0] || "Ongoing");
 
   // Filter projects based on tech filters and status
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
+    return projects.filter((project) => {
       if (project.status !== statusFilter) return false;
       if (activeFilters.length === 0) return true;
-      return activeFilters.every(f => project.techs.includes(f));
+      return activeFilters.every((f) => project.techs.includes(f));
     });
   }, [projects, activeFilters, statusFilter]);
 
   const toggleFilter = (filter: string) => {
     if (activeFilters.includes(filter)) {
-      setActiveFilters(activeFilters.filter(f => f !== filter));
+      setActiveFilters(activeFilters.filter((f) => f !== filter));
     } else {
       setActiveFilters([...activeFilters, filter]);
     }
@@ -84,7 +84,7 @@ export default function ProjectsPageClient({
     >
       {/* HEADER */}
       <section className="text-center mt-[100px] mb-[80px] w-[1200px]">
-        <h1 className="text-[40px] font-extrabold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-[18px]">
+        <h1 className="text-[40px] font-extrabold bg-linear-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-[18px]">
           Projects
         </h1>
         <p className="text-[17px] text-gray-300">
@@ -93,7 +93,7 @@ export default function ProjectsPageClient({
       </section>
 
       {/* FILTERS */}
-      <section className="flex w-[1200px] mb-[54px] justify-start">
+      <section className="flex w-[54.5vw] ml-[8vw] mb-[54px] justify-start">
         <div className="flex flex-wrap gap-[16px]">
           {allTechs.map((tech) => {
             const IconComponent = TechIcons[tech];
@@ -169,7 +169,9 @@ export default function ProjectsPageClient({
                             }`}
                             title={tech}
                           >
-                            {IconComponent && <IconComponent className="text-xl" />}
+                            {IconComponent && (
+                              <IconComponent className="text-xl" />
+                            )}
                           </div>
                         );
                       })}

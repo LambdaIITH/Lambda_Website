@@ -682,17 +682,17 @@ export default function TeamPage() {
   };
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-[#16001F] to-[#010101] text-white pt-[10vw]">
+    <main className="min-h-screen bg-linear-to-br from-[#16001F] to-[#010101] dark:from-[#0a0015] dark:to-[#000000] text-white dark:text-gray-100 pt-[10vw] transition-colors duration-300">
       <div className="container mx-auto px-[4vw] py-[8vh]">
         {/* Header */}
         <div className="text-center mb-[8vh]">
-          <h1 className="text-[6vw] sm:text-[4.5vw] md:text-[3.5vw] lg:text-[2.8vw] font-bold text-[#D2A8FF] mb-[4vh]">
+          <h1 className="text-[6vw] sm:text-[4.5vw] md:text-[3.5vw] lg:text-[2.8vw] font-bold text-[#D2A8FF] dark:text-[#E5C4FF] mb-[4vh] transition-colors duration-300">
             Our Team
           </h1>
           <div className="relative inline-block">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-[1vw] bg-[#5C2DA0] text-white px-[3vw] py-[1.5vh] rounded-full text-[3vw] sm:text-[2.2vw] md:text-[1.5vw] lg:text-[0.9vw] font-medium hover:bg-[#BB7CFF]/90 transition-colors border border-[#5C2DA0] cursor-pointer"
+              className="flex items-center gap-[1vw] bg-[#5C2DA0] dark:bg-[#4A2280] text-white px-[3vw] py-[1.5vh] rounded-full text-[3vw] sm:text-[2.2vw] md:text-[1.5vw] lg:text-[0.9vw] font-medium hover:bg-[#BB7CFF]/90 dark:hover:bg-[#9966CC]/90 transition-colors border border-[#5C2DA0] dark:border-[#4A2280] cursor-pointer"
             >
               Team {selectedYear}
               <ChevronDown
@@ -702,7 +702,7 @@ export default function TeamPage() {
               />
             </button>
             {isDropdownOpen && (
-              <div className="absolute top-full mt-[1vh] left-0 right-0 bg-[#6226A2] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw] overflow-hidden shadow-lg z-10">
+              <div className="absolute top-full mt-[1vh] left-0 right-0 bg-[#6226A2] dark:bg-[#3D1A66] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw] overflow-hidden shadow-lg z-10 transition-colors duration-300">
                 {years.map((year) => (
                   <button
                     key={year}
@@ -710,7 +710,7 @@ export default function TeamPage() {
                       setSelectedYear(year);
                       setIsDropdownOpen(false);
                     }}
-                    className="block w-full text-left px-[3vw] py-[1.5vh] text-[3vw] sm:text-[2.2vw] md:text-[1.5vw] lg:text-[0.9vw] hover:bg-[#BB7CFF] hover:text-[#28013C] transition-colors cursor-pointer"
+                    className="block w-full text-left px-[3vw] py-[1.5vh] text-[3vw] sm:text-[2.2vw] md:text-[1.5vw] lg:text-[0.9vw] hover:bg-[#BB7CFF] dark:hover:bg-[#8855CC] hover:text-[#28013C] dark:hover:text-white transition-colors cursor-pointer"
                   >
                     Team {year}
                   </button>
@@ -730,8 +730,8 @@ export default function TeamPage() {
                   onClick={() => setActiveSection(section.name)}
                   className={`block w-full text-left px-[2vw] py-[1.5vh] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw] text-[3vw] sm:text-[2.2vw] md:text-[1.5vw] lg:text-[0.95vw] transition-colors cursor-pointer ${
                     activeSection === section.name
-                      ? "text-[#D05CFF] font-semibold"
-                      : "text-white hover:text-white"
+                      ? "text-[#D05CFF] dark:text-[#E588FF] font-semibold"
+                      : "text-white dark:text-gray-200 hover:text-white dark:hover:text-white"
                   }`}
                 >
                   {section.name}
@@ -742,7 +742,7 @@ export default function TeamPage() {
 
           {/* Main Content */}
           <div className="flex-1">
-            <h2 className="text-[5vw] sm:text-[3.8vw] md:text-[3vw] lg:text-[2.2vw] font-bold text-[#D2A8FF] mb-[6vh] text-center md:text-left">
+            <h2 className="text-[5vw] sm:text-[3.8vw] md:text-[3vw] lg:text-[2.2vw] font-bold text-[#D2A8FF] dark:text-[#E5C4FF] mb-[6vh] text-center md:text-left transition-colors duration-300">
               {activeSection}
             </h2>
 
@@ -751,7 +751,7 @@ export default function TeamPage() {
               {getCurrentSectionData().map((member, index) => (
                 <div
                   key={index}
-                  className="bg-[#28013C] border-[0.1vw] border-[#6226A2] rounded-[4vw] md:rounded-[3vw] lg:rounded-[2vw] p-[5vw] md:p-[4vw] lg:p-[2.5vw] flex flex-col items-center text-center hover:border-[#BB7CFF] transition-colors"
+                  className="bg-[#28013C] dark:bg-[#1A0028] border-[0.1vw] border-[#6226A2] dark:border-[#4A1F66] rounded-[4vw] md:rounded-[3vw] lg:rounded-[2vw] p-[5vw] md:p-[4vw] lg:p-[2.5vw] flex flex-col items-center text-center hover:border-[#BB7CFF] dark:hover:border-[#9966CC] transition-all duration-300"
                 >
                   {/* Profile Image */}
                   <div className="w-[25vw] h-[25vw] sm:w-[20vw] sm:h-[20vw] md:w-[12vw] md:h-[12vw] lg:w-[8vw] lg:h-[8vw] rounded-full bg-gray-300 mb-[3vh] overflow-hidden">
@@ -769,12 +769,12 @@ export default function TeamPage() {
                   </div>
 
                   {/* Name */}
-                  <h3 className="text-[3.5vw] sm:text-[2.8vw] md:text-[1.5vw] lg:text-[1vw] font-semibold text-white mb-[1vh]">
+                  <h3 className="text-[3.5vw] sm:text-[2.8vw] md:text-[1.5vw] lg:text-[1vw] font-semibold text-white dark:text-gray-100 mb-[1vh]">
                     {member.name}
                   </h3>
 
                   {/* Role */}
-                  <p className="text-[#BB7CFF] text-[3vw] sm:text-[2.3vw] md:text-[1.3vw] lg:text-[0.8vw] mb-[3vh]">
+                  <p className="text-[#BB7CFF] dark:text-[#CC99FF] text-[3vw] sm:text-[2.3vw] md:text-[1.3vw] lg:text-[0.8vw] mb-[3vh]">
                     {member.role}
                   </p>
 
@@ -783,7 +783,7 @@ export default function TeamPage() {
                     {member.email && (
                       <a
                         href={member.email}
-                        className="text-white hover:text-[#BB7CFF] transition-colors"
+                        className="text-white dark:text-gray-200 hover:text-[#BB7CFF] dark:hover:text-[#CC99FF] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -793,7 +793,7 @@ export default function TeamPage() {
                     {member.github && (
                       <a
                         href={member.github}
-                        className="text-white hover:text-[#BB7CFF] transition-colors"
+                        className="text-white dark:text-gray-200 hover:text-[#BB7CFF] dark:hover:text-[#CC99FF] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -803,7 +803,7 @@ export default function TeamPage() {
                     {member.instagram && (
                       <a
                         href={member.instagram}
-                        className="text-white hover:text-[#BB7CFF] transition-colors"
+                        className="text-white dark:text-gray-200 hover:text-[#BB7CFF] dark:hover:text-[#CC99FF] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -813,7 +813,7 @@ export default function TeamPage() {
                     {member.linkedin && (
                       <a
                         href={member.linkedin}
-                        className="text-white hover:text-[#BB7CFF] transition-colors"
+                        className="text-white dark:text-gray-200 hover:text-[#BB7CFF] dark:hover:text-[#CC99FF] transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

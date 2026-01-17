@@ -4,8 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import BackToTop from "@/components/common/BackToTop";
-import CustomCursor from "@/components/common/CustomCursor";
 import ConsoleTitle from "@/components/common/ConsoleTitle";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -43,15 +43,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} antialiased flex flex-col min-h-screen bg-[#0E0018] text-white`}
+        className={`${montserrat.variable} antialiased flex flex-col min-h-screen bg-[#0E0018] dark:bg-[#0E0018] text-white dark:text-white transition-colors duration-300`}
       >
-        <ConsoleTitle />
-        <Navbar />
-        <main className="grow">{children}</main>
-        <Footer />
-        <BackToTop />
+        <ThemeProvider>
+          <ConsoleTitle />
+          <Navbar />
+          <main className="grow">{children}</main>
+          <Footer />
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
