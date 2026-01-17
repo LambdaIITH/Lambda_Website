@@ -133,8 +133,7 @@ export default function ProjectPage() {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map(post => (
           <Link key={post.slug} href={post.link} className="block">
-            <article className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[300px]">
-
+            <article className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[300px]">
               {/* Content */}
               <div className="p-10 flex flex-col h-full">
                 <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">

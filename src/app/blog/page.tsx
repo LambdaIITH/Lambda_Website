@@ -160,9 +160,7 @@ export default function BlogPage() {
             href={`/blog/${post.id}`} 
             className='block'
           >
-            <article
-              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[400px]"
-            >
+            <article className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[400px]">
               {/* Big category + badges */}
               {/* <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
                 <span className="text-[#9433EC]/20 text-7xl font-black absolute select-none">
