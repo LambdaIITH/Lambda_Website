@@ -20,6 +20,7 @@
     "react-syntax-highlighter": "^16.1.0",
     "rehype-highlight": "^7.0.2",
     "rehype-pretty-code": "^0.14.1",
+    "rehype-raw": "^7.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",

@@ -18,12 +18,12 @@ type ProjectPost = {
   desc: string,
   link: string,
   date:string,
-  markdown:string,
+  // markdown:string,
   readTime: string,
 };
 
 export default function ProjectPage() {
-  const POSTS_PER_PAGE = 6;
+  const POSTS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortLatestFirst, setSortLatestFirst] = useState(true);
@@ -37,7 +37,7 @@ export default function ProjectPage() {
     desc: b.description,
     link: b.link,
     date: b.date,
-    markdown: b.markdown,
+    // markdown: b.markdown,
     readTime: b.readTime,
   }));
 
@@ -130,13 +130,13 @@ export default function ProjectPage() {
       </section>
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map(post => (
-          <Link key={post.slug} href={`/projects/${post.slug}`} className="block">
-            <article className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[400px]">
+          <Link key={post.slug} href={post.link} className="block">
+            <article className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[300px]">
 
               {/* Content */}
-              <div className="p-10 flex flex-col flex-1">
+              <div className="p-10 flex flex-col h-full">
                 <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
                   <span>{post.date}</span>
                   <span className="w-1 h-1 rounded-full bg-slate-700"></span>
@@ -147,22 +147,22 @@ export default function ProjectPage() {
                   {post.name}
                 </h3>
 
-                <p className="text-slate-400 text-base leading-relaxed mb-10 font-light line-clamp-3">
+                <p className="text-slate-400 text-sm leading-relaxed mb-4 font-light line-clamp-3">
                   {post.desc}
                 </p>
 
                 {/* Footer */}
-                <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
                   <span className="text-xs font-semibold text-slate-200">
                     {post.contributors.join(', ')}
                   </span>
 
-                  <span className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group">
-                    Read more
-                    <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
+                  {/* <span className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group">
+                    Read more */}
+                    <span className="text-[#9433EC] gap-2 font-bold material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
                       arrow_forward
                     </span>
-                  </span>
+                  {/* </span> */}
                 </div>
               </div>
             </article>

@@ -27,7 +27,7 @@ type BlogPost = {
 };
 
 export default function BlogPage() {
-  const POSTS_PER_PAGE = 6;
+  const POSTS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortLatestFirst, setSortLatestFirst] = useState(true);
@@ -153,7 +153,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
@@ -161,10 +161,10 @@ export default function BlogPage() {
             className='block'
           >
             <article
-              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[520px]"
+              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[500px]"
             >
               {/* Big category + badges */}
-              <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
+              {/* <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
                 <span className="text-[#9433EC]/20 text-7xl font-black absolute select-none">
                   {post.category}
                 </span>
@@ -178,7 +178,7 @@ export default function BlogPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Content */}
               <div className="p-10 flex flex-col flex-1">
@@ -193,13 +193,13 @@ export default function BlogPage() {
                 </h3>
 
                 {post.desc && (
-                  <p className="text-slate-400 text-base leading-relaxed mb-10 font-light line-clamp-3">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-10 font-light line-clamp-3">
                     {post.desc}
                   </p>
                 )}
 
                 {/* Footer */}
-                <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
                   <div className="flex items-center gap-3">
                     <div className="w-7 h-7 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
                       <img alt="Author" src={post.authorImg} className="w-full h-full object-cover" />

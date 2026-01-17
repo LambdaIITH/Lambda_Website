@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Geist } from "next/font/google";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -124,6 +125,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         <div className="prose prose-invert prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
+            rehypePlugins={[[rehypeRaw, { passThrough: ['element'] }]]}
             components={{
               h1: ({ ...props }) => (
                 <h1 className="text-5xl font-black mt-12 mb-6" {...props} />
