@@ -5,6 +5,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-montserrat',
+});
 
 export default function Navbar() {
   const path = usePathname();
@@ -33,8 +40,17 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-[2vw] sm:top-[1.5vw] lg:top-[1vw] left-1/2 -translate-x-1/2 w-[95vw] z-50">
-      <div className="flex justify-between items-center h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[4vw] bg-[#420064] text-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl px-[5vw] sm:px-[4vw] md:px-[3vw] lg:px-[2vw]">
+    <nav className={montserrat.className}>
+      {/* main nav container */}
+      <div
+        className="fixed top-[1.6vh] left-1/2 -translate-x-1/2
+             flex justify-between items-center
+             w-[95vw] h-[6vh]
+             bg-[rgba(66,0,100,0.7)] text-white rounded-full z-50
+             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
+             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
+             lg:px-[2vw] px-[5vw]"
+      >
         {/* left logo */}
         <Link
           href="/"

@@ -1,6 +1,13 @@
 "use client";
 
 import { Users, Rocket, Trophy, Settings } from "lucide-react";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-montserrat',
+});
 
 export default function AboutPage() {
   const achievements = [
@@ -66,14 +73,14 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="bg-[#0E0018] w-full min-h-screen text-white">
+    <main className={`bg-[#0E0018] w-full min-h-screen text-white ${montserrat.className}`}>
       {/* Who are we Section */}
       <div className="w-full pt-[30vw] sm:pt-[20vw] md:pt-[20vw] lg:pt-[15vw] px-[6vw] sm:px-[5vw] md:px-[4vw]">
         <div className="max-w-[90vw] mx-auto text-center">
           <h1 className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold mb-[6vw] sm:mb-[5vw] md:mb-[4vw] lg:mb-[2.5vw] text-[#D2A8FF]">
             Who are we?
           </h1>
-          <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-[#D2A8FF] leading-relaxed max-w-[85vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[50vw] mx-auto">
+          <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white/80 leading-relaxed max-w-[85vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[50vw] mx-auto">
             Lambda is the premier developer club at IIT Hyderabad, fostering
             innovation and technical excellence. We bring together a passionate
             community of developers and designers who learn, build, and grow
