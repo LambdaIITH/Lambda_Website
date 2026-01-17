@@ -15,9 +15,8 @@ const montserrat = Montserrat({
 
 export default function Navbar() {
   const path = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   if (!path) return null;
-
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -28,11 +27,14 @@ export default function Navbar() {
   ];
 
   const rightIcons = [
-    { src: "navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
-    { src: "navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
     {
-      src: "navbar_assets/dark_mode_icon.svg",
-      alt: "Dark Mode Icon",
+      src: "navbar_assets/search_icon.svg",
+      alt: "Search Icon",
+      href: "#",
+    },
+    {
+      src: "navbar_assets/network_icon.svg",
+      alt: "Network Icon",
       href: "#",
     },
   ];
@@ -50,45 +52,39 @@ export default function Navbar() {
              lg:px-[2vw] px-[5vw]"
       >
         {/* left logo */}
-        <div className="flex items-center gap-[0.5vw]">
-          <Link href="/" className="flex items-center gap-[0.4vw]">
-            <Image
-              src="navbar_assets/lambda_logo.svg"
-              alt="Lambda Logo"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                width: "clamp(15px, 1.2vw, 22px)",
-                height: "auto",
-              }}
-              priority
-            />
-            <span
-              className="font-semibold"
-              style={{
-                fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
-              }}
-            >
-              Lambda IITH
-            </span>
-          </Link>
-        </div>
+        <Link
+          href="/"
+          className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw] lg:gap-[0.5vw]"
+        >
+          <Image
+            src="navbar_assets/lambda_logo.svg"
+            alt="Lambda Logo"
+            width={20}
+            height={20}
+            className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.2vw] h-auto"
+            priority
+          />
+          <span className="font-semibold text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw]">
+            Lambda IITH
+          </span>
+        </Link>
 
-        {/* center (desktop only) */}
-        <div className="hidden lg:flex justify-center items-center h-full">
-          <ul className="relative flex justify-around items-center gap-[1.2vw]">
+        {/* center navigation */}
+        <div className="hidden md:flex justify-center items-center h-full">
+          <ul className="relative flex justify-around items-center gap-[2vw] md:gap-[1.5vw] lg:gap-[1.2vw]">
             {navLinks.map((link) => {
               const isActive = path === link.href;
               return (
                 <li
                   key={link.href}
-                  className="relative px-[0.9vw] py-[0.3vh] rounded-2xl"
+                  className={`relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw] flex justify-center items-center rounded-full transition duration-300 ease-in-out ${
+                    isActive ? "" : "hover:bg-[#5A2278]"
+                  }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 bg-white rounded-2xl"
+                      className={`absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]`}
                       transition={{
                         type: "spring",
                         stiffness: 120,
@@ -99,12 +95,9 @@ export default function Navbar() {
                   )}
                   <Link
                     href={link.href}
-                    className={`relative z-10 transition-colors duration-300 ${
+                    className={`relative z-10 transition-colors duration-300 text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] ${
                       isActive ? "text-black" : ""
                     }`}
-                    style={{
-                      fontSize: "clamp(1rem, 1.2vw, 1.3rem)",
-                    }}
                   >
                     {link.name}
                   </Link>
@@ -114,87 +107,148 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* right side */}
-        <div className="flex items-center gap-[1.2vh]">
-          {/* icons (always visible) */}
-          <div className="flex items-center justify-end gap-[3vw] lg:gap-[1.2vw]">
-            {rightIcons.map((icon) => (
-              <Link
-                key={icon.alt}
-                href={icon.href}
-                className="flex items-center justify-center"
-              >
-                <Image
-                  src={icon.src}
-                  alt={icon.alt}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    width: "clamp(16px, 1.3vw, 22px)",
-                    height: "auto",
-                  }}
-                  priority
-                />
-              </Link>
-            ))}
-          </div>
+        {/* right icons */}
+        <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
+          {rightIcons.map((icon) => (
+            <Link
+              key={icon.alt}
+              href={icon.href}
+              className="flex items-center justify-center"
+            >
+              <Image
+                src={icon.src}
+                alt={icon.alt}
+                width={20}
+                height={20}
+                className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
+                priority
+              />
+            </Link>
+          ))}
 
-          {/* hamburger (mobile only) */}
+          {/* Dark mode toggle button */}
           <button
-            className="lg:hidden flex flex-col justify-center items-center gap-1"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => {
+              /* TODO: Add dark mode toggle logic */
+            }}
+            className="flex items-center justify-center cursor-pointer"
+            aria-label="Toggle dark mode"
           >
-            <motion.span
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+            <Image
+              src="navbar_assets/dark_mode_icon.svg"
+              alt="Dark Mode Icon"
+              width={20}
+              height={20}
+              className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
+              priority
             />
-            <motion.span
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+          </button>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex flex-col justify-center items-center gap-[1vw] w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw]"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-transform duration-300 ${
+                isMobileMenuOpen
+                  ? "rotate-45 translate-y-[1.5vw] sm:translate-y-[1.1vw]"
+                  : ""
+              }`}
             />
-            <motion.span
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-opacity duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-[5vw] sm:w-[3.5vw] h-[0.5vw] sm:h-[0.4vw] bg-white rounded-full transition-transform duration-300 ${
+                isMobileMenuOpen
+                  ? "-rotate-45 -translate-y-[1.5vw] sm:-translate-y-[1.1vw]"
+                  : ""
+              }`}
             />
           </button>
         </div>
       </div>
 
-      {/* mobile dropdown */}
+      {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="dropdown"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden fixed left-1/2 -translate-x-1/2
-             top-[calc(6vh+1.4vw)] sm:top-[calc(6vh+1.6vw)] md:top-[calc(6vh+1.8vw)]
-             w-[90vw] sm:w-[80vw] md:w-[60vw]
-             text-white rounded-3xl
-             flex flex-col items-center p-[1.2vw] z-40
-             bg-[rgba(66,0,100,0.7)]
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]"
-          >
-            {navLinks.map((link) => {
-              const isActive = path === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`py-[0.6vh] w-full text-center transition-colors text-[1.1vw] ${
-                    isActive ? "text-black bg-white/80 rounded-xl" : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </motion.div>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm -z-10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+
+            {/* Menu */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{
+                duration: 0.3,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              className="md:hidden absolute top-[14vw] sm:top-[12vw] left-1/2 -translate-x-1/2 w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064] rounded-[4vw] sm:rounded-[3vw] shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30"
+            >
+              <div className="p-[4vw] sm:p-[3vw]">
+                <ul className="flex flex-col gap-[1vw]">
+                  {navLinks.map((link, index) => {
+                    const isActive = path === link.href;
+                    return (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.05,
+                          ease: [0.4, 0, 0.2, 1],
+                        }}
+                      >
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`group relative block px-[5vw] py-[3.5vw] sm:px-[4vw] sm:py-[2.5vw] text-[4.5vw] sm:text-[3.5vw] rounded-[2.5vw] sm:rounded-[2vw] transition-all duration-300 overflow-hidden ${
+                            isActive
+                              ? "bg-[#D6AFFF] text-black font-semibold shadow-lg"
+                              : "text-white hover:bg-white/10"
+                          }`}
+                        >
+                          <span className="relative z-10 flex items-center justify-between">
+                            {link.name}
+                            {isActive && (
+                              <motion.span
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.2 }}
+                                className="w-[2vw] h-[2vw] sm:w-[1.5vw] sm:h-[1.5vw] bg-black rounded-full"
+                              />
+                            )}
+                          </span>
+                          {!isActive && (
+                            <motion.div
+                              className="absolute inset-0 bg-linear-to-r from-[#C49EE8]/0 via-[#C49EE8]/10 to-[#C49EE8]/0"
+                              initial={{ x: "-100%" }}
+                              whileHover={{ x: "100%" }}
+                              transition={{ duration: 0.5 }}
+                            />
+                          )}
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
