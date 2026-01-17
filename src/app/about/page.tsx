@@ -28,23 +28,23 @@ export default function AboutPage() {
 
   const events = [
     {
-      date: "9/16/25",
+      date: "September 11th, 2025",
       title: "Annual Hackathon",
       description:
         "48 hour coding marathon with exciting prizes and etc etc etc however long whatever needs to be added its still eh uh",
     },
     {
-      date: "9/16/25",
+      date: "September 11th, 2025",
       title: "Tech Talk Series",
       description: "Industry experts share insights on emerging technologies",
     },
     {
-      date: "9/16/25",
+      date: "September 11th, 2025",
       title: "Code for a Cause",
       description: "Developing solutions for local non-profit organizations",
     },
     {
-      date: "9/16/25",
+      date: "September 11th, 2025",
       title: "Winter of Code",
       description: "Month-long program to contribute to open source projects",
     },
@@ -73,7 +73,7 @@ export default function AboutPage() {
           <h1 className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold mb-[6vw] sm:mb-[5vw] md:mb-[4vw] lg:mb-[2.5vw] text-[#D2A8FF]">
             Who are we?
           </h1>
-          <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white/80 leading-relaxed max-w-[85vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[50vw] mx-auto">
+          <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-[#D2A8FF] leading-relaxed max-w-[85vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[50vw] mx-auto">
             Lambda is the premier developer club at IIT Hyderabad, fostering
             innovation and technical excellence. We bring together a passionate
             community of developers and designers who learn, build, and grow
@@ -104,7 +104,7 @@ export default function AboutPage() {
                   <div className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold mb-[2vw] sm:mb-[1.5vw] md:mb-[1vw] lg:mb-[0.5vw]">
                     {achievement.number}
                   </div>
-                  <div className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white/80">
+                  <div className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white">
                     {achievement.label}
                   </div>
                 </div>
@@ -123,20 +123,20 @@ export default function AboutPage() {
 
           <div className="relative max-w-[90vw] lg:max-w-[70vw] mx-auto pl-[15vw] sm:pl-[12vw] lg:pl-[8vw]">
             {/* Vertical Timeline Line */}
-            <div className="absolute left-[7vw] sm:left-[6vw] lg:left-[4vw] top-0 bottom-0 w-[0.4vw] sm:w-[0.3vw] lg:w-[0.2vw] bg-white"></div>
+            <div className="absolute left-[7vw] sm:left-[6vw] lg:left-[4.1vw] top-[5vw] bottom-[6vw] w-[0.1vw] sm:w-[0.1vw] lg:w-[0.1vh] bg-white"></div>
 
             <div className="space-y-[10vw] sm:space-y-[8vw] lg:space-y-[5vw]">
               {events.map((event, index) => (
                 <div key={index} className="relative">
                   {/* Date positioned absolutely to the left on desktop, above card on mobile */}
-                  <div className="lg:absolute lg:left-[-9vw] lg:top-[0.3vw] lg:w-[6vw] mb-[3vw] lg:mb-0">
+                  <div className="lg:absolute lg:left-[-12vw] lg:top-[4vw] lg:w-[6vw] mb-[3vw] lg:mb-0">
                     <span className="text-[3.5vw] sm:text-[3vw] lg:text-[1vw] font-medium text-white">
                       {event.date}
                     </span>
                   </div>
 
                   {/* Timeline Node */}
-                  <div className="absolute left-[-9.5vw] sm:left-[-6.7vw] lg:left-[-4.7vw] top-[1vw] sm:top-[0.8vw] lg:top-[0.5vw] z-10">
+                  <div className="absolute left-[-9.5vw] sm:left-[-6.7vw] lg:left-[-4.7vw] top-[1vw] sm:top-[0.8vw] lg:top-[4vw] z-10">
                     <div className="w-[3.5vw] h-[3.5vw] sm:w-[3vw] sm:h-[3vw] lg:w-[1.6vw] lg:h-[1.6vw] rounded-full border-[0.3vw] sm:border-[0.25vw] lg:border-[0.1vw] border-[#CF5CFF]/40 flex items-center justify-center">
                       <div className="w-[2.5vw] h-[2.5vw] sm:w-[2vw] sm:h-[2vw] lg:w-[1vw] lg:h-[1vw] bg-[#CF5CFF] rounded-full border-[0.5vw] sm:border-[0.4vw] lg:border-[0.2vw] border-[#0E0018]"></div>
                     </div>
@@ -165,11 +165,11 @@ export default function AboutPage() {
             What Our Members Say
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[6vw] sm:gap-[5vw] md:gap-[4vw] lg:gap-[2.5vw]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[6vw] sm:gap-[5vw] md:gap-[4vw] lg:gap-[2vw]">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-linear-to-br from-[#3D1054] to-[#2D0F47] border border-[#7B3FAD] rounded-[4vw] sm:rounded-[3vw] md:rounded-[2.5vw] lg:rounded-[2vw] p-[6vw] sm:p-[5vw] md:p-[4vw] lg:p-[2.5vw]"
+                className="bg-[#28013C] border border-[#6226A2] rounded-[4vw] sm:rounded-[3vw] md:rounded-[2.5vw] lg:rounded-[2vw] p-[6vw] sm:p-[5vw] md:p-[4vw] lg:p-[2.5vw]"
               >
                 <div className="flex items-start gap-[4vw] sm:gap-[3vw] md:gap-[2.5vw] lg:gap-[1.5vw] mb-[4vw] sm:mb-[3vw] md:mb-[2.5vw] lg:mb-[1.5vw]">
                   {/* Avatar */}
@@ -178,8 +178,8 @@ export default function AboutPage() {
                   </div>
 
                   {/* Quote */}
-                  <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1vw] text-white/80 leading-relaxed italic">
-                    "{testimonial.quote}"
+                  <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1vw] text-white/80 leading-relaxed">
+                    {testimonial.quote}
                   </p>
                 </div>
 
@@ -188,7 +188,7 @@ export default function AboutPage() {
                   <div className="text-[4.5vw] sm:text-[3.5vw] md:text-[2.5vw] lg:text-[1.2vw] font-semibold text-white">
                     {testimonial.author}
                   </div>
-                  <div className="text-[3.8vw] sm:text-[3vw] md:text-[2vw] lg:text-[0.9vw] text-white/60">
+                  <div className="text-[3.8vw] sm:text-[3vw] md:text-[2vw] lg:text-[0.9vw] text-[#D39FE9]">
                     {testimonial.role}
                   </div>
                 </div>

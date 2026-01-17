@@ -249,7 +249,7 @@ export default function HomePage() {
 
           {/* Toggle Buttons */}
           <div className="flex justify-center mb-[8vh]">
-            <div className="flex bg-[#4A1968] rounded-full p-[0.3vh]">
+            <div className="flex bg-[#4A1968] rounded-full p-[0.3vw] gap-[1vw]">
               <button
                 onClick={() => setActiveTab("projects")}
                 className={`px-[6vw] py-[2vh] sm:px-[4vw] md:px-[3vw] lg:px-[2.5vw] rounded-full text-[4vw] sm:text-[3vw] md:text-[2vw] lg:text-base font-semibold transition-all cursor-pointer ${

@@ -23,7 +23,7 @@ export default function CustomCursor() {
 
   return (
     <div
-      className="fixed z-[9999] pointer-events-none"
+      className="fixed z-9999 pointer-events-none"
       style={{
         left: pos.x,
         top: pos.y,

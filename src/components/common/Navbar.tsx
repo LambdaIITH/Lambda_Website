@@ -55,12 +55,14 @@ export default function Navbar() {
               return (
                 <li
                   key={link.href}
-                  className="relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw] flex justify-center items-center"
+                  className={`relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw] flex justify-center items-center rounded-full transition duration-300 ease-in-out ${
+                    isActive ? "" : "hover:bg-[#5A2278]"
+                  }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-pill"
-                      className="absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]"
+                      className={`absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]`}
                       transition={{
                         type: "spring",
                         stiffness: 120,
