@@ -95,7 +95,7 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold mb-4">Member Insights</h2>
               <p className="text-white/40 font-light">What it means to be a part of the Lambda family.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-flow-col auto-cols-[100%] md:auto-cols-[50%] lg:auto-cols-[33.3333%] gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4">
               <TestimonialCard
                 name="Arjun Sharma"
                 role="Web Guild Lead"
@@ -114,6 +114,7 @@ export default function AboutPage() {
                 quote="From late-night debugging to winning international hackathons together, Lambda has been the highlight of my IITH life."
                 avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA78XuD-53xyHQ2pggzKQFwlAufhGb5uLOsUv2aBBJwsofWv1qXyfZ7vi8Uj4wgPbE48T51skByQguJN2xHk_Mw7OllAsA3CJGok-uFMe5yOroVhiEi3726GiPy8N0v6Dugn15SABnkSzwR-_mbtbetC3QDeOM4tRj7CJTIX6nf5TRy-O29Zi8X-v_ZlHtx0PCex9u1FTUSQZyVFvSjSv3yhV6CkmjRtFF-9gitmKSmybWmy3xZd4wKifGFoK7WzjbncTTVE6dbOJg4"
               />
+              
             </div>
           </div>
         </section>

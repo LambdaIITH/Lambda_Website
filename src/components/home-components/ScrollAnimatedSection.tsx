@@ -1,45 +1,45 @@
+// components/ScrollAnimatedSection.tsx
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useIntro } from "@/app/context/introContext";
 
 export default function ScrollAnimatedSection({
-    children,
+  children,
 }: {
-    children: ReactNode;
+  children: React.ReactNode;
 }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const { introFinished } = useIntro();
 
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
+  useEffect(() => {
+    if (!introFinished) return; // 🚫 BLOCK animations
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect(); // fire once, stop observing
-                }
-            },
-            {
-                threshold: 0,
-                rootMargin: "0px 0px -40% 0px",
-            }
-        );
-
-        observer.observe(el);
-
-        return () => observer.disconnect();
-    }, []);
-
-    return (
-        <div
-            ref={ref}
-            className={`transition-all duration-700 ease-out
-        ${isVisible ? "animate-in" : "opacity-0 translate-y-8"}
-      `}
-        >
-            {children}
-        </div>
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
     );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [introFinished]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        visible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-6"
+      }`}
+    >
+      {children}
+    </div>
+  );
 }

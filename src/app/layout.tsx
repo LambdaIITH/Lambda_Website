@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/g
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import { IntroProvider } from "./context/introContext";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -71,9 +72,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased flex flex-col min-h-screen`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <IntroProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </IntroProvider>
       </body>
     </html>
   );
