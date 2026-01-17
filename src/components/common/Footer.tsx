@@ -18,14 +18,14 @@ export default function Footer() {
               priority
             />
           </div>
-          <div className="md:ml-auto text-[5vw] sm:text-[4vw] md:text-[2vw] lg:text-[1vw]">
+          <div className="md:ml-auto text-[3vw] sm:text-[4vw] md:text-[2vw] lg:text-[1vw]">
             <a
               href="https://status.iith.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-[2vw] md:gap-[0.5vw] text-white hover:text-purple-300 transition-colors"
             >
-              <span className="w-[3vw] h-[3vw] md:w-[0.8vw] md:h-[0.8vw] rounded-full bg-yellow-500 animate-pulse"></span>
+              <span className="w-[2vw] h-[2vw] md:w-[0.8vw] md:h-[0.8vw] rounded-full bg-yellow-500 animate-pulse"></span>
               <span>Some systems are down</span>
             </a>
           </div>
@@ -34,21 +34,21 @@ export default function Footer() {
         <div className="border-b border-white/60 w-[92vw]"></div>
 
         <div className="w-[92vw] flex flex-col md:flex-row justify-between items-center gap-[6vw] sm:gap-[5vw] md:gap-0">
-          <div className="text-[4vw] sm:text-[3.5vw] md:text-[1.5vw] lg:text-[0.8vw]">
-            &copy; 2025 | All rights reserved
+          <div className="text-[3vw] md:text-[1.5vw] lg:text-[0.8vw]">
+            &copy; 2026 | All rights reserved
           </div>
 
-          <div className="flex text-[4.5vw] sm:text-[3.8vw] md:text-[1.8vw] lg:text-[0.9vw]">
+          <div className="flex text-[3vw] sm:text-[3.8vw] md:text-[1.8vw] lg:text-[0.9vw]">
             <div className="px-[5vw] sm:px-[4vw] md:px-[2vw] lg:px-[1.5vw]">
-              <Link href="#">Terms</Link>
+              <Link href="/terms">Terms</Link>
             </div>
             |
             <div className="px-[5vw] sm:px-[4vw] md:px-[2vw] lg:px-[1.5vw]">
-              <Link href="#">Privacy</Link>
+              <Link href="/privacy">Privacy</Link>
             </div>
             |
             <div className="px-[5vw] sm:px-[4vw] md:px-[2vw] lg:px-[1.5vw]">
-              <Link href="#">Contact Us</Link>
+              <Link href="/contact">Contact Us</Link>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Mail className="w-[7vw] h-[7vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
+              <Mail className="w-[5vw] h-[5vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
             </a>
 
             <a
@@ -68,7 +68,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Github className="w-[7vw] h-[7vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
+              <Github className="w-[5vw] h-[5vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
             </a>
 
             <a
@@ -77,7 +77,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Instagram className="w-[7vw] h-[7vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
+              <Instagram className="w-[5vw] h-[5vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
             </a>
 
             <a
@@ -86,7 +86,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Linkedin className="w-[7vw] h-[7vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
+              <Linkedin className="w-[5vw] h-[5vw] sm:w-[6vw] sm:h-[6vw] md:w-[3vw] md:h-[3vw] lg:w-[1.5vw] lg:h-[1.5vw]" />
             </a>
           </div>
         </div>

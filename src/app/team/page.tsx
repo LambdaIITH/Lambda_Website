@@ -266,8 +266,8 @@ export default function TeamPage() {
 
         <div className="flex gap-[4vw] md:gap-[3vw] lg:gap-[2vw]">
           {/* Sidebar */}
-          <aside className="w-[25vw] md:w-[20vw] lg:w-[15vw] shrink-0">
-            <nav className="space-y-[2vh] sticky top-[12vh]">
+          <aside className="w-[20vw] md:w-[20vw] lg:w-[15vw] shrink-0">
+            <nav className="relative top-[9vh] md:top-[12vh]">
               {sections.map((section) => (
                 <button
                   key={section.name}
@@ -286,12 +286,12 @@ export default function TeamPage() {
 
           {/* Main Content */}
           <div className="flex-1">
-            <h2 className="text-[5vw] sm:text-[3.8vw] md:text-[3vw] lg:text-[2.2vw] font-bold text-[#D2A8FF] mb-[6vh]">
+            <h2 className="text-[5vw] sm:text-[3.8vw] md:text-[3vw] lg:text-[2.2vw] font-bold text-[#D2A8FF] mb-[6vh] text-center md:text-left">
               {activeSection}
             </h2>
 
             {/* Team Members Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[4vw] md:gap-[3vw] lg:gap-[2vw]">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[4vw] md:gap-[3vw] lg:gap-[2vw]">
               {getCurrentSectionData().map((member, index) => (
                 <div
                   key={index}

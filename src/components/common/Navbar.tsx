@@ -33,7 +33,10 @@ export default function Navbar() {
     <nav className="fixed top-[2vw] sm:top-[1.5vw] lg:top-[1vw] left-1/2 -translate-x-1/2 w-[95vw] z-50">
       <div className="flex justify-between items-center h-[12vw] sm:h-[10vw] md:h-[8vw] lg:h-[4vw] bg-[#420064] text-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl px-[5vw] sm:px-[4vw] md:px-[3vw] lg:px-[2vw]">
         {/* left logo */}
-        <div className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw] lg:gap-[0.5vw]">
+        <Link
+          href="/"
+          className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw] lg:gap-[0.5vw]"
+        >
           <Image
             src="navbar_assets/lambda_logo.svg"
             alt="Lambda Logo"
@@ -45,7 +48,7 @@ export default function Navbar() {
           <span className="font-semibold text-[3.5vw] sm:text-[2.5vw] md:text-[1.5vw] lg:text-[0.9vw]">
             Lambda IITH
           </span>
-        </div>
+        </Link>
 
         {/* center navigation */}
         <div className="hidden md:flex justify-center items-center h-full">
@@ -158,12 +161,6 @@ export default function Navbar() {
               className="md:hidden absolute top-[14vw] sm:top-[12vw] left-1/2 -translate-x-1/2 w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064] rounded-[4vw] sm:rounded-[3vw] shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30"
             >
               <div className="p-[4vw] sm:p-[3vw]">
-                <div className="flex items-center justify-between mb-[4vw] sm:mb-[3vw] pb-[3vw] sm:pb-[2vw] border-b border-white/10">
-                  <span className="text-white/60 text-[3.5vw] sm:text-[2.5vw] font-medium">
-                    Navigation
-                  </span>
-                </div>
-
                 <ul className="flex flex-col gap-[1vw]">
                   {navLinks.map((link, index) => {
                     const isActive = path === link.href;
