@@ -153,7 +153,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[90vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
@@ -161,7 +161,7 @@ export default function BlogPage() {
             className='block'
           >
             <article
-              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[500px]"
+              className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-transform hover:-translate-y-1 h-[400px]"
             >
               {/* Big category + badges */}
               {/* <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
@@ -181,14 +181,14 @@ export default function BlogPage() {
               </div> */}
 
               {/* Content */}
-              <div className="p-10 flex flex-col flex-1">
+              <div className="p-8 flex flex-col flex-1">
                 <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
                   <span>{post.date}</span>
                   <span className="w-1 h-1 rounded-full bg-slate-700"></span>
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer">
+                <h3 className="text-2xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer">
                   {post.title}
                 </h3>
 

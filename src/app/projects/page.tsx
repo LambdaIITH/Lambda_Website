@@ -101,7 +101,7 @@ export default function ProjectPage() {
       </section>
 
       {/* Tags */}
-      <section className="mb-8 w-[90vw] md:w-[80vw]">
+      <section className="mb-20 w-[90vw] md:w-[80vw] sticky top-18 z-10">
         <div className="flex flex-wrap gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
           <button
             onClick={() => setSelectedTags([])}
