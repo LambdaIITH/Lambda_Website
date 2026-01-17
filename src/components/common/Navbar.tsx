@@ -4,8 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Montserrat } from "next/font/google";
+import { useTheme } from "@/contexts/ThemeContext";
+import { Sun, Moon } from "lucide-react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,11 +18,8 @@ const montserrat = Montserrat({
 export default function Navbar() {
   const path = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { theme, toggleTheme, mounted } = useTheme();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -30,30 +29,19 @@ export default function Navbar() {
     { name: "Team", href: "/team" },
   ];
 
-  const rightIcons = [
-    {
-      src: "navbar_assets/search_icon.svg",
-      alt: "Search Icon",
-      href: "#",
-    },
-    {
-      src: "navbar_assets/network_icon.svg",
-      alt: "Network Icon",
-      href: "#",
-    },
-  ];
-
   return (
     <nav className={montserrat.className}>
       {/* main nav container */}
       <div
         className="fixed top-[2vw] md:top-[1vw] left-1/2 -translate-x-1/2
-             flex justify-between items-center
-             w-[95vw] h-[6vh]
-             bg-[rgba(66,0,100,0.7)] dark:bg-[rgba(30,0,45,0.8)] text-white dark:text-gray-100 rounded-full
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)] dark:border-[rgba(255,255,255,0.1)]
-             lg:px-[2vw] px-[5vw] z-100000 transition-colors duration-300"
+        flex justify-between items-center
+        w-[95vw] h-[6vh]
+        bg-[rgba(66,0,100,0.7)] dark:bg-[rgba(30,0,45,0.8)]
+        text-white rounded-full
+        shadow-[0_8px_32px_rgba(0,0,0,0.37)]
+        backdrop-blur-xl border border-[rgba(255,255,255,0.18)] dark:border-[rgba(255,255,255,0.1)]
+        lg:px-[2vw] px-[5vw]
+        z-[9999] transition-colors duration-300"
       >
         {/* left logo */}
         <Link
@@ -61,7 +49,7 @@ export default function Navbar() {
           className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw] lg:gap-[0.5vw]"
         >
           <Image
-            src="navbar_assets/lambda_logo.svg"
+            src="/navbar_assets/lambda_logo.svg"
             alt="Lambda Logo"
             width={20}
             height={20}
@@ -81,14 +69,15 @@ export default function Navbar() {
               return (
                 <li
                   key={link.href}
-                  className={`relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw] flex justify-center items-center rounded-full transition duration-300 ease-in-out ${
+                  className={`relative px-[1.5vw] py-[0.5vw] md:px-[1.2vw] md:py-[0.4vw] lg:px-[0.9vw] lg:py-[0.3vw]
+                  flex justify-center items-center rounded-full transition duration-300 ease-in-out ${
                     isActive ? "" : "hover:bg-[#5A2278]"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="active-pill"
-                      className={`absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]`}
+                      className="absolute inset-0 bg-[#D6AFFF] rounded-[2vw] md:rounded-[1.5vw] lg:rounded-[1vw]"
                       transition={{
                         type: "spring",
                         stiffness: 120,
@@ -97,6 +86,7 @@ export default function Navbar() {
                       }}
                     />
                   )}
+
                   <Link
                     href={link.href}
                     className={`relative z-10 transition-colors duration-300 text-[1.8vw] md:text-[1.3vw] lg:text-[1vw] ${
@@ -113,43 +103,27 @@ export default function Navbar() {
 
         {/* right icons */}
         <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
-          {/* {rightIcons.map((icon) => (
-            <Link
-              key={icon.alt}
-              href={icon.href}
-              className="flex items-center justify-center"
+          {/* Dark mode toggle */}
+          {/* {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center cursor-pointer"
+              aria-label="Toggle dark mode"
+              title={theme === "dark" ? "Switch to light" : "Switch to dark"}
             >
-              <Image
-                src={icon.src}
-                alt={icon.alt}
-                width={20}
-                height={20}
-                className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
-                priority
-              />
-            </Link>
-          ))} */}
-
-          {/* Dark mode toggle button */}
-          <button
-            onClick={}
-            className="flex items-center justify-center cursor-pointer"
-            aria-label="Toggle dark mode"
-          >
-            <Image
-              src="navbar_assets/dark_mode_icon.svg"
-              alt="Dark Mode Icon"
-              width={20}
-              height={20}
-              className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
-              priority
-            />
-          </button>
+              {theme === "dark" ? (
+                <Sun className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-[5vw] sm:h-[3.5vw] md:h-[2vw] lg:h-[1.3vw]" />
+              ) : (
+                <Moon className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-[5vw] sm:h-[3.5vw] md:h-[2vw] lg:h-[1.3vw]" />
+              )}
+            </button>
+          )} */}
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex flex-col justify-center items-center gap-[1vw] w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw]"
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+            className="md:hidden flex flex-col justify-center items-center gap-[1vw]
+            w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw]"
             aria-label="Toggle menu"
           >
             <span
@@ -185,7 +159,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm -z-10"
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -198,7 +172,12 @@ export default function Navbar() {
                 duration: 0.3,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className="md:hidden absolute top-[17vw] left-1/2 -translate-x-1/2 w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064] rounded-[4vw] sm:rounded-[3vw] shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30 z-100"
+              className="md:hidden fixed top-[17vw] left-1/2 -translate-x-1/2
+              w-[90vw] bg-gradient-to-br from-[#5a0a87] to-[#420064]
+              rounded-[4vw] sm:rounded-[3vw]
+              shadow-[0_20px_60px_rgba(0,0,0,0.6)]
+              backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30
+              z-[9999]"
             >
               <div className="p-[4vw] sm:p-[3vw]">
                 <ul className="flex flex-col gap-[1vw]">
@@ -218,7 +197,10 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className={`group relative block px-[5vw] py-[3.5vw] sm:px-[4vw] sm:py-[2.5vw] text-[4.5vw] sm:text-[3.5vw] rounded-[2.5vw] sm:rounded-[2vw] transition-all duration-300 overflow-hidden ${
+                          className={`group relative block px-[5vw] py-[3.5vw] sm:px-[4vw] sm:py-[2.5vw]
+                          text-[4.5vw] sm:text-[3.5vw]
+                          rounded-[2.5vw] sm:rounded-[2vw]
+                          transition-all duration-300 overflow-hidden ${
                             isActive
                               ? "bg-[#D6AFFF] text-black font-semibold shadow-lg"
                               : "text-white hover:bg-white/10"
@@ -235,9 +217,10 @@ export default function Navbar() {
                               />
                             )}
                           </span>
+
                           {!isActive && (
                             <motion.div
-                              className="absolute inset-0 bg-linear-to-r from-[#C49EE8]/0 via-[#C49EE8]/10 to-[#C49EE8]/0"
+                              className="absolute inset-0 bg-gradient-to-r from-[#C49EE8]/0 via-[#C49EE8]/10 to-[#C49EE8]/0"
                               initial={{ x: "-100%" }}
                               whileHover={{ x: "100%" }}
                               transition={{ duration: 0.5 }}

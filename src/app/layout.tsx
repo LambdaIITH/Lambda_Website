@@ -45,7 +45,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} antialiased flex flex-col min-h-screen bg-[#0E0018] dark:bg-[#0E0018] text-white dark:text-white transition-colors duration-300`}
+        className={`${montserrat.variable} antialiased flex flex-col min-h-screen
+  bg-white text-black
+  dark:bg-[#0E0018] dark:text-white
+  transition-colors duration-300`}
       >
         <ThemeProvider>
           <ConsoleTitle />

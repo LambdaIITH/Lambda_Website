@@ -1,40 +1,44 @@
 @import "tailwindcss";
 
+/* Base theme variables on html */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-.dark {
+/* Dark theme variables when html has class="dark" */
+html.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
 }
 
-/* html,
+/* Optional: smooth theme transitions */
+html,
 body {
-  cursor: none;
-} */
+  height: 100%;
+}
 
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 300ms,
+    color 300ms;
+}
+
+/* Tailwind v4 theme mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-
-  /* FIXED THE WHITE GAP */
-  margin: 0;
-  padding: 0;
-}
-
-/* Custom purple scrollbar */
+/* Custom purple scrollbar (applies when you add className="scrollbar-thin") */
 .scrollbar-thin::-webkit-scrollbar {
-  height: 8px;
+  width: 8px; /* vertical scrollbar */
+  height: 8px; /* horizontal scrollbar */
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
