@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, Github, Instagram, Linkedin, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
@@ -667,6 +667,14 @@ export default function TeamPage() {
     { name: "Core Members", data: coreMembers },
     { name: "UI/UX Team", data: uiuxTeam },
   ].filter((section) => section.data && section.data.length > 0);
+
+  // Auto-switch to first available section when year changes and current section becomes unavailable
+  useEffect(() => {
+    const currentSectionExists = sections.some((s) => s.name === activeSection);
+    if (!currentSectionExists && sections.length > 0) {
+      setActiveSection(sections[0].name);
+    }
+  }, [selectedYear, sections, activeSection]);
 
   const getCurrentSectionData = () => {
     const section = sections.find((s) => s.name === activeSection);
