@@ -739,7 +739,7 @@ export default function TeamPage() {
             </h2>
 
             {/* Team Members Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[4vw] md:gap-[3vw] lg:gap-[2vw]">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[2vw] md:gap-[3vw] lg:gap-[2vw]">
               {getCurrentSectionData().map((member, index) => (
                 <div
                   key={index}
@@ -771,7 +771,7 @@ export default function TeamPage() {
                   </p>
 
                   {/* Social Links */}
-                  <div className="flex gap-[3vw] md:gap-[2vw] lg:gap-[1vw]">
+                  <div className="flex gap-[2vw] md:gap-[2vw] lg:gap-[1vw]">
                     {member.email && (
                       <a
                         href={member.email}

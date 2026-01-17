@@ -20,15 +20,14 @@ export default function Navbar() {
   ];
 
   const rightIcons = [
-    { src: "navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
+    {
+      src: "navbar_assets/search_icon.svg",
+      alt: "Search Icon",
+      href: "#",
+    },
     {
       src: "navbar_assets/network_icon.svg",
       alt: "Network Icon",
-      href: "/rss.xml",
-    },
-    {
-      src: "navbar_assets/dark_mode_icon.svg",
-      alt: "Dark Mode Icon",
       href: "#",
     },
   ];
@@ -94,7 +93,6 @@ export default function Navbar() {
 
         {/* right icons */}
         <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
-          {/* Mobile menu button */}
           {rightIcons.map((icon) => (
             <Link
               key={icon.alt}
@@ -111,6 +109,26 @@ export default function Navbar() {
               />
             </Link>
           ))}
+
+          {/* Dark mode toggle button */}
+          <button
+            onClick={() => {
+              /* TODO: Add dark mode toggle logic */
+            }}
+            className="flex items-center justify-center cursor-pointer"
+            aria-label="Toggle dark mode"
+          >
+            <Image
+              src="navbar_assets/dark_mode_icon.svg"
+              alt="Dark Mode Icon"
+              width={20}
+              height={20}
+              className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-auto"
+              priority
+            />
+          </button>
+
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden flex flex-col justify-center items-center gap-[1vw] w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw]"

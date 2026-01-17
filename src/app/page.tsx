@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"projects" | "blogs">("projects");
   const [activeFilter, setActiveFilter] = useState<"ongoing" | "complete">(
-    "ongoing"
+    "ongoing",
   );
   const [heatmapData, setHeatmapData] = useState<string[]>([]);
 
