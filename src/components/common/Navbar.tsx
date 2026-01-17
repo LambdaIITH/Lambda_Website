@@ -5,6 +5,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-montserrat',
+});
 
 export default function Navbar() {
   const path = usePathname();
@@ -31,12 +38,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav>
+    <nav className={montserrat.className}>
       {/* main nav container */}
       <div
-        className="fixed top-2 left-1/2 -translate-x-1/2
+        className="fixed top-[1.6vh] left-1/2 -translate-x-1/2
              flex justify-between items-center
-             w-[95vw] h-[6vh] min-h-[50px] max-h-[70px]
+             w-[95vw] h-[6vh]
              bg-[rgba(66,0,100,0.7)] text-white rounded-full z-50
              shadow-[0_8px_32px_rgba(0,0,0,0.37)]
              backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
@@ -76,7 +83,7 @@ export default function Navbar() {
               return (
                 <li
                   key={link.href}
-                  className="relative px-[0.9vw] py-[0.3vw] rounded-2xl"
+                  className="relative px-[0.9vw] py-[0.3vh] rounded-2xl"
                 >
                   {isActive && (
                     <motion.div
@@ -93,10 +100,10 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={`relative z-10 transition-colors duration-300 ${
-                      isActive ? "text-black italic" : ""
+                      isActive ? "text-black" : ""
                     }`}
                     style={{
-                      fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
+                      fontSize: "clamp(1rem, 1.2vw, 1.3rem)",
                     }}
                   >
                     {link.name}
@@ -108,7 +115,7 @@ export default function Navbar() {
         </div>
 
         {/* right side */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-[1.2vh]">
           {/* icons (always visible) */}
           <div className="flex items-center justify-end gap-[3vw] lg:gap-[1.2vw]">
             {rightIcons.map((icon) => (
@@ -164,10 +171,10 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
             className="lg:hidden fixed left-1/2 -translate-x-1/2
-             top-[calc(6vh+2.5rem)] sm:top-[calc(6vh+3rem)] md:top-[calc(6vh+3.5rem)]
+             top-[calc(6vh+1.4vw)] sm:top-[calc(6vh+1.6vw)] md:top-[calc(6vh+1.8vw)]
              w-[90vw] sm:w-[80vw] md:w-[60vw]
              text-white rounded-3xl
-             flex flex-col items-center p-4 z-40
+             flex flex-col items-center p-[1.2vw] z-40
              bg-[rgba(66,0,100,0.7)]
              shadow-[0_8px_32px_rgba(0,0,0,0.37)]
              backdrop-blur-xl border border-[rgba(255,255,255,0.18)]"
@@ -178,8 +185,8 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`py-2 w-full text-center transition-colors ${
-                    isActive ? "text-black bg-white/80 rounded-xl italic" : ""
+                  className={`py-[0.6vh] w-full text-center transition-colors text-[1.1vw] ${
+                    isActive ? "text-black bg-white/80 rounded-xl" : ""
                   }`}
                   onClick={() => setMenuOpen(false)}
                 >
