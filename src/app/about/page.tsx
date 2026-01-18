@@ -52,10 +52,10 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold mb-4 tracking-tight">This Tenure's Progress</h2>
               <p className="text-white/40 font-light italic">Tracking our current roadmap and milestones.</p>
             </div>
-            <div className="relative">
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] timeline-line opacity-30" />
-              <div className="space-y-24">
-                <TimelineItem
+            <div className="relative w-full">
+              <div className="absolute top-0 bottom-0 left-6 md:left-1/2 md:-translate-x-1/2 w-0.5 timeline-line opacity-30" />
+              <div className="space-y-24 w-full">
+                <TimelineItem 
                   phase="Phase 01"
                   title="Planning & Recruitment"
                   description="Defining the roadmap for the upcoming session and onboarding the next generation of Lambda engineers through a rigorous technical hunt."
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 quote="From late-night debugging to winning international hackathons together, Lambda has been the highlight of my IITH life."
                 avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA78XuD-53xyHQ2pggzKQFwlAufhGb5uLOsUv2aBBJwsofWv1qXyfZ7vi8Uj4wgPbE48T51skByQguJN2xHk_Mw7OllAsA3CJGok-uFMe5yOroVhiEi3726GiPy8N0v6Dugn15SABnkSzwR-_mbtbetC3QDeOM4tRj7CJTIX6nf5TRy-O29Zi8X-v_ZlHtx0PCex9u1FTUSQZyVFvSjSv3yhV6CkmjRtFF-9gitmKSmybWmy3xZd4wKifGFoK7WzjbncTTVE6dbOJg4"
               />
-              
+
             </div>
           </div>
         </section>

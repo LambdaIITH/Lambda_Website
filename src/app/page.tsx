@@ -16,7 +16,7 @@ export default function HomePage() {
     <>
       {!introFinished && <IntroOverlay />}
       <main
-        className={`transition-opacity duration-700 pt-10`}
+        className={`transition-opacity duration-700 pt-10 overflow-x-hidden`}
       >        {/* Hero Section */}
         <section className="relative min-h-[90vh] flex items-center justify-center pt-20 hero-glow bg-background-dark">
           <div className="absolute inset-0 overflow-hidden -z-10">
@@ -265,7 +265,7 @@ export default function HomePage() {
                       </button>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-6 bg-white/5 rounded-2xl border border-white/5 magnetic-hover animate-slide-up" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
                       <span className="material-symbols-outlined text-primary text-3xl mb-4 block">handshake</span>
                       <h4 className="font-bold mb-2">Partnerships</h4>
