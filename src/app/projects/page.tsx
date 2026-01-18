@@ -13,7 +13,7 @@ const geist = Geist({
 type ProjectPost = {
   slug: string,
   name: string,
-  contributors: string[],
+  contributors: Array<{ name: string; github: string }>;  // ← New
   technologies: string[],
   desc: string,
   link: string,
@@ -32,7 +32,7 @@ export default function ProjectPage() {
   const posts: ProjectPost[] = projectData.projects.map((b: any) => ({
     slug: b.slug,
     name: b.name,
-    contributors: Array.isArray(b.author) ? b.author : [b.author],
+    contributors: Array.isArray(b.authors) ? b.authors : [b.authors],
     technologies: b.technologies,
     desc: b.description,
     link: b.link,
@@ -91,7 +91,7 @@ export default function ProjectPage() {
       <div className="fixed bottom-0 left-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4"></div>
 
       {/* Title */}
-      <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-20">
+      <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-24">
         <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white">
           Projects <span className="text-[#9433EC]">.</span>
         </h2>
@@ -100,7 +100,7 @@ export default function ProjectPage() {
         </p>
       </section>
 
-      {/* Tags */}
+      {/* Tags
       <section className="mb-20 w-[90vw] md:w-[80vw] sticky top-18 z-10">
         <div className="flex flex-wrap gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
           <button
@@ -127,45 +127,57 @@ export default function ProjectPage() {
             );
           })}
         </div>
-      </section>
+      </section> */}
 
       {/* Posts */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map(post => (
-          <Link key={post.slug} href={post.link} className="block">
-            <article className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[300px]">
-              {/* Content */}
-              <div className="p-10 flex flex-col h-full">
-                <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
-                  <span>{post.date}</span>
-                  <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-                  <span>{post.readTime}</span>
-                </div>
-
-                <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight">
-                  {post.name}
-                </h3>
-
-                <p className="text-slate-400 text-sm leading-relaxed mb-4 font-light line-clamp-3">
-                  {post.desc}
-                </p>
-
-                {/* Footer */}
-                <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                  <span className="text-xs font-semibold text-slate-200">
-                    {post.contributors.join(', ')}
-                  </span>
-
-                  {/* <span className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group">
-                    Read more */}
-                    <span className="text-[#9433EC] gap-2 font-bold material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
-                      arrow_forward
-                    </span>
-                  {/* </span> */}
-                </div>
+          <article 
+            key={post.slug}
+            className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[300px] cursor-pointer"
+            onClick={() => window.open(post.link, '_blank')}
+          >
+            {/* Content */}
+            <div className="p-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
+                <span>{post.date}</span>
+                <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                <span>{post.readTime}</span>
               </div>
-            </article>
-          </Link>
+
+              <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight">
+                {post.name}
+              </h3>
+
+              <p className="text-slate-400 text-sm leading-relaxed mb-4 font-light line-clamp-3">
+                {post.desc}
+              </p>
+
+              {/* Footer */}
+              <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
+                <div className="text-xs font-semibold text-slate-200 flex flex-wrap items-center gap-1">
+                  {post.contributors.map((author, idx) => (
+                    <span key={idx} className="inline-flex items-center">
+                      <a
+                        href={`https://github.com/${author.github}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:text-[#9433EC] transition-colors cursor-pointer"
+                      >
+                        {author.name}
+                      </a>
+                      {idx < post.contributors.length - 1 && <span className="mx-1">,</span>}
+                    </span>
+                  ))}
+                </div>
+
+                <span className="text-[#9433EC] gap-2 font-bold material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </div>
+            </div>
+          </article>
         ))}
       </section>
 

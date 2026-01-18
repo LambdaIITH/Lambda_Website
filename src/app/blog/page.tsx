@@ -11,17 +11,14 @@ const geist = Geist({
 });
 
 type BlogPost = {
-  id: string;          // slug
+  id: string;
   title: string;
-  author: string;
+  authors: Array<{ name: string; github: string }>;
   tags: string[];
   markdown: string;
-
-  // UI fields
   date: string;
   desc: string;
   readTime: string;
-  category: string;
   badges: string[];
   authorImg: string;
 };
@@ -36,7 +33,7 @@ export default function BlogPage() {
   const posts: BlogPost[] = blogData.blogs.map((b: any) => ({
     id: b.slug,
     title: b.title,
-    author: b.author,
+    authors: b.authors,
     tags: b.tags,
     markdown: b.markdown,
     date: new Date(b.published_date).toLocaleDateString('en-US', {
@@ -46,7 +43,7 @@ export default function BlogPage() {
     }),
     desc: b.shortDescription,
     readTime: b.readTime,
-    category: b.category,
+    // category: b.category,
     badges: b.tags,
     authorImg: '/blog_assets/avatar.png'
   }));
@@ -110,7 +107,7 @@ export default function BlogPage() {
       </section>
 
       {/* Tags Bar */}
-      <section className="mb-8 w-[90vw] md:w-[80vw] sticky top-18 z-10">
+      <section className="mb-20 w-[90vw] md:w-[80vw] sticky top-18 z-10">
         <div className="flex flex-wrap justify-center md:justify-start gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
           <button
             onClick={() => setSelectedTags([])}
@@ -138,7 +135,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Sort */}
+      {/* Sort
       <section className="flex justify-end items-center w-[90vw] md:w-[80vw] mb-8">
         <button
           onClick={() => setSortLatestFirst(prev => !prev)}
@@ -150,10 +147,10 @@ export default function BlogPage() {
             className="h-6 w-auto transition-all duration-200"
           />
         </button>
-      </section>
+      </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[90vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
@@ -202,7 +199,14 @@ export default function BlogPage() {
                     <div className="w-7 h-7 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
                       <img alt="Author" src={post.authorImg} className="w-full h-full object-cover" />
                     </div>
-                    <span className="text-xs font-semibold text-slate-200">{post.author}</span>
+                    <span className="text-xs font-semibold text-slate-200">
+                      {post.authors.map((author, idx) => (
+                        <span key={idx}>
+                          {author.name}
+                          {idx < post.authors.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </span>
                   </div>
 
                   {/* Read Article Button */}
