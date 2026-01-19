@@ -89,8 +89,8 @@ export default function BlogPage() {
 
   return (
     <main
-      className={`min-h-screen w-screen
-      bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
+      className={`w-screen
+      bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
       text-white flex flex-col items-center
       ${geist.className}`}
     >
@@ -194,21 +194,7 @@ export default function BlogPage() {
                 )}
 
                 {/* Footer */}
-                <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full bg-slate-800 border border-white/10 overflow-hidden">
-                      <img alt="Author" src={post.authorImg} className="w-full h-full object-cover" />
-                    </div>
-                    <span className="text-xs font-semibold text-slate-200">
-                      {post.authors.map((author, idx) => (
-                        <span key={idx}>
-                          {author.name}
-                          {idx < post.authors.length - 1 && ", "}
-                        </span>
-                      ))}
-                    </span>
-                  </div>
-
+                <div className="mt-auto flex items-center justify-end pt-4 border-t border-white/5">
                   {/* Read Article Button */}
                   <button className="text-[#9433EC] text-sm font-bold flex items-center gap-2 group cursor-pointer">
                     Read Article 

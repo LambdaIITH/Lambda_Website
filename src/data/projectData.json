@@ -3,16 +3,6 @@
         {
         "slug": "lambda",
         "name": "Lambda Website",
-        "authors": [
-            {
-            "name": "XYZ",
-            "github": "xyz"
-            },
-            {
-            "name": "ABC",
-            "github": "abc"
-            }
-        ],
         "description": "Lambda club website",
         "technologies": ["NextJS", "TailwindCSS", "TypeScript"],
         "link": "https://github.com/LambdaIITH/Lambda_Website",
@@ -22,16 +12,6 @@
         {
         "slug": "dashboard",
         "name": "Dashboard",
-        "authors": [
-            {
-            "name": "John Doe",
-            "github": "johndoe"
-            },
-            {
-            "name": "Jane Smith",
-            "github": "janesmith"
-            }
-        ],
         "description": "Lorem ipsum dolor sit amet",
         "technologies": ["Astro", "Javascript", "TypeScript","TailwindCSS","SolidJS"],
         "link": "https://github.com/LambdaIITH/Dashboard",

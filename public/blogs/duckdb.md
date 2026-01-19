@@ -1,5 +1,3 @@
-# DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics
-
 DuckDB is a fast in-process SQL OLAP database.
 
 ## Introduction

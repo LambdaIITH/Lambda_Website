@@ -35,7 +35,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   if (!blog) {
     return (
       <div
-        className={`min-h-screen w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
+        className={`w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
         text-white flex items-center justify-center ${geist.className}`}
       >
         <div className="text-center">
@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <main
-      className={`min-h-screen w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
+      className={`w-screen bg-gradient-to-b from-[#1d0837] via-[#16001e] to-[#0d0014]
       text-white ${geist.className}`}
     >
       {/* Back Button */}
@@ -92,14 +92,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+        <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight text-center">
           {blog.title}
           <span className="text-[#9433EC]">.</span>
         </h1>
 
         {/* Meta Info */}
         <div className="mb-12 pb-8 border-b border-white/10">
-          <div className="flex flex-wrap items-center gap-6 mb-4">
+          <div className="flex flex-wrap items-center gap-6 mb-4 justify-center">
             {blog.authors.map((author, idx) => (
               <a
                 key={idx}
@@ -122,7 +122,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             ))}
           </div>
           
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-slate-500 text-center">
             {new Date(blog.published_date).toLocaleDateString("en-US", {
               month: "short",
               day: "2-digit",

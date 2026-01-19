@@ -13,7 +13,7 @@ const geist = Geist({
 type ProjectPost = {
   slug: string,
   name: string,
-  contributors: Array<{ name: string; github: string }>;  // ← New
+  // contributors: Array<{ name: string; github: string }>;  // ← New
   technologies: string[],
   desc: string,
   link: string,
@@ -32,7 +32,7 @@ export default function ProjectPage() {
   const posts: ProjectPost[] = projectData.projects.map((b: any) => ({
     slug: b.slug,
     name: b.name,
-    contributors: Array.isArray(b.authors) ? b.authors : [b.authors],
+    // contributors: Array.isArray(b.authors) ? b.authors : [b.authors],
     technologies: b.technologies,
     desc: b.description,
     link: b.link,
@@ -82,7 +82,7 @@ export default function ProjectPage() {
 
   return (
     <main
-      className={`min-h-screen w-screen
+      className={`w-screen
       bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
       text-white flex flex-col items-center
       ${geist.className}`}
@@ -154,23 +154,7 @@ export default function ProjectPage() {
               </p>
 
               {/* Footer */}
-              <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                <div className="text-xs font-semibold text-slate-200 flex flex-wrap items-center gap-1">
-                  {post.contributors.map((author, idx) => (
-                    <span key={idx} className="inline-flex items-center">
-                      <a
-                        href={`https://github.com/${author.github}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="hover:text-[#9433EC] transition-colors cursor-pointer"
-                      >
-                        {author.name}
-                      </a>
-                      {idx < post.contributors.length - 1 && <span className="mx-1">,</span>}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-auto flex items-center justify-end pt-4 border-t border-white/5">
 
                 <span className="text-[#9433EC] gap-2 font-bold material-symbols-outlined text-base">
                   arrow_forward
