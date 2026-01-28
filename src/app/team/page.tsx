@@ -1,91 +1,110 @@
-export default function HomePage() {
+"use client";
+import { useState } from "react"
+import TeamSection from "@/components/team-components/TeamSection"
+import Footer from "@/components/common/Footer"
+import BackToTop from "@/components/common/BackToTop"
+import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "../../../public/team_data/data"
+
+export default function TeamPage() {
+  const [teamYear, setTeamYear] = useState<"2024-25" | "2025-26">("2025-26");
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
+    <>
+      <main className="pt-30 pb-32 px-6 grid-background min-h-screen">
+        {/* Title Section */}
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className="text-primary font-mono text-sm tracking-[0.3em] uppercase mb-4">
+            Our Developers
+          </h2>
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter text-white">
+            The Lambda Team
+          </h1>
 
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
-        </p>
+          {/* Dropdown */}
+          <div className="relative inline-block text-left group">
+            <button
+              className="glass-dropdown flex items-center gap-4 px-10 py-4 rounded-2xl text-lg font-black text-white border-2 border-primary hover:bg-primary/10 transition-all shadow-[0_0_30px_rgba(148,51,236,0.3)] ring-1 ring-primary/50"
+            >
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-          >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            Join the Club
-          </a>
+              <span className="tracking-widest">
+                {teamYear === "2025-26" ? "2025-2026" : "2024-2025"}
+              </span>
+              <span className="material-symbols-outlined text-2xl text-primary font-bold">expand_more</span>
+            </button>
+
+            <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-64 rounded-2xl glass-dropdown overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="p-2 space-y-1">
+                  <button
+                    onClick={() => setTeamYear("2025-26")}
+                    className={`flex items-center justify-between px-5 py-3 text-sm font-black rounded-xl w-full ${
+                      teamYear === "2025-26"
+                        ? "text-white bg-primary/40"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    } transition-colors`}
+                  >
+                    <span>2025-2026</span>
+                    {teamYear === "2025-26" && (
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setTeamYear("2024-25")}
+                    className={`flex items-center justify-between px-5 py-3 text-sm font-medium rounded-xl w-full ${
+                      teamYear === "2024-25"
+                        ? "text-white bg-primary/40"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    } transition-colors`}
+                  >
+                    <span>2024-2025</span>
+                    {teamYear === "2024-25" && (
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>check_circle</span>
+                    )}
+                  </button>
+                </div>
+              </div>
+          </div>
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
+
+        {/* Sections */}
+        <div className="max-w-7xl mx-auto space-y-28">
+          {/* Mentors */}
+          {teamYear === "2025-26" && (
+            <section id="mentors">
+              <TeamSection title="Mentors" members={mentors} />
+            </section>
+          )}
+
+          {/* Heads */}
+          <section id="heads">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="Heads" members={heads} />
+            ) : (
+              <TeamSection title="Heads" members={heads_last} />
+            )}
+          </section>
+
+          {/* Core Members */}
+          <section id="core">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="Core Members" members={cores} />
+            ) : (
+              <TeamSection title="Core Members" members={cores_last} />
+            )}
+          </section>
+
+          {/* UI/UX Team */}
+          <section id="uiux">
+            {teamYear === "2025-26" ? (
+              <TeamSection title="UI/UX Team" members={uiux} />
+            ) : (
+              <TeamSection title="UI/UX Team" members={uiux_last} />
+            )}
+          </section>
         </div>
-      </div>
-    </main>
-  );
+      </main>
+
+      <Footer />
+      <BackToTop />
+    </>
+  )
 }

@@ -1,91 +1,124 @@
-export default function HomePage() {
+import MissionVisionCard from "@/components/about-components/MissionVisionCard";
+import TimelineItem from "@/components/about-components/TimelineItem";
+import TestimonialCard from "@/components/about-components/TestimonialCard";
+import { Plus_Jakarta_Sans } from "next/font/google";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+export default function AboutPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
+    <>
+      <main className={`overflow-x-hidden ${plusJakartaSans.className}`}>
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(148,51,236,0.1),transparent_50%)] animate-pulse-slow" />
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase border border-white/10 rounded-full bg-white/5 text-white/60 animate-fade-in-down">
+              Premier Developer Club
+            </span>
+            <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1] animate-fade-in-up">
+              About <span className="text-white text-glow">Lambda</span> <br />
+              <span className="text-primary">IIT Hyderabad</span>
+            </h1>
+            <p className="text-lg lg:text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in">
+              A collective of builders, thinkers, and innovators pushing the boundaries of technology at the heart of IITH.
+            </p>
+          </div>
+        </section>
 
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
-        </p>
+        {/* Mission & Vision */}
+        <section className="px-6 lg:px-24 py-24 animate-fade-in">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            <MissionVisionCard
+              icon="explore"
+              title="Our Mission"
+              description="To cultivate a high-impact developer culture within IIT Hyderabad by bridging the gap between theoretical computer science and real-world engineering excellence."
+            />
+            <MissionVisionCard
+              icon="auto_awesome"
+              title="Our Vision"
+              description="To become India's leading student-led technical hub, fostering open-source contributions and nurturing the next generation of global tech leaders."
+            />
+          </div>
+        </section>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
-          >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            Join the Club
-          </a>
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
-        </div>
-      </div>
-    </main>
+        {/* Timeline Section */}
+        <section className="px-6 lg:px-24 py-32 bg-[#0c0614]">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-24">
+              <h2 className="text-4xl font-bold mb-4 tracking-tight">This Tenure's Progress</h2>
+              <p className="text-white/40 font-light italic">Tracking our current roadmap and milestones.</p>
+            </div>
+            <div className="relative w-full">
+              <div className="absolute top-0 bottom-0 left-6 md:left-1/2 md:-translate-x-1/2 w-0.5 timeline-line opacity-30" />
+              <div className="space-y-24 w-full">
+                <TimelineItem 
+                  phase="Phase 01"
+                  title="Planning & Recruitment"
+                  description="Defining the roadmap for the upcoming session and onboarding the next generation of Lambda engineers through a rigorous technical hunt."
+                  isLeft={true}
+                  isActive={true}
+                />
+                <TimelineItem
+                  phase="Phase 02"
+                  title="Internal Execution"
+                  description="Intensive development cycles for our core open-source projects. Focus on systems architecture and codebase stabilization."
+                  isLeft={false}
+                  isActive={true}
+                />
+                <TimelineItem
+                  phase="Phase 03"
+                  title="Public Launch & Events"
+                  description="Deploying major project updates to production and hosting flagship hackathons for the IITH community."
+                  isLeft={true}
+                  isActive={true}
+                />
+                <TimelineItem
+                  phase="Phase 04"
+                  title="Evolution & Handover"
+                  description="Documenting architectural decisions and ensuring a seamless transition for the succeeding batch of developers."
+                  isLeft={false}
+                  isActive={false}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="px-6 lg:px-24 py-32 animate-fade-in">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-20">
+              <h2 className="text-4xl font-bold mb-4">Member Insights</h2>
+              <p className="text-white/40 font-light">What it means to be a part of the Lambda family.</p>
+            </div>
+            <div className="grid grid-flow-col auto-cols-[100%] md:auto-cols-[50%] lg:auto-cols-[33.3333%] gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4">
+              <TestimonialCard
+                name="Arjun Sharma"
+                role="Web Guild Lead"
+                quote="Lambda isn't just a club; it's a launchpad. The peer learning here is unparalleled compared to any classroom setting."
+                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA1DITWJS1mca8VEn9eGGrbxG4rBfifn4QJEsiUeV2vL6hhiRAdjTBC9EoGDiz_xuA-lWKwO4lf56HLx1klHTQ9OlsrUaXx-ZkUufRYpx7hxp7cMEKY-fvzVn9Cnm5j0o6w1ZfA3QVMmCHhoKyGUd6TPo5izDl7v_jgQGRfnY91jZU9tLxO7Y0jHbT_wIsrJtpB2SuPHNHjyOXCmlrfYz_gLk9N8BRmgEvHZmGWe5vlzIXU5HLy1jgjZAt3lp3UDdNfQVFVl15co_fC"
+              />
+              <TestimonialCard
+                name="Priya Verma"
+                role="Core Contributor"
+                quote="The community pushed me to contribute to Linux kernel in my freshman year. That's the kind of ambition Lambda breeds."
+                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuAJluAYXSLX1UZnZZMz504N2O0O5BD2cQmRsrCAMiDVLYQ33foj0vb86_t48seE7jqZr3FTP9pKg38A68JSl_x0sYq_g_QKD4_tC-C5_0Ao6z_y7W-JsWy0g36mLD1DFp8ouqGVXGHDExFLZKADi3i26ol7ojJDPqMExuPn-xGvucoQKhIYF-4szu_G49AHdykdldZNfzk5x6nK9OC3r40oQLIC9VUIp4JTZpa5-ZQDiGTQ41r7gnIIAqN7nY1cGbdMMW7D_4tjQNYL"
+              />
+              <TestimonialCard
+                name="Rohan Gupta"
+                role="Alumni '23"
+                quote="From late-night debugging to winning international hackathons together, Lambda has been the highlight of my IITH life."
+                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA78XuD-53xyHQ2pggzKQFwlAufhGb5uLOsUv2aBBJwsofWv1qXyfZ7vi8Uj4wgPbE48T51skByQguJN2xHk_Mw7OllAsA3CJGok-uFMe5yOroVhiEi3726GiPy8N0v6Dugn15SABnkSzwR-_mbtbetC3QDeOM4tRj7CJTIX6nf5TRy-O29Zi8X-v_ZlHtx0PCex9u1FTUSQZyVFvSjSv3yhV6CkmjRtFF-9gitmKSmybWmy3xZd4wKifGFoK7WzjbncTTVE6dbOJg4"
+              />
+
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
