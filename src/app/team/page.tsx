@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react"
 import TeamSection from "@/components/team-components/TeamSection"
-import Footer from "@/components/common/Footer"
+// import Footer from "@/components/common/Footer"
 import BackToTop from "@/components/common/BackToTop"
 import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "../../../public/team_data/data"
 
@@ -102,8 +102,6 @@ export default function TeamPage() {
           </section>
         </div>
       </main>
-
-      <Footer />
       <BackToTop />
     </>
   )
