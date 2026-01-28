@@ -1,26 +1,818 @@
 @import "tailwindcss";
 
+/* Base theme variables on html */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A0A0B;
+  --foreground: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark theme variables when html has class="dark" */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Optional: smooth theme transitions */
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-montserrat), sans-serif;
+  transition:
+    background-color 300ms,
+    color 300ms;
+}
+
+/* Tailwind v4 theme mapping */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Custom purple scrollbar (applies when you add className="scrollbar-thin") */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px; /* vertical scrollbar */
+  height: 8px; /* horizontal scrollbar */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(122, 63, 173, 0.2);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #9333ea, #db2777);
+}
+
+/* Grid Background */
+@layer utilities {
+
+  .grid-background {
+    background:
+      radial-gradient(circle at 2px 2px,
+        rgba(148, 51, 236, 0.05) 1px,
+        transparent 0),
+      #0A0A0B;
+
+    background-size: 32px 32px;
+  }
+
+  /* Font Display */
+  .font-display {
+    font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  }
+
+  /* Glass Dropdown */
+  .glass-dropdown {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px) !important;
+    background: rgba(148, 51, 236, 0.08) !important;
+    border: 1px solid rgba(148, 51, 236, 0.4) !important;
+    box-shadow: 0 0 25px rgba(148, 51, 236, 0.15) !important;
+  }
+
+  /* Member Card */
+  .member-card {
+    background: rgba(22, 22, 24, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .member-card:hover {
+    border-color: rgba(148, 51, 236, 0.6);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 40px -10px rgba(148, 51, 236, 0.25);
+  }
+
+  /* Glow Avatar */
+  .glow-avatar {
+    box-shadow: 0 0 15px -5px rgba(148, 51, 236, 0.2);
+  }
+
+  .member-card:hover .glow-avatar {
+    box-shadow: 0 0 30px -2px rgba(148, 51, 236, 0.5);
+  }
+
+  /* Social Icon */
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgb(148 163 184);
+    transition: all 0.3s;
+  }
+
+  .social-icon:hover {
+    color: var(--color-primary);
+    background-color: rgba(148, 51, 236, 0.1);
+  }
+
+  .social-icon svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+  }
+
+  .social-icon .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  /* Hero Glow */
+  .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(148, 51, 236, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+  }
+
+  /* Glass Nav */
+  .glass-nav {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+  }
+
+  /* Terminal Shadow */
+  .terminal-shadow {
+    box-shadow: 0 0 40px -10px rgba(148, 51, 236, 0.3);
+  }
+
+  /* Project Card Hover */
+  .project-card:hover {
+    transform: translateY(-8px);
+  }
+
+  /* About Page Styles */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(148, 51, 236, 0.4);
+  }
+
+  .timeline-line {
+    background: linear-gradient(to bottom, #9433EC, #9433EC 70%, transparent 100%);
+    box-shadow: 0 0 15px rgba(148, 51, 236, 0.3);
+  }
+
+  .glass-card {
+    background: rgba(18, 11, 30, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 51, 236, 0.1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(148, 51, 236, 0.3);
+    background: rgba(18, 11, 30, 0.8);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(148, 51, 236, 0.2);
+  }
+
+  .dot-glow {
+    box-shadow: 0 0 10px #9433EC, 0 0 20px rgba(148, 51, 236, 0.4);
+  }
+
+  .surface-dark {
+    background-color: #120b1e;
+  }
+
+  .background-light {
+    background-color: #f8f9fa;
+  }
+
+  /* Timeline Animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .timeline-item-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .timeline-item-right {
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .timeline-dot {
+    animation: fadeInScale 0.4s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  /* Additional Animations for About Page */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  /* Floating animations for hero blobs */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes floatDelayed {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: floatDelayed 8s ease-in-out infinite;
+  }
+
+  /* Slide in animations */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  /* Animation delays */
+  .animation-delay-100 {
+    animation-delay: 0.1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  /* Creative & Innovative Animations */
+  @keyframes gradientShift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+
+    to {
+      opacity: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+
+  @keyframes blurFadeIn {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleRotate {
+    from {
+      opacity: 0;
+      transform: scale(0.8) rotate(-5deg);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes cardFloat {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+  }
+
+  @keyframes glowPulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(148, 51, 236, 0.3),
+        0 0 40px rgba(148, 51, 236, 0.1);
+    }
+
+    50% {
+      box-shadow: 0 0 40px rgba(148, 51, 236, 0.6),
+        0 0 80px rgba(148, 51, 236, 0.3);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) translateY(-50px);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.95);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-10deg) scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+
+  @keyframes morphBlob {
+
+    0%,
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    50% {
+      border-radius: 50% 40% 60% 40% / 40% 70% 60% 50%;
+      transform: rotate(-5deg) scale(1);
+    }
+
+    75% {
+      border-radius: 40% 60% 50% 60% / 70% 50% 40% 50%;
+      transform: rotate(3deg) scale(1.03);
+    }
+  }
+
+  @keyframes flipIn {
+    from {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-90deg) scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0) scale(1);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5) translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-text-reveal {
+    animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  .animate-blur-fade-in {
+    animation: blurFadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-scale-rotate {
+    animation: scaleRotate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-card-float {
+    animation: cardFloat 3s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 3s ease infinite;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  /* Project card staggered animations */
+  .project-card-1 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .project-card-2 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+    opacity: 0;
+  }
+
+  .project-card-3 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  /* Blog card staggered animations */
+  .blog-card-1 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .blog-card-2 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+    opacity: 0;
+  }
+
+  .blog-card-3 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+
+  .animate-slide-up {
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-rotate-in {
+    animation: rotateIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-morph-blob {
+    animation: morphBlob 10s ease-in-out 5s infinite;
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
+  }
+
+  /* Code line scroll animations with delays */
+  .code-line-1 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .code-line-2 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .code-line-3 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    opacity: 0;
+  }
+
+  .code-line-4 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  .code-line-5 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    opacity: 0;
+  }
+
+  .code-line-6 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    opacity: 0;
+  }
+
+  .code-line-7 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+    opacity: 0;
+  }
+
+  .code-line-8 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    opacity: 0;
+  }
+
+  .code-line-9 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    opacity: 0;
+  }
+
+  .code-line-10 {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    opacity: 0;
+  }
+
+  /* Project card staggered animations */
+  .project-card-1 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .project-card-2 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+    opacity: 0;
+  }
+
+  .project-card-3 {
+    animation: flipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  /* Blog card staggered animations */
+  .blog-card-1 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+    opacity: 0;
+  }
+
+  .blog-card-2 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s forwards;
+    opacity: 0;
+  }
+
+  .blog-card-3 {
+    animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  /* Shimmer effect */
+  .shimmer-effect {
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(148, 51, 236, 0.3) 50%,
+        transparent 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  /* 3D Card tilt effect */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+  }
+
+  .card-3d:hover {
+    transform:
+      perspective(1000px) translateZ(40px) rotateX(-4deg) rotateY(4deg) scale(1.03);
+  }
+
+
+  /* Magnetic hover effect */
+  .magnetic-hover {
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .magnetic-hover:hover {
+    transform: translate(0, -5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(148, 51, 236, 0.4);
+  }
+
+  @keyframes introWord {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+
+    20% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-intro-word {
+    opacity: 0;
+    animation: introWord 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .delay-0 {
+    animation-delay: 0s;
+  }
+
+  .delay-1 {
+    animation-delay: 1.1s;
+  }
+
+  .delay-2 {
+    animation-delay: 2.2s;
+  }
+
 }
