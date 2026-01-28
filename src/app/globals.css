@@ -1,32 +1,58 @@
 @import "tailwindcss";
 
+/* Base theme variables on html */
 :root {
   --background: #0A0A0B;
   --foreground: #ffffff;
 }
 
+/* Dark theme variables when html has class="dark" */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Optional: smooth theme transitions */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-montserrat), sans-serif;
+  transition:
+    background-color 300ms,
+    color 300ms;
+}
+
+/* Tailwind v4 theme mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: #9433EC;
-  --color-background-dark: #0A0A0B;
-  --color-card-dark: #161618;
-  --font-family-sans: Geist, sans-serif;
-  --font-family-mono: "Geist Mono", monospace;
-  --font-family-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
-  --font-family-plus-jakarta: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
 }
 
-@layer base {
-  body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-family-sans);
-  }
+/* Custom purple scrollbar (applies when you add className="scrollbar-thin") */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px; /* vertical scrollbar */
+  height: 8px; /* horizontal scrollbar */
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(122, 63, 173, 0.2);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #9333ea, #db2777);
 }
 
 /* Grid Background */

@@ -1,124 +1,209 @@
-import MissionVisionCard from "@/components/about-components/MissionVisionCard";
-import TimelineItem from "@/components/about-components/TimelineItem";
-import TestimonialCard from "@/components/about-components/TestimonialCard";
-import { Plus_Jakarta_Sans } from "next/font/google";
+"use client";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+import { Users, Rocket, Trophy, Settings } from "lucide-react";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-montserrat',
 });
 
 export default function AboutPage() {
+  const achievements = [
+    {
+      icon: Users,
+      number: "40",
+      label: "Active Members",
+    },
+    {
+      icon: Rocket,
+      number: "25",
+      label: "Projects Completed",
+    },
+    {
+      icon: Trophy,
+      number: "15",
+      label: "Hackathons Won",
+    },
+    {
+      icon: Settings,
+      number: "100",
+      label: "Technologies",
+    },
+  ];
+
+  const events = [
+    {
+      date: "September 11th, 2025",
+      title: "Annual Hackathon",
+      description:
+        "48 hour coding marathon with exciting prizes and etc etc etc however long whatever needs to be added its still eh uh",
+    },
+    {
+      date: "September 11th, 2025",
+      title: "Tech Talk Series",
+      description: "Industry experts share insights on emerging technologies",
+    },
+    {
+      date: "September 11th, 2025",
+      title: "Code for a Cause",
+      description: "Developing solutions for local non-profit organizations",
+    },
+    {
+      date: "September 11th, 2025",
+      title: "Winter of Code",
+      description: "Month-long program to contribute to open source projects",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
+      author: "Adhith T",
+      role: "Club Head",
+    },
+    {
+      quote:
+        "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
+      author: "Zara Khan",
+      role: "Web Development",
+    },
+  ];
+
   return (
-    <>
-      <main className={`overflow-x-hidden ${plusJakartaSans.className}`}>
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(148,51,236,0.1),transparent_50%)] animate-pulse-slow" />
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase border border-white/10 rounded-full bg-white/5 text-white/60 animate-fade-in-down">
-              Premier Developer Club
-            </span>
-            <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1] animate-fade-in-up">
-              About <span className="text-white text-glow">Lambda</span> <br />
-              <span className="text-primary">IIT Hyderabad</span>
-            </h1>
-            <p className="text-lg lg:text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in">
-              A collective of builders, thinkers, and innovators pushing the boundaries of technology at the heart of IITH.
-            </p>
-          </div>
-        </section>
+    <main className={`bg-[#0E0018] w-full min-h-screen text-white ${montserrat.className}`}>
+      {/* Who are we Section */}
+      <div className="w-full pt-[30vw] sm:pt-[20vw] md:pt-[20vw] lg:pt-[15vw] px-[6vw] sm:px-[5vw] md:px-[4vw]">
+        <div className="max-w-[90vw] mx-auto text-center">
+          <h1 className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold mb-[6vw] sm:mb-[5vw] md:mb-[4vw] lg:mb-[2.5vw] text-[#D2A8FF]">
+            Who are we?
+          </h1>
+          <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white/80 leading-relaxed max-w-[85vw] sm:max-w-[75vw] md:max-w-[70vw] lg:max-w-[50vw] mx-auto">
+            Lambda is the premier developer club at IIT Hyderabad, fostering
+            innovation and technical excellence. We bring together a passionate
+            community of developers and designers who learn, build, and grow
+            together to push the boundaries of what's possible in software
+            development.
+          </p>
+        </div>
+      </div>
 
-        {/* Mission & Vision */}
-        <section className="px-6 lg:px-24 py-24 animate-fade-in">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-            <MissionVisionCard
-              icon="explore"
-              title="Our Mission"
-              description="To cultivate a high-impact developer culture within IIT Hyderabad by bridging the gap between theoretical computer science and real-world engineering excellence."
-            />
-            <MissionVisionCard
-              icon="auto_awesome"
-              title="Our Vision"
-              description="To become India's leading student-led technical hub, fostering open-source contributions and nurturing the next generation of global tech leaders."
-            />
-          </div>
-        </section>
+      {/* Our Achievements Section */}
+      <div className="w-full py-[10vw] sm:py-[8vw] md:py-[6vw] px-[6vw] sm:px-[5vw] md:px-[4vw]">
+        <div className="max-w-[90vw] mx-auto">
+          <h2 className="text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[3vw] font-bold text-center mb-[8vw] sm:mb-[6vw] md:mb-[5vw] lg:mb-[3vw] text-[#D2A8FF]">
+            Our Achievements
+          </h2>
 
-        {/* Timeline Section */}
-        <section className="px-6 lg:px-24 py-32 bg-[#0c0614]">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-4xl font-bold mb-4 tracking-tight">This Tenure's Progress</h2>
-              <p className="text-white/40 font-light italic">Tracking our current roadmap and milestones.</p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-[6vw] sm:gap-[5vw] md:gap-[4vw] lg:gap-[3vw]">
+            {achievements.map((achievement, index) => {
+              const IconComponent = achievement.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="mb-[3vw] sm:mb-[2.5vw] md:mb-[2vw] lg:mb-[1.5vw]">
+                    <IconComponent className="w-[12vw] h-[12vw] sm:w-[10vw] sm:h-[10vw] md:w-[7vw] md:h-[7vw] lg:w-[4vw] lg:h-[4vw] text-white" />
+                  </div>
+                  <div className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[3.5vw] font-bold mb-[2vw] sm:mb-[1.5vw] md:mb-[1vw] lg:mb-[0.5vw]">
+                    {achievement.number}
+                  </div>
+                  <div className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1.1vw] text-white">
+                    {achievement.label}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Upcoming Events Section */}
+      <div className="w-full py-[10vw] sm:py-[8vw] md:py-[6vw] lg:py-[4vw] px-[6vw] sm:px-[5vw] md:px-[4vw]">
+        <div className="max-w-[90vw] mx-auto">
+          <h2 className="text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[3vw] font-bold text-center mb-[8vw] sm:mb-[6vw] md:mb-[5vw] lg:mb-[3vw] text-[#D2A8FF]">
+            Upcoming Events
+          </h2>
+
+          <div className="relative max-w-[90vw] lg:max-w-[70vw] mx-auto pl-[15vw] sm:pl-[12vw] lg:pl-[8vw]">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-[7vw] sm:left-[6vw] lg:left-[4.1vw] top-[5vw] bottom-[6vw] w-[0.1vw] sm:w-[0.1vw] lg:w-[0.1vh] bg-white"></div>
+
+            <div className="space-y-[10vw] sm:space-y-[8vw] lg:space-y-[5vw]">
+              {events.map((event, index) => (
+                <div key={index} className="relative">
+                  {/* Date positioned absolutely to the left on desktop, above card on mobile */}
+                  <div className="lg:absolute lg:left-[-12vw] lg:top-[4vw] lg:w-[6vw] mb-[3vw] lg:mb-0">
+                    <span className="text-[3.5vw] sm:text-[3vw] lg:text-[1vw] font-medium text-white">
+                      {event.date}
+                    </span>
+                  </div>
+
+                  {/* Timeline Node */}
+                  <div className="absolute left-[-9.5vw] sm:left-[-6.7vw] lg:left-[-4.7vw] top-[1vw] sm:top-[0.8vw] lg:top-[4vw] z-10">
+                    <div className="w-[3.5vw] h-[3.5vw] sm:w-[3vw] sm:h-[3vw] lg:w-[1.6vw] lg:h-[1.6vw] rounded-full border-[0.3vw] sm:border-[0.25vw] lg:border-[0.1vw] border-[#CF5CFF]/40 flex items-center justify-center">
+                      <div className="w-[2.5vw] h-[2.5vw] sm:w-[2vw] sm:h-[2vw] lg:w-[1vw] lg:h-[1vw] bg-[#CF5CFF] rounded-full border-[0.5vw] sm:border-[0.4vw] lg:border-[0.2vw] border-[#0E0018]"></div>
+                    </div>
+                  </div>
+
+                  {/* Event Card */}
+                  <div className="bg-[#28013C] border border-[#8B4FC3]/50 rounded-[4vw] sm:rounded-[3vw] lg:rounded-[1.5vw] p-[6vw] sm:p-[5vw] lg:p-[2.5vw] transition-all duration-300">
+                    <h3 className="text-[5.5vw] sm:text-[4.5vw] lg:text-[2vw] font-bold mb-[3vw] sm:mb-[2.5vw] lg:mb-[1vw] text-[#CF5CFF]">
+                      {event.title}
+                    </h3>
+                    <p className="text-[4vw] sm:text-[3.2vw] lg:text-[1.1vw] text-white/80 leading-relaxed">
+                      {event.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="relative w-full">
-              <div className="absolute top-0 bottom-0 left-6 md:left-1/2 md:-translate-x-1/2 w-0.5 timeline-line opacity-30" />
-              <div className="space-y-24 w-full">
-                <TimelineItem 
-                  phase="Phase 01"
-                  title="Planning & Recruitment"
-                  description="Defining the roadmap for the upcoming session and onboarding the next generation of Lambda engineers through a rigorous technical hunt."
-                  isLeft={true}
-                  isActive={true}
-                />
-                <TimelineItem
-                  phase="Phase 02"
-                  title="Internal Execution"
-                  description="Intensive development cycles for our core open-source projects. Focus on systems architecture and codebase stabilization."
-                  isLeft={false}
-                  isActive={true}
-                />
-                <TimelineItem
-                  phase="Phase 03"
-                  title="Public Launch & Events"
-                  description="Deploying major project updates to production and hosting flagship hackathons for the IITH community."
-                  isLeft={true}
-                  isActive={true}
-                />
-                <TimelineItem
-                  phase="Phase 04"
-                  title="Evolution & Handover"
-                  description="Documenting architectural decisions and ensuring a seamless transition for the succeeding batch of developers."
-                  isLeft={false}
-                  isActive={false}
-                />
+          </div>
+        </div>
+      </div>
+
+      {/* What Our Members Say Section */}
+      <div className="w-full py-[10vw] sm:py-[8vw] md:py-[6vw] lg:py-[4vw] px-[6vw] sm:px-[5vw] md:px-[4vw] pb-[15vw] sm:pb-[12vw] md:pb-[10vw] lg:pb-[6vw]">
+        <div className="max-w-[90vw] mx-auto">
+          <h2 className="text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[3vw] font-bold text-center mb-[8vw] sm:mb-[6vw] md:mb-[5vw] lg:mb-[3vw] text-[#D2A8FF]">
+            What Our Members Say
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[6vw] sm:gap-[5vw] md:gap-[4vw] lg:gap-[2vw]">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-[#28013C] border border-[#6226A2] rounded-[4vw] sm:rounded-[3vw] md:rounded-[2.5vw] lg:rounded-[2vw] p-[6vw] sm:p-[5vw] md:p-[4vw] lg:p-[2.5vw]"
+              >
+                <div className="flex items-start gap-[4vw] sm:gap-[3vw] md:gap-[2.5vw] lg:gap-[1.5vw] mb-[4vw] sm:mb-[3vw] md:mb-[2.5vw] lg:mb-[1.5vw]">
+                  {/* Avatar */}
+                  <div className="w-[15vw] h-[15vw] sm:w-[12vw] sm:h-[12vw] md:w-[10vw] md:h-[10vw] lg:w-[5vw] lg:h-[5vw] bg-[#D6AFFF] rounded-full flex items-center justify-center shrink-0">
+                    <Users className="w-[9vw] h-[9vw] sm:w-[7vw] sm:h-[7vw] md:w-[6vw] md:h-[6vw] lg:w-[3vw] lg:h-[3vw] text-[#3D1054]" />
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-[4vw] sm:text-[3.2vw] md:text-[2.2vw] lg:text-[1vw] text-white/80 leading-relaxed">
+                    {testimonial.quote}
+                  </p>
+                </div>
+
+                {/* Author */}
+                <div className="pl-[19vw] sm:pl-[15vw] md:pl-[12.5vw] lg:pl-[6.5vw]">
+                  <div className="text-[4.5vw] sm:text-[3.5vw] md:text-[2.5vw] lg:text-[1.2vw] font-semibold text-white">
+                    {testimonial.author}
+                  </div>
+                  <div className="text-[3.8vw] sm:text-[3vw] md:text-[2vw] lg:text-[0.9vw] text-[#D39FE9]">
+                    {testimonial.role}
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-6 lg:px-24 py-32 animate-fade-in">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-20">
-              <h2 className="text-4xl font-bold mb-4">Member Insights</h2>
-              <p className="text-white/40 font-light">What it means to be a part of the Lambda family.</p>
-            </div>
-            <div className="grid grid-flow-col auto-cols-[100%] md:auto-cols-[50%] lg:auto-cols-[33.3333%] gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4">
-              <TestimonialCard
-                name="Arjun Sharma"
-                role="Web Guild Lead"
-                quote="Lambda isn't just a club; it's a launchpad. The peer learning here is unparalleled compared to any classroom setting."
-                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA1DITWJS1mca8VEn9eGGrbxG4rBfifn4QJEsiUeV2vL6hhiRAdjTBC9EoGDiz_xuA-lWKwO4lf56HLx1klHTQ9OlsrUaXx-ZkUufRYpx7hxp7cMEKY-fvzVn9Cnm5j0o6w1ZfA3QVMmCHhoKyGUd6TPo5izDl7v_jgQGRfnY91jZU9tLxO7Y0jHbT_wIsrJtpB2SuPHNHjyOXCmlrfYz_gLk9N8BRmgEvHZmGWe5vlzIXU5HLy1jgjZAt3lp3UDdNfQVFVl15co_fC"
-              />
-              <TestimonialCard
-                name="Priya Verma"
-                role="Core Contributor"
-                quote="The community pushed me to contribute to Linux kernel in my freshman year. That's the kind of ambition Lambda breeds."
-                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuAJluAYXSLX1UZnZZMz504N2O0O5BD2cQmRsrCAMiDVLYQ33foj0vb86_t48seE7jqZr3FTP9pKg38A68JSl_x0sYq_g_QKD4_tC-C5_0Ao6z_y7W-JsWy0g36mLD1DFp8ouqGVXGHDExFLZKADi3i26ol7ojJDPqMExuPn-xGvucoQKhIYF-4szu_G49AHdykdldZNfzk5x6nK9OC3r40oQLIC9VUIp4JTZpa5-ZQDiGTQ41r7gnIIAqN7nY1cGbdMMW7D_4tjQNYL"
-              />
-              <TestimonialCard
-                name="Rohan Gupta"
-                role="Alumni '23"
-                quote="From late-night debugging to winning international hackathons together, Lambda has been the highlight of my IITH life."
-                avatar="https://lh3.googleusercontent.com/aida-public/AB6AXuA78XuD-53xyHQ2pggzKQFwlAufhGb5uLOsUv2aBBJwsofWv1qXyfZ7vi8Uj4wgPbE48T51skByQguJN2xHk_Mw7OllAsA3CJGok-uFMe5yOroVhiEi3726GiPy8N0v6Dugn15SABnkSzwR-_mbtbetC3QDeOM4tRj7CJTIX6nf5TRy-O29Zi8X-v_ZlHtx0PCex9u1FTUSQZyVFvSjSv3yhV6CkmjRtFF-9gitmKSmybWmy3xZd4wKifGFoK7WzjbncTTVE6dbOJg4"
-              />
-
-            </div>
-          </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </div>
+    </main>
   );
 }

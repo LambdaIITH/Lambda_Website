@@ -3,28 +3,14 @@ import { Geist, Geist_Mono, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/g
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
-import { IntroProvider } from "./context/introContext";
+import BackToTop from "@/components/common/BackToTop";
+import ConsoleTitle from "@/components/common/ConsoleTitle";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-plus-jakarta-sans",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -58,25 +44,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${plusJakartaSans.variable} antialiased flex flex-col min-h-screen`}
+        className={`${montserrat.variable} antialiased flex flex-col min-h-screen
+  bg-white text-black
+  dark:bg-[#0E0018] dark:text-white
+  transition-colors duration-300`}
       >
-        <IntroProvider>
+        <ThemeProvider>
+          <ConsoleTitle />
           <Navbar />
-          {children}
+          <main className="grow">{children}</main>
           <Footer />
-        </IntroProvider>
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
