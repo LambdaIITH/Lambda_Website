@@ -11,6 +11,8 @@ export default function Navbar() {
   if (!path) return null;
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const navLinks = [
     { name: "Home", href: "/" },

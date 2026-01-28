@@ -58,7 +58,7 @@ export default function Footer() {
 
   return (
     <footer>
-      <div className="text-[3vh] lg:text-[0.9vw] bg-[#28013C] w-full h-auto flex flex-col justify-around items-center gap-[4vh] z-70 p-[5vh]">
+      <div className="bg-[#28013C] w-full flex flex-col items-center gap-4 px-8 py-6">
         <div className="flex w-[92vw]">
           <div className="mr-auto">
             <Image
