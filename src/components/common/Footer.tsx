@@ -1,8 +1,61 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Github, Instagram, Linkedin } from "lucide-react";
+import { useEffect, useState } from "react";
+
 
 export default function Footer() {
+
+    
+  const [status, setStatus] = useState("Checking status...");
+  const [statusColor, setStatusColor] = useState("bg-gray-400");
+
+  useEffect(() => {
+    async function fetchStatus() {
+      try {
+        const response = await fetch(
+          "https://api.pulsetic.com/public/status/status.iith.dev",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ password: null }),
+          }
+        );
+
+        const json = await response.json();
+        const monitors = json?.data?.monitors ?? [];
+
+        if (monitors.length === 0) {
+          setStatus("No monitors found");
+          setStatusColor("bg-red-500");
+          return;
+        }
+
+        const allUp = monitors.every(
+          (m: { status: string }) => m.status === "online"
+        );
+
+        if (allUp) {
+          setStatus("All systems operational");
+          setStatusColor("bg-green-500");
+        } else {
+          setStatus("Some systems are down");
+          setStatusColor("bg-yellow-500");
+        }
+      } catch (err) {
+        setStatus("Status unavailable");
+        setStatusColor("bg-red-500");
+      }
+    }
+
+    fetchStatus();
+  }, []);
+
+
   return (
     <footer>
       <div className="text-[3vh] lg:text-[0.9vw] bg-[#28013C] w-full h-auto flex flex-col justify-around items-center gap-[4vh] z-70 p-[5vh]">
@@ -21,7 +74,22 @@ export default function Footer() {
               priority
             />
           </div>
-          <div className="ml-auto text-[1vw]">Placeholder</div>
+          <a
+            href="https://status.iith.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto flex items-center gap-2 text-[0.9vw] hover:opacity-80 transition-opacity"
+          >
+            <span className="relative flex h-3 w-3">
+              <span
+                className={`absolute inline-flex h-full w-full rounded-full ${statusColor} opacity-75 animate-ping`}
+              />
+              <span
+                className={`relative inline-flex h-3 w-3 rounded-full ${statusColor}`}
+              />
+            </span>
+            <span>{status}</span>
+          </a>
         </div>
 
         <div className="border-b border-white/60 w-[92vw]"></div>
@@ -45,7 +113,7 @@ export default function Footer() {
 
           <div className="flex justify-end items-center gap-[1vw]">
             <a
-              href="mailto:yourname@example.com"
+              href="mailto:lambda@iith.ac.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -54,7 +122,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/LambdaIITH"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -63,7 +131,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.instagram.com/yourusername/"
+              href="https://instagram.com/lambdaiith"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
@@ -72,7 +140,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/yourusername/"
+              href="https://www.linkedin.com/company/lambda-iit-hyderabad"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
