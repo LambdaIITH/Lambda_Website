@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
@@ -7,7 +7,7 @@ import BackToTop from "@/components/common/BackToTop";
 import ConsoleTitle from "@/components/common/ConsoleTitle";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const montserrat = Montserrat({
+const geistSans = Geist({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-montserrat",
