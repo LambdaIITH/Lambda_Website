@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <main
-      className={`w-screen bg-gradient-to-b from-[#1d0837] via-[#16001e] to-[#0d0014]
+      className={`w-screen bg-gradient-to-b from-[#0d0014] via-[#16001e] to-[#1d0837]
       text-white ${geist.className}`}
     >
       {/* Back Button */}

@@ -21,13 +21,13 @@ export default function Navbar() {
   ];
 
   const rightIcons = [
-    { src: "navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
-    { src: "navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
-    {
-      src: "navbar_assets/dark_mode_icon.svg",
-      alt: "Dark Mode Icon",
-      href: "#",
-    },
+    { src: "/navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
+    { src: "/navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
+    // {
+    //   src: "/navbar_assets/dark_mode_icon.svg",
+    //   alt: "Dark Mode Icon",
+    //   href: "#",
+    // },
   ];
 
   return (
@@ -36,8 +36,9 @@ export default function Navbar() {
       <div
         className="fixed top-2 left-1/2 -translate-x-1/2
              flex justify-between items-center
-             w-[95vw] h-[6vh] min-h-[50px] max-h-[70px]
-             bg-[rgba(66,0,100,0.7)] text-white rounded-full z-50
+             w-[75vw] h-[9vh] min-h-[50px] max-h-[70px]
+             bg-linear-to-r from-[rgba(66,0,100,0.75)] to-[rgba(40,0,80,0.75)]
+             text-white rounded-3xl z-50
              shadow-[0_8px_32px_rgba(0,0,0,0.37)]
              backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
              lg:px-[2vw] px-[5vw]"
@@ -55,7 +56,7 @@ export default function Navbar() {
                 width: "clamp(15px, 1.2vw, 22px)",
                 height: "auto",
               }}
-              priority
+              // priority
             />
             <span
               className="font-semibold"
@@ -76,7 +77,9 @@ export default function Navbar() {
               return (
                 <li
                   key={link.href}
-                  className="relative px-[0.9vw] py-[0.3vw] rounded-2xl"
+                  className="relative px-[0.9vw] py-[0.3vw] rounded-2xl
+                            transition-all duration-300
+                            hover:bg-white/20 hover:ring-1 hover:ring-white/30 cursor-pointer"
                 >
                   {isActive && (
                     <motion.div
@@ -84,16 +87,19 @@ export default function Navbar() {
                       className="absolute inset-0 bg-white rounded-2xl"
                       transition={{
                         type: "spring",
-                        stiffness: 120,
-                        damping: 20,
-                        mass: 0.6,
+                        stiffness: 140,
+                        damping: 18,
                       }}
                     />
                   )}
+
                   <Link
                     href={link.href}
                     className={`relative z-10 transition-colors duration-300 ${
-                      isActive ? "text-black italic" : ""
+                      isActive
+                          ? "text-black font-semibold tracking-wider"
+                          : "text-white font-medium"
+
                     }`}
                     style={{
                       fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
@@ -102,6 +108,7 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 </li>
+
               );
             })}
           </ul>
@@ -168,7 +175,7 @@ export default function Navbar() {
              w-[90vw] sm:w-[80vw] md:w-[60vw]
              text-white rounded-3xl
              flex flex-col items-center p-4 z-40
-             bg-[rgba(66,0,100,0.7)]
+             bg-linear-to-r from-[rgba(66,0,100,0.75)] to-[rgba(40,0,80,0.75)]
              shadow-[0_8px_32px_rgba(0,0,0,0.37)]
              backdrop-blur-xl border border-[rgba(255,255,255,0.18)]"
           >
@@ -178,9 +185,11 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`py-2 w-full text-center transition-colors ${
-                    isActive ? "text-black bg-white/80 rounded-xl italic" : ""
-                  }`}
+                  className={`py-2 w-full text-center rounded-xl transition-all
+                    hover:bg-white/20 hover:ring-1 hover:ring-white/30
+                    ${isActive ? "bg-white text-black font-bold" : "text-white"}
+                  `}
+
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.name}
