@@ -1,0 +1,22 @@
+{
+    "projects": [
+        {
+        "slug": "lambda",
+        "name": "Lambda Website",
+        "description": "Lambda club website",
+        "technologies": ["NextJS", "TailwindCSS", "TypeScript"],
+        "link": "https://github.com/LambdaIITH/Lambda_Website",
+        "date":"2026-01-16",
+        "readTime":"2 min read"
+        },
+        {
+        "slug": "dashboard",
+        "name": "Dashboard",
+        "description": "Lorem ipsum dolor sit amet",
+        "technologies": ["Astro", "Javascript", "TypeScript","TailwindCSS","SolidJS"],
+        "link": "https://github.com/LambdaIITH/Dashboard",
+        "date":"2025-01-15",
+        "readTime":"1 min read"
+        }
+    ]
+}

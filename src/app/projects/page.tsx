@@ -1,91 +1,212 @@
-export default function HomePage() {
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Geist } from 'next/font/google';
+import projectData from '@/data/projectData.json';
+
+const geist = Geist({
+  subsets: ['latin'],
+  weight: ['100','200','300','400','500','600','700','800','900']
+});
+
+type ProjectPost = {
+  slug: string,
+  name: string,
+  // contributors: Array<{ name: string; github: string }>;  // ← New
+  technologies: string[],
+  desc: string,
+  link: string,
+  date:string,
+  // markdown:string,
+  readTime: string,
+};
+
+export default function ProjectPage() {
+  const POSTS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [sortLatestFirst, setSortLatestFirst] = useState(true);
+
+  /* ---------- FORMAT PROJECT DATA ---------- */
+  const posts: ProjectPost[] = projectData.projects.map((b: any) => ({
+    slug: b.slug,
+    name: b.name,
+    // contributors: Array.isArray(b.authors) ? b.authors : [b.authors],
+    technologies: b.technologies,
+    desc: b.description,
+    link: b.link,
+    date: b.date,
+    // markdown: b.markdown,
+    readTime: b.readTime,
+  }));
+
+  /* ---------- TAG FILTER ---------- */
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev =>
+      prev.includes(tag)
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  const filteredPosts =
+    selectedTags.length === 0
+      ? posts
+      : posts.filter(post =>
+          selectedTags.every(tag => post.technologies.includes(tag))
+        );
+
+  /* ---------- SORT ---------- */
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return sortLatestFirst ? dateB - dateA : dateA - dateB;
+  });
+
+  /* ---------- PAGINATION ---------- */
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
+  const paginatedPosts = sortedPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTags, sortLatestFirst]);
+
+  const derivedTags = Array.from(
+    new Set(posts.flatMap(post => post.technologies))
+  );
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center text-center relative text-white">
-      <div className="p-10 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-md max-w-2xl mx-4 border border-white/20">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
-          Lambda · IIT Hyderabad
-        </h1>
+    <main
+      className={`w-screen
+      bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
+      text-white flex flex-col items-center
+      ${geist.className}`}
+    >
+      <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
+      <div className="fixed bottom-0 left-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4"></div>
 
-        <p className="text-lg text-gray-200 mb-8 leading-relaxed">
-          We are the coding and tech community of IIT Hyderabad — a space for
-          builders, thinkers, and tinkerers.
-          <br />
-          This site is under construction. Great things are coming soon!
+      {/* Title */}
+      <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-24">
+        <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white">
+          Projects <span className="text-[#9433EC]">.</span>
+        </h2>
+        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed font-light">
+          Cool stuff we’ve built—innovative, bold, and kinda awesome.
         </p>
+      </section>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#"
-            className="px-5 py-2.5 bg-white text-purple-700 font-semibold rounded-xl hover:bg-gray-100 transition-all"
+      {/* Tags
+      <section className="mb-20 w-[90vw] md:w-[80vw] sticky top-18 z-10">
+        <div className="flex flex-wrap gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
+          <button
+            onClick={() => setSelectedTags([])}
+            className="px-5 py-2 rounded-xl bg-[#9433EC] text-white text-sm font-bold cursor-pointer"
           >
-            Learn More
-          </a>
-          <a
-            href="#"
-            className="px-5 py-2.5 border border-white text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+            All Topics
+          </button>
+
+          {derivedTags.map(tag => {
+            const isSelected = selectedTags.includes(tag);
+            return (
+              <button
+                key={tag}
+                onClick={() => toggleTag(tag)}
+                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-[#9433EC] text-white'
+                    : 'text-slate-400 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+      </section> */}
+
+      {/* Posts */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
+        {paginatedPosts.map(post => (
+          <article 
+            key={post.slug}
+            className="rounded-3xl overflow-hidden flex flex-col bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[300px] cursor-pointer"
+            onClick={() => window.open(post.link, '_blank')}
           >
-            Join the Club
-          </a>
+            {/* Content */}
+            <div className="p-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
+                <span>{post.date}</span>
+                <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                <span>{post.readTime}</span>
+              </div>
+
+              <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight">
+                {post.name}
+              </h3>
+
+              <p className="text-slate-400 text-sm leading-relaxed mb-4 font-light line-clamp-3">
+                {post.desc}
+              </p>
+
+              {/* Footer */}
+              <div className="mt-auto flex items-center justify-end pt-4 border-t border-white/5">
+
+                <span className="text-[#9433EC] gap-2 font-bold material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-12 mb-20">
+
+          {currentPage > 1 && (
+            <button
+              onClick={() => setCurrentPage(p => p - 1)}
+              className="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold group"
+            >
+              <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">west</span> Previous
+            </button>
+          )}
+
+          <div className="flex items-center gap-6">
+            {Array.from({ length: totalPages }).map((_, i) => {
+              const page = i + 1;
+              return (
+                <span
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`text-sm font-medium cursor-pointer transition-colors ${
+                    page === currentPage
+                      ? 'font-black text-[#9433EC] border-b-2 border-[#9433EC] pb-1'
+                      : 'text-slate-600 hover:text-slate-300'
+                  }`}
+                >
+                  {page.toString().padStart(2, '0')}
+                </span>
+              );
+            })}
+          </div>
+
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage(p => p + 1)}
+              className="text-slate-400 hover:text-[#9433EC] transition-colors flex items-center gap-2 text-sm font-bold group"
+            >
+              Next <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+            </button>
+          )}
         </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          aspernatur expedita necessitatibus minus omnis voluptates natus, sint
-          porro quod tempora inventore repellat explicabo quae voluptatibus
-          eligendi recusandae illum, error dolorum, minima laboriosam ad vero
-          doloribus nobis. Explicabo impedit iure veniam obcaecati commodi,
-          delectus vero ad at corrupti ex nisi ipsa magnam id officiis.
-          Necessitatibus saepe dolorum eaque cumque unde, culpa illum odio
-          dicta, aperiam corporis voluptatibus quo ab ut, architecto
-          reprehenderit provident mollitia tempore. Iusto tempore eum dolor cum
-          eius. Nemo corrupti explicabo, quia quos dolores accusantium alias
-          optio mollitia exercitationem cumque fugit ipsam quas quo repudiandae
-          omnis natus eligendi minima! Ipsa ex, harum a, nisi reiciendis ipsam
-          unde molestias culpa debitis reprehenderit, tempora delectus cumque
-          alias quasi veniam. Dolorum, voluptatem! Assumenda maxime dolore
-          doloremque esse voluptatum mollitia cum minima suscipit. In fugiat
-          doloribus deleniti magni at non minus exercitationem architecto quis
-          aliquam! Numquam cupiditate, deserunt, vero nobis saepe maxime quam,
-          culpa eligendi quis autem explicabo. Ab nam voluptatem temporibus,
-          quas impedit quod sunt cumque error ipsa autem amet consequuntur
-          perspiciatis nobis quasi quo voluptate iste suscipit hic natus qui.
-          Corporis aliquam soluta quam accusantium placeat incidunt, nostrum hic
-          perferendis officia consectetur error sequi, dolore modi quia non
-          architecto quo porro tempore obcaecati saepe aspernatur at? Molestias
-          dolores aliquam neque iste praesentium pariatur porro, nostrum dolorum
-          explicabo! Dignissimos voluptatem earum quasi id repellat quas magnam
-          consectetur sed, architecto unde neque maiores nisi praesentium nulla
-          error necessitatibus nobis, iusto sit cumque molestias nostrum quia
-          ducimus iste. Hic molestias sunt velit voluptas ratione saepe. Porro
-          odio voluptas natus cum vero iusto, laborum accusamus sed sit, itaque
-          ab quam id alias. Debitis ad, error nihil minus est sequi quasi
-          dolorum voluptates recusandae, dolore architecto deserunt doloremque?
-          Labore modi, ratione voluptatem non consequatur eveniet sapiente porro
-          rerum animi vitae veritatis magnam, sint esse! Provident veniam rem
-          libero illo accusantium, unde nesciunt. Reprehenderit corrupti tempore
-          tenetur incidunt nulla nihil commodi. Cumque eveniet officia iusto
-          ipsa! Tempore tempora quae exercitationem ipsa suscipit, consequuntur
-          quas fugiat quam est, repellendus sequi impedit non ut unde in fuga,
-          laborum rem harum nesciunt explicabo sint corporis. Soluta obcaecati
-          minus nesciunt voluptates molestias excepturi sunt maxime amet
-          delectus vel! Molestias aliquam, molestiae eius, repellat delectus
-          placeat eum omnis quia facilis neque expedita tenetur laudantium esse
-          minus nostrum autem praesentium! Ea dolore sapiente quos consequatur
-          at repudiandae nisi est nulla voluptate iure beatae consequuntur
-          labore possimus, nemo nam, voluptatibus cupiditate similique minus
-          aliquid! Voluptatum nihil dignissimos enim vitae tempore itaque,
-          reiciendis omnis dolores provident neque architecto inventore
-          voluptatibus molestias quidem natus vel fuga ullam perferendis harum
-          minus. Quibusdam facilis ab in assumenda accusantium minus, unde
-          eligendi fuga alias impedit ratione hic mollitia nesciunt distinctio
-          temporibus molestiae doloremque expedita, commodi excepturi officiis.
-          Quidem aut aliquam omnis facere cum? Illo eveniet quo dignissimos,
-          facere tenetur quas a facilis quia quos mollitia perferendis, saepe
-          nobis expedita ipsum beatae fugit voluptatum eos incidunt iure vel
-          ipsam ullam earum aperiam asperiores. Corporis ea fugiat, similique
-          explicabo, animi quod nobis eligendi iste illo provident, nihil
-          officia repellendus error.
-        </div>
-      </div>
+      )}
     </main>
   );
 }

@@ -21,10 +21,10 @@ export default function Navbar() {
   ];
 
   const rightIcons = [
-    { src: "navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
-    { src: "navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
+    { src: "/navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
+    { src: "/navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
     {
-      src: "navbar_assets/dark_mode_icon.svg",
+      src: "/navbar_assets/dark_mode_icon.svg",
       alt: "Dark Mode Icon",
       href: "#",
     },
@@ -55,7 +55,7 @@ export default function Navbar() {
                 width: "clamp(15px, 1.2vw, 22px)",
                 height: "auto",
               }}
-              priority
+              // priority
             />
             <span
               className="font-semibold"
