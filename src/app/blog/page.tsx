@@ -91,7 +91,7 @@ export default function BlogPage() {
     <main
       className={`w-screen
       bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
-      text-white flex flex-col items-center
+      text-white flex flex-col items-center pt-20 pb-4
       ${geist.className}`}
     >
       <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
