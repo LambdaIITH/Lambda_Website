@@ -91,7 +91,7 @@ export default function BlogPage() {
     <main
       className={`w-screen
       bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
-      text-white flex flex-col items-center
+      text-white flex flex-col items-center pt-20 pb-4
       ${geist.className}`}
     >
       <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
@@ -107,7 +107,7 @@ export default function BlogPage() {
       </section>
 
       {/* Tags Bar */}
-      <section className="mb-20 w-[90vw] md:w-[80vw] sticky top-18 z-10">
+      <section className="mb-20 w-[80vw] md:w-[80vw] sticky top-18 z-10">
         <div className="flex flex-wrap justify-center md:justify-start gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
           <button
             onClick={() => setSelectedTags([])}
@@ -150,14 +150,14 @@ export default function BlogPage() {
       </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
             href={`/blog/${post.id}`} 
             className='block'
           >
-            <article className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[400px]">
+            <article className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[320px] md:h-[400px]">
               {/* Big category + badges */}
               {/* <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
                 <span className="text-[#9433EC]/20 text-7xl font-black absolute select-none">
@@ -176,7 +176,7 @@ export default function BlogPage() {
               </div> */}
 
               {/* Content */}
-              <div className="p-8 flex flex-col flex-1">
+              <div className="px-5 py-6 md:p-8 flex flex-col flex-1">
                 <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
                   <span>{post.date}</span>
                   <span className="w-1 h-1 rounded-full bg-slate-700"></span>

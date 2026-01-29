@@ -11,6 +11,8 @@ export default function Navbar() {
   if (!path) return null;
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -20,15 +22,39 @@ export default function Navbar() {
     { name: "Team", href: "/team" },
   ];
 
-  const rightIcons = [
-    { src: "/navbar_assets/search_icon.svg", alt: "Search Icon", href: "#" },
-    { src: "/navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
+  // const rightIcons = [
+  //   { src: "/navbar_assets/search_icon.svg", alt: "Search Icon"},
+  //   { src: "/navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
     // {
     //   src: "/navbar_assets/dark_mode_icon.svg",
     //   alt: "Dark Mode Icon",
     //   href: "#",
     // },
-  ];
+  // ];
+
+  const handleSearch = () => {
+    if (!searchQuery.trim()) return;
+
+    const elements = document.querySelectorAll(
+      "p, span, h1, h2, h3, h4, li"
+    );
+
+    for (const el of elements) {
+      if (
+        el.textContent &&
+        el.textContent.toLowerCase().includes(searchQuery.toLowerCase())
+      ) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("ring-2", "ring-purple-400");
+
+        setTimeout(() => {
+          el.classList.remove("ring-2", "ring-purple-400");
+        }, 2000);
+
+        break;
+      }
+    }
+  };
 
   return (
     <nav>
@@ -114,34 +140,63 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* right side */}
+        {/* RIGHT SIDE */}
         <div className="flex items-center gap-4">
-          {/* icons (always visible) */}
-          <div className="flex items-center justify-end gap-[3vw] lg:gap-[1.2vw]">
-            {rightIcons.map((icon) => (
-              <Link
-                key={icon.alt}
-                href={icon.href}
-                className="flex items-center justify-center"
-              >
-                <Image
-                  src={icon.src}
-                  alt={icon.alt}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    width: "clamp(16px, 1.3vw, 22px)",
-                    height: "auto",
-                  }}
-                  priority
-                />
-              </Link>
-            ))}
-          </div>
+              {/* SEARCH INPUT */}
+              <AnimatePresence>
+                {searchOpen && (
+                  <motion.input
+                    autoFocus
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "14rem", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSearch();
+                      if (e.key === "Escape") setSearchOpen(false);
+                    }}
+                    placeholder="Search on page..."
+                    className="px-4 py-2 rounded-xl bg-white/20
+                    text-white placeholder-white/60 outline-none
+                    border border-white/20"
+                  />
+                )}
+              </AnimatePresence>
 
+              {/* SEARCH ICON */}
+              <Image
+                src="/navbar_assets/search_icon.svg"
+                alt="Search"
+                width={22}
+                height={22}
+                className="cursor-pointer"
+                onClick={() => setSearchOpen((prev) => !prev)}
+              />
+
+              <Image
+                src="/navbar_assets/network_icon.svg"
+                alt="Network"
+                width={22}
+                height={22}
+                className="cursor-default"
+              />
+
+
+              {/* HAMBURGER (MOBILE) */}
+              <button
+                className="lg:hidden flex flex-col gap-1"
+                onClick={() => setMenuOpen((prev) => !prev)}
+              >
+                <span className="w-6 h-0.5 bg-white" />
+                <span className="w-6 h-0.5 bg-white" />
+                <span className="w-6 h-0.5 bg-white" />
+              </button>
+            </div>
+          </div>
           {/* hamburger (mobile only) */}
-          <button
+          {/* <button
             className="lg:hidden flex flex-col justify-center items-center gap-1"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
@@ -157,9 +212,9 @@ export default function Navbar() {
               animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
               className="block w-6 h-0.5 bg-white rounded-full"
             />
-          </button>
-        </div>
-      </div>
+          </button> */}
+        {/* </div> */}
+      {/* </div> */}
 
       {/* mobile dropdown */}
       <AnimatePresence>

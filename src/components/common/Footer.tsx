@@ -5,10 +5,7 @@ import Image from "next/image";
 import { Mail, Github, Instagram, Linkedin } from "lucide-react";
 import { useEffect, useState } from "react";
 
-
 export default function Footer() {
-
-    
   const [status, setStatus] = useState("Checking status...");
   const [statusColor, setStatusColor] = useState("bg-gray-400");
 
@@ -19,9 +16,7 @@ export default function Footer() {
           "https://api.pulsetic.com/public/status/status.iith.dev",
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ password: null }),
           }
         );
@@ -46,7 +41,7 @@ export default function Footer() {
           setStatus("Some systems are down");
           setStatusColor("bg-yellow-500");
         }
-      } catch (err) {
+      } catch {
         setStatus("Status unavailable");
         setStatusColor("bg-red-500");
       }
@@ -55,70 +50,70 @@ export default function Footer() {
     fetchStatus();
   }, []);
 
-
   return (
-    <footer>
-      <div className="text-[3vh] lg:text-[0.9vw] bg-[#28013C] w-full h-auto flex flex-col justify-around items-center gap-[4vh] z-70 p-[5vh]">
-        <div className="flex w-[92vw]">
-          <div className="mr-auto">
+    <footer className="bg-[#28013C] w-full">
+      {/* Reduced padding on mobile */}
+      <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-8 flex flex-col gap-4 sm:gap-6">
+
+        {/* TOP ROW — ALWAYS ROW */}
+        <div className="flex items-center justify-between">
+          {/* LEFT: LOGO */}
+          <div className="flex items-center gap-2">
             <Image
-              src="footer_assets/lambda_footer_logo.svg"
-              alt="Lambda Logo"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                width: "12vw",
-                height: "auto",
-              }}
-              priority
+              src="/navbar_assets/lambda_logo.svg"
+              alt="Lambda"
+              width={26}
+              height={26}
             />
-          </div>
-          <a
-            href="https://status.iith.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-auto flex items-center gap-2 text-[0.9vw] hover:opacity-80 transition-opacity"
-          >
-            <span className="relative flex h-3 w-3">
-              <span
-                className={`absolute inline-flex h-full w-full rounded-full ${statusColor} opacity-75 animate-ping`}
-              />
-              <span
-                className={`relative inline-flex h-3 w-3 rounded-full ${statusColor}`}
-              />
+            <span className="text-white font-semibold text-sm sm:text-base">
+              Lambda
             </span>
-            <span>{status}</span>
-          </a>
+          </div>
+
+          {/* RIGHT: SYSTEM STATUS (STAYS RIGHT) */}
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
+            <span className={`w-2 h-2 rounded-full ${statusColor}`} />
+            <span className="text-white/90 whitespace-nowrap">
+              {status}
+            </span>
+          </div>
         </div>
 
-        <div className="border-b border-white/60 w-[92vw]"></div>
+        {/* DIVIDER */}
+        <div className="border-b border-white/50 w-full"></div>
 
-        <div className="w-[92vw] flex justify-between items-center">
-          <div className="text-[0.8vw]">&copy; 2025 | All rights reserved</div>
+        {/* BOTTOM ROW — STACK ON MOBILE */}
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0">
 
-          <div className="flex text-[0.9vw]">
-            <div className="px-[1.5vw]">
+          {/* COPYRIGHT */}
+          <div className="md:mr-auto text-xs sm:text-sm text-white text-center md:text-left">
+            © 2025 | All rights reserved
+          </div>
+
+          {/* LINKS */}
+          <div className="flex items-center text-xs sm:text-sm text-white">
+            <div className="px-2 sm:px-4">
               <Link href="#">Terms</Link>
             </div>
             |
-            <div className="px-[1.5vw]">
+            <div className="px-2 sm:px-4">
               <Link href="#">Privacy</Link>
             </div>
             |
-            <div className="px-[1.5vw]">
+            <div className="px-2 sm:px-4">
               <Link href="#">Contact Us</Link>
             </div>
           </div>
 
-          <div className="flex justify-end items-center gap-[1vw]">
+          {/* SOCIAL ICONS */}
+          <div className="md:ml-auto flex gap-3 sm:gap-5">
             <a
               href="mailto:lambda@iith.ac.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Mail className="w-[1.5vw] h-[1.5vw]" />
+              <Mail className="w-4 h-4 sm:w-6 sm:h-6" />
             </a>
 
             <a
@@ -127,7 +122,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Github className="w-[1.5vw] h-[1.5vw]" />
+              <Github className="w-4 h-4 sm:w-6 sm:h-6" />
             </a>
 
             <a
@@ -136,7 +131,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Instagram className="w-[1.5vw] h-[1.5vw]" />
+              <Instagram className="w-4 h-4 sm:w-6 sm:h-6" />
             </a>
 
             <a
@@ -145,7 +140,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-white hover:text-purple-300 transition-colors"
             >
-              <Linkedin className="w-[1.5vw] h-[1.5vw]" />
+              <Linkedin className="w-4 h-4 sm:w-6 sm:h-6" />
             </a>
           </div>
         </div>
