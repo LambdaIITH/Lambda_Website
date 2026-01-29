@@ -8,9 +8,63 @@ import BlogCard from "@/components/home-components/BlogCard";
 import ProjectCard from "@/components/home-components/ProjectCard";
 import ScrollAnimatedSection from "@/components/home-components/ScrollAnimatedSection";
 import Link from "next/link";
+import blogData from "@/data/blogData.json";
+import projectData from "@/data/projectData.json";
+
+type BlogPost = {
+  id: string;
+  title: string;
+  date: string;
+  publishedDate: number;
+  desc: string;
+  readTime: string;
+  slug: string;
+};
+
+type ProjectPost = {
+  slug: string;
+  name: string;
+  technologies: string[];
+  desc: string;
+  link: string;
+  date: string;
+  readTime: string;
+};
 
 export default function HomePage() {
   const { introFinished } = useIntro();
+
+  /* ---------- FORMAT BLOG DATA ---------- */
+  const blogs: BlogPost[] = blogData.blogs
+    .map((b: any) => ({
+      id: b.slug,
+      title: b.title,
+      date: new Date(b.published_date).toLocaleDateString('en-US', {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric'
+      }),
+      publishedDate: new Date(b.published_date).getTime(),
+      desc: b.shortDescription,
+      readTime: b.readTime,
+      slug: b.slug,
+    }))
+    .sort((a, b) => b.publishedDate - a.publishedDate);
+
+  /* ---------- FORMAT PROJECT DATA ---------- */
+  const projects: ProjectPost[] = projectData.projects.map((p: any) => ({
+    slug: p.slug,
+    name: p.name,
+    technologies: p.technologies,
+    desc: p.description,
+    link: p.link,
+    date: p.date,
+    readTime: p.readTime,
+  }));
+
+  /* ---------- GET TOP 3 ITEMS ---------- */
+  const topProjects = projects.slice(0, 3);
+  const topBlogs = blogs.slice(0, 3);
 
   return (
     <>
@@ -150,36 +204,19 @@ export default function HomePage() {
               <p className="text-slate-500 mb-16 animate-blur-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>High-impact engineering from the student community.</p>
             </ScrollAnimatedSection>
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <ScrollAnimatedSection>
-                <div className="project-card-1">
-                  <ProjectCard
-                    category="storage"
-                    title="Dashboard"
-                    desc="An app made for IIT Hyderabad community to access many campus information and resources."
-                    tags={["Astro", "TypeScript", "TailwindCSS", "SolidJS"]}
-                  />
-                </div>
-              </ScrollAnimatedSection>
-              <ScrollAnimatedSection>
-                <div className="project-card-2">
-                  <ProjectCard
-                    category="web"
-                    title="KRC"
-                    desc="An app made for the library to book rooms and manage reservations efficiently."
-                    tags={["TyepScript", "Flutter", "Go", "Dart"]}
-                  />
-                </div>
-              </ScrollAnimatedSection>
-              <ScrollAnimatedSection>
-                <div className="project-card-3">
-                  <ProjectCard
-                    category="security"
-                    title="Main Gate Scanner"
-                    desc="A facial recognition scanner for campus security and automated entry management."
-                    tags={["Vue", "JavaScript", "TailwindCSS"]}
-                  />
-                </div>
-              </ScrollAnimatedSection>
+              {topProjects.map((project, index) => (
+                <ScrollAnimatedSection key={project.slug}>
+                  <div className={`project-card-${index + 1}`}>
+                    <ProjectCard
+                      category={["storage", "web", "security"][index] || "storage"}
+                      title={project.name}
+                      desc={project.desc}
+                      tags={project.technologies}
+                      link={project.link}
+                    />
+                  </div>
+                </ScrollAnimatedSection>
+              ))}
             </div>
             <ScrollAnimatedSection>
               <Link href="/projects" className="inline-block px-8 py-3 border border-primary/50 text-primary rounded-lg font-bold hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(148,51,236,0.4)] transition-all cursor-pointer transform hover:scale-105 magnetic-hover">
@@ -203,39 +240,19 @@ export default function HomePage() {
                 </Link>
               </div>
               <div className="grid md:grid-cols-3 gap-8">
-                <ScrollAnimatedSection>
-                  <div className="blog-card-1">
-                    <BlogCard
-                      category="Article"
-                      readDuration="5"
-                      title="DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics"
-                      desc="A practical introduction to DuckDB, the SQLite for analytics"
-                      redirect="duckdb"
-                    />
-                  </div>
-                </ScrollAnimatedSection>
-                <ScrollAnimatedSection>
-                  <div className="blog-card-2">
-                    <BlogCard
-                      category="Engineering"
-                      readDuration="6"
-                      title="DNS Basics - The Internet's Phone Book"
-                      desc="Learn DNS basics with memes + examples and hands-on commands"
-                      redirect="dns-basics"
-                    />
-                  </div>
-                </ScrollAnimatedSection>
-                <ScrollAnimatedSection>
-                  <div className="blog-card-3">
-                    <BlogCard
-                      category="Security"
-                      readDuration="7"
-                      title="SSH Advanced: Tunneling, Port Forwarding, and Pro Tips"
-                      desc="Master secure SSH tunnels and port forwarding to safely expose, access, and debug remote services like a pro."
-                      redirect="ssh-adv"
-                    />
-                  </div>
-                </ScrollAnimatedSection>
+                {topBlogs.map((blog, index) => (
+                  <ScrollAnimatedSection key={blog.id}>
+                    <div className={`blog-card-${index + 1}`}>
+                      <BlogCard
+                        category={["Article", "Engineering", "Security"][index] || "Article"}
+                        readDuration={blog.readTime.split(' ')[0]}
+                        title={blog.title}
+                        desc={blog.desc}
+                        redirect={blog.slug}
+                      />
+                    </div>
+                  </ScrollAnimatedSection>
+                ))}
               </div>
             </ScrollAnimatedSection>
           </div>
