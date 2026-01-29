@@ -103,7 +103,6 @@ export default function TeamPage() {
         </div>
       </main>
 
-      <Footer />
       <BackToTop />
     </>
   )

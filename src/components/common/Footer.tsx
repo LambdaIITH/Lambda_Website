@@ -62,7 +62,7 @@ export default function Footer() {
         <div className="flex w-[92vw]">
           <div className="mr-auto">
             <Image
-              src="footer_assets/lambda_footer_logo.svg"
+              src="/footer_assets/lambda_footer_logo.svg"
               alt="Lambda Logo"
               width={0}
               height={0}
