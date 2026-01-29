@@ -130,7 +130,7 @@ export default function ProjectPage() {
       </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map(post => (
           <article 
             key={post.slug}

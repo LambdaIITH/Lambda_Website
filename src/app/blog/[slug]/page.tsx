@@ -64,7 +64,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       text-white ${geist.className}`}
     >
       {/* Back Button */}
-      <div className="w-[90vw] md:w-[70vw] mx-auto pt-12">
+      <div className="w-[90vw] md:w-[70vw] mx-auto pt-24 md:pt-24">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-[#9433EC]

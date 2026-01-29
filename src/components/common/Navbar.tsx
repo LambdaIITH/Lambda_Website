@@ -175,6 +175,15 @@ export default function Navbar() {
                 onClick={() => setSearchOpen((prev) => !prev)}
               />
 
+              <Image
+                src="/navbar_assets/network_icon.svg"
+                alt="Network"
+                width={22}
+                height={22}
+                className="cursor-default"
+              />
+
+
               {/* HAMBURGER (MOBILE) */}
               <button
                 className="lg:hidden flex flex-col gap-1"
