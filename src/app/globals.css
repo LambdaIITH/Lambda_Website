@@ -790,3 +790,28 @@
   }
 
 }
+
+/* Purple scrollbar for horizontal tag bar */
+.tag-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tag-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06); /* subtle grey */
+  border-radius: 999px;
+}
+
+.tag-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9433EC;
+  border-radius: 999px;
+}
+
+.tag-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #a855f7; /* slightly brighter on hover */
+}
+
+/* Firefox */
+.tag-scrollbar {
+  scrollbar-color: #9433EC rgba(255, 255, 255, 0.06);
+  scrollbar-width: thin;
+}

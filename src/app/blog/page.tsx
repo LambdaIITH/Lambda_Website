@@ -107,11 +107,23 @@ export default function BlogPage() {
       </section>
 
       {/* Tags Bar */}
-      <section className="mb-20 w-[80vw] md:w-[80vw] sticky top-18 z-10">
-        <div className="flex flex-wrap justify-center md:justify-start gap-3 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10">
+      <section className="mb-20 w-[80vw] sticky top-18 z-10">
+        <div className="
+          flex items-center gap-3
+          overflow-x-auto
+          tag-scrollbar
+          rounded-2xl bg-white/5 backdrop-blur-md
+          p-4 border border-white/10
+          whitespace-nowrap
+        ">
+          {/* All Topics */}
           <button
             onClick={() => setSelectedTags([])}
-            className="px-5 py-2 rounded-xl bg-[#9433EC] text-white text-sm font-bold cursor-pointer"
+            className={`shrink-0 px-5 py-2 rounded-xl text-sm font-bold cursor-pointer transition-all
+              ${selectedTags.length === 0
+                ? 'bg-[#9433EC] text-white'
+                : 'text-slate-400 hover:text-white hover:bg-white/10'}
+            `}
           >
             All Topics
           </button>
@@ -122,11 +134,11 @@ export default function BlogPage() {
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer ${
-                  isSelected
+                className={`shrink-0 px-5 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer
+                  ${isSelected
                     ? 'bg-[#9433EC] text-white'
-                    : 'text-slate-400 hover:text-white hover:bg-white/10'
-                }`}
+                    : 'text-slate-400 hover:text-white hover:bg-white/10'}
+                `}
               >
                 {tag}
               </button>
@@ -134,6 +146,7 @@ export default function BlogPage() {
           })}
         </div>
       </section>
+
 
       {/* Sort
       <section className="flex justify-end items-center w-[90vw] md:w-[80vw] mb-8">
@@ -150,7 +163,7 @@ export default function BlogPage() {
       </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[80vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
