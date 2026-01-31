@@ -549,6 +549,20 @@
     }
   }
 
+  /* Testimonial Carousel Scroll Animation */
+  @keyframes testimonial-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(var(--track-width, 0px) * -1));
+    }
+  }
+
+  .testimonial-paused {
+    animation-play-state: paused !important;
+  }
+
   @keyframes scaleIn {
     from {
       opacity: 0;
