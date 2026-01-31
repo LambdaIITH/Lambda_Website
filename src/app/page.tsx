@@ -203,7 +203,7 @@ export default function HomePage() {
               <h2 className="text-4xl font-bold mb-4 animate-blur-fade-in">Featured Projects</h2>
               <p className="text-slate-500 mb-16 animate-blur-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>High-impact engineering from the student community.</p>
             </ScrollAnimatedSection>
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {topProjects.map((project, index) => (
                 <ScrollAnimatedSection key={project.slug}>
                   <div className={`project-card-${index + 1}`}>

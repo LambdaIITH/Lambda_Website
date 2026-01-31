@@ -7,7 +7,7 @@ export default function ProjectCard({category,title,desc,tags,link}:{category?: 
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{title}</h3>
                 <p className="text-slate-500 text-sm mb-6 grow">{desc}</p>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                     {tags?.map((tag, i) => (
                         <span key={i} className="text-[10px] font-bold px-2 py-1 rounded bg-white/5 text-slate-400">{tag}</span>
                     ))}
