@@ -6,8 +6,6 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Montserrat } from "next/font/google";
-import { useTheme } from "@/contexts/ThemeContext";
-import { Sun, Moon } from "lucide-react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -18,8 +16,6 @@ const montserrat = Montserrat({
 export default function Navbar() {
   const path = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const { theme, toggleTheme, mounted } = useTheme();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -36,12 +32,12 @@ export default function Navbar() {
         className="fixed top-[2vw] md:top-[1vw] left-1/2 -translate-x-1/2
         flex justify-between items-center
         w-[95vw] h-[6vh]
-        bg-[rgba(66,0,100,0.7)] dark:bg-[rgba(30,0,45,0.8)]
+        bg-[rgba(30,0,45,0.8)]
         text-white rounded-full
         shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-        backdrop-blur-xl border border-[rgba(255,255,255,0.18)] dark:border-[rgba(255,255,255,0.1)]
+        backdrop-blur-xl border border-[rgba(255,255,255,0.1)]
         lg:px-[2vw] px-[5vw]
-        z-[9999] transition-colors duration-300"
+        z-9999"
       >
         {/* left logo */}
         <Link
@@ -103,22 +99,6 @@ export default function Navbar() {
 
         {/* right icons */}
         <div className="flex items-center gap-[4vw] sm:gap-[3vw] md:gap-[2vw] lg:gap-[1.5vw]">
-          {/* Dark mode toggle */}
-          {/* {mounted && (
-            <button
-              onClick={toggleTheme}
-              className="flex items-center justify-center cursor-pointer"
-              aria-label="Toggle dark mode"
-              title={theme === "dark" ? "Switch to light" : "Switch to dark"}
-            >
-              {theme === "dark" ? (
-                <Sun className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-[5vw] sm:h-[3.5vw] md:h-[2vw] lg:h-[1.3vw]" />
-              ) : (
-                <Moon className="w-[5vw] sm:w-[3.5vw] md:w-[2vw] lg:w-[1.3vw] h-[5vw] sm:h-[3.5vw] md:h-[2vw] lg:h-[1.3vw]" />
-              )}
-            </button>
-          )} */}
-
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen((v) => !v)}
@@ -159,7 +139,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-9998"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -173,11 +153,11 @@ export default function Navbar() {
                 ease: [0.4, 0, 0.2, 1],
               }}
               className="md:hidden fixed top-[17vw] left-1/2 -translate-x-1/2
-              w-[90vw] bg-gradient-to-br from-[#5a0a87] to-[#420064]
+              w-[90vw] bg-linear-to-br from-[#5a0a87] to-[#420064]
               rounded-[4vw] sm:rounded-[3vw]
               shadow-[0_20px_60px_rgba(0,0,0,0.6)]
               backdrop-blur-xl overflow-hidden border border-[#7B3FAD]/30
-              z-[9999]"
+              z-9999"
             >
               <div className="p-[4vw] sm:p-[3vw]">
                 <ul className="flex flex-col gap-[1vw]">
@@ -220,7 +200,7 @@ export default function Navbar() {
 
                           {!isActive && (
                             <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-[#C49EE8]/0 via-[#C49EE8]/10 to-[#C49EE8]/0"
+                              className="absolute inset-0 bg-linear-to-r from-[#C49EE8]/0 via-[#C49EE8]/10 to-[#C49EE8]/0"
                               initial={{ x: "-100%" }}
                               whileHover={{ x: "100%" }}
                               transition={{ duration: 0.5 }}
