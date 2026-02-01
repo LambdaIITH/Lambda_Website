@@ -69,8 +69,8 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
       className={`min-h-screen w-full bg-[#16001F] text-white flex flex-col items-center ${montserrat.className}`}
     >
       {/* Title */}
-      <section className="text-center mt-[100px] mb-[40px]">
-        <h2 className="text-[40px] font-extrabold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-[54px] ">
+      <section className="text-center mt-[100px] mb-10">
+        <h2 className="text-[40px] font-extrabold bg-linear-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent mb-[54px] ">
           Blog
         </h2>
         <p className="text-[22px] text-gray-300 mb-[90px]">
@@ -79,7 +79,7 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
       </section>
 
       {/* Tags */}
-      <section className="flex flex-wrap justify-center gap-[14px] mb-[126px] w-[1152px]">
+      <section className="flex flex-wrap justify-center gap-3.5 mb-[126px] w-6xl">
         {allTags.map((tag) => {
           const isSelected = selectedTags.includes(tag);
           return (
@@ -100,8 +100,8 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
       </section>
 
       {/* Sort and Count */}
-      <section className="flex justify-between items-center w-[1200px] mb-[36px]">
-        <p className="text-[17px] bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent font-semibold">
+      <section className="flex justify-between items-center w-[1200px] mb-9">
+        <p className="text-[17px] bg-linear-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent font-semibold">
           Showing {filteredPosts.length} of {posts.length} Posts
         </p>
         <button
@@ -128,7 +128,7 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
             onClick={() => setSelectedPost(post)}
             className="p-[33px] bg-[#28013C] rounded-[2vw] border border-[#6226A2] transition-all cursor-pointer hover:scale-[1.01] relative group"
           >
-            <div className="flex justify-between items-start gap-[20px]">
+            <div className="flex justify-between items-start gap-5">
               <div className="flex-1">
                 <p className="text-[16px] text-purple-300 mb-[9px]">
                   {post.date}
@@ -142,11 +142,11 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
                   </p>
                 )}
                 {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-[10px]">
+                  <div className="flex flex-wrap gap-2.5">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-[16px] py-[7px] bg-[#953FB9]/50 text-purple-100 rounded-full text-[14px] font-medium"
+                        className="px-4 py-[7px] bg-[#953FB9]/50 text-purple-100 rounded-full text-[14px] font-medium"
                       >
                         {tag}
                       </span>
@@ -154,7 +154,7 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
                   </div>
                 )}
               </div>
-              <div className="flex items-center justify-center text-[41px] text-purple-300 group-hover:text-purple-100 transition-colors flex-shrink-0 mt-[10px]">
+              <div className="flex items-center justify-center text-[41px] text-purple-300 group-hover:text-purple-100 transition-colors shrink-0 mt-2.5">
                 →
               </div>
             </div>
@@ -165,27 +165,27 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
       {/* Blog Modal */}
       {selectedPost && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-[20px]"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-5"
           onClick={() => setSelectedPost(null)}
         >
           <div
-            className="bg-[#28013C] rounded-[2vw] border border-[#6226A2] max-w-[900px] w-full max-h-[80vh] overflow-y-auto p-[40px] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="bg-[#28013C] rounded-[2vw] border border-[#6226A2] max-w-[900px] w-full max-h-[80vh] overflow-y-auto p-10 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedPost(null)}
-              className="float-right text-[30px] text-gray-400 hover:text-white transition-colors mb-[20px]"
+              className="float-right text-[30px] text-gray-400 hover:text-white transition-colors mb-5"
             >
               ×
             </button>
             <p className="text-[14px] text-purple-300 mb-[15px]">
               {selectedPost.date}
             </p>
-            <h1 className="text-[40px] font-bold mb-[20px] text-white">
+            <h1 className="text-[40px] font-bold mb-5 text-white">
               {selectedPost.title}
             </h1>
             {selectedPost.tags && selectedPost.tags.length > 0 && (
-              <div className="flex flex-wrap gap-[10px] mb-[30px]">
+              <div className="flex flex-wrap gap-2.5 mb-[30px]">
                 {selectedPost.tags.map((tag) => (
                   <span
                     key={tag}
@@ -205,7 +205,7 @@ export default function BlogPage({ posts, allTags }: BlogPageProps) {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  code({ node, inline, className, children, ...props }) {
+                  code({ node, inline, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || "");
                     const codeString = String(children).replace(/\n$/, "");
 
