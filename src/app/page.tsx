@@ -227,7 +227,7 @@ export default function HomePage() {
           </div>
 
           {/* cards */}
-          <div className="md:flex grid grid-cols-2 gap-[5vw] md:gap-[1.5vw] mb-[6vh]">
+          <div className="md:flex grid grid-cols-2 gap-[5vw] md:gap-[1.5vw] mb-[6vh] mt-[13vh]">
             {features.map((feature, index) => (
               <Card
                 key={index}
