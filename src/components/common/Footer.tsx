@@ -71,12 +71,19 @@ export default function Footer() {
           </div>
 
           {/* RIGHT: SYSTEM STATUS (STAYS RIGHT) */}
-          <div className="flex items-center gap-2 text-xs sm:text-sm">
-            <span className={`w-2 h-2 rounded-full ${statusColor}`} />
-            <span className="text-white/90 whitespace-nowrap">
+          <a href="https://status.iith.dev" target="_blank">
+            <div className="flex gap-2 text-white/90 text-xs sm:text-sm whitespace-nowrap justify-center sm:justify-end items-center">
+              <span className="relative flex h-3 w-3">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300"
+                ></span>
+                <span
+                  className={`relative inline-flex rounded-full h-3 w-3 ${statusColor}`}
+                ></span>
+              </span>
               {status}
-            </span>
-          </div>
+            </div>
+          </a>
         </div>
 
         {/* DIVIDER */}
