@@ -1,8 +1,8 @@
-export default function ProjectCard({category,title,desc,tags,link}:{category?: String,title: String,desc: String,tags?: String[],link?: string}) {
+export default function ProjectCard({ category, title, desc, tags, link }: { category?: String, title: String, desc: String, tags?: String[], link?: string }) {
     const CardContent = (
-        <div className="project-card group p-1 bg-linear-to-br from-white/10 to-transparent rounded-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-[0_8px_30px_rgba(148,51,236,0.3)]">
-            <div className="bg-[#111] p-8 rounded-2xl h-full border border-white/5 flex flex-col items-start text-left group-hover:border-primary/30 transition-all">
-                <div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary/20 transition-all group-hover:scale-110">
+        <div className="project-card group p-1 bg-linear-to-br from-white/10 to-transparent rounded-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(148,51,236,0.15)] overflow-hidden">
+            <div className="bg-[#111] p-8 rounded-2xl h-full border border-white/5 flex flex-col items-start text-left group-hover:border-primary/40 transition-all duration-500">
+                <div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary/20 transition-all duration-500 group-hover:scale-110">
                     <span className="material-symbols-outlined">{category ?? "storage"}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{title}</h3>
