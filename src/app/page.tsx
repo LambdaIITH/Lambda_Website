@@ -10,6 +10,7 @@ import ScrollAnimatedSection from "@/components/home-components/ScrollAnimatedSe
 import Link from "next/link";
 import blogData from "@/data/blogData.json";
 import projectData from "@/data/projectData.json";
+import Meteors from "@/components/home-components/Meteors";
 
 type BlogPost = {
   id: string;
@@ -72,24 +73,25 @@ export default function HomePage() {
       <main
         className={`transition-opacity duration-700 pt-10 overflow-x-hidden`}
       >        {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center pt-20 hero-glow bg-background-dark">
+        <section className="relative isolate min-h-[90vh] flex items-center justify-center pt-20 hero-glow bg-background-dark">
           <div className="absolute inset-0 overflow-hidden -z-10">
+            <Meteors number={20} />
             <div className={`absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] ${introFinished ? "animate-morph-blob" : "opacity-0"}`}></div>
             <div className={`absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] ${introFinished ? "animate-morph-blob" : "opacity-0"}`} style={{ animationDelay: '2s' }}></div>
           </div>
           <div className="max-w-5xl px-2 text-center z-10">
-            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold mb-8 uppercase tracking-widest ${introFinished?'animate-bounce-in':'opacity-0'}`}>
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold mb-8 uppercase tracking-widest ${introFinished ? 'animate-bounce-in' : 'opacity-0'}`}>
               <span className="relative flex h-2 w-2">
-                <span className={`${introFinished?'animate-ping':'opacity-0'} absolute inline-flex h-full w-full rounded-full bg-primary opacity-75`}></span>
+                <span className={`${introFinished ? 'animate-ping' : 'opacity-0'} absolute inline-flex h-full w-full rounded-full bg-primary opacity-75`}></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               IIT Hyderabad's Premier Dev Community
             </div>
-            <h1 className={`text-6xl md:text-[7rem] font-bold leading-[1.1] tracking-tighter mb-8 ${introFinished?'animate-text-reveal':'opacity-0'}`} style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
+            <h1 className={`text-6xl md:text-[7rem] font-bold leading-[1.1] tracking-tighter mb-8 ${introFinished ? 'animate-text-reveal' : 'opacity-0'}`} style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-purple-400 animate-gradient-shift">Dream.
                 Develop. Do.</span>
             </h1>
-            <p className={`text-lg md:text-2xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed ${introFinished?'animate-blur-fade-in':'opacity-0'}`} style={{ animationDelay: '0.6s', opacity: 0, animationFillMode: 'forwards' }}>
+            <p className={`text-lg md:text-2xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed ${introFinished ? 'animate-blur-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.6s', opacity: 0, animationFillMode: 'forwards' }}>
               Engineering excellence through collaboration. We build impactful products, contribute to open source, and push the boundaries of technology at IIT Hyderabad.
             </p>
           </div>
