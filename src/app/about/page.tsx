@@ -2,6 +2,7 @@ import MissionVisionCard from "@/components/about-components/MissionVisionCard";
 import TimelineItem from "@/components/about-components/TimelineItem";
 import TestimonialCarousel from "@/components/about-components/TestimonialCarousel";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import Hero from "@/components/about-components/HeroSection";
 
 const testimonials = [
   {
@@ -32,23 +33,9 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export default function AboutPage() {
   return (
     <>
-      <main className={`overflow-x-hidden ${plusJakartaSans.className}`}>
+      <main className={`overflow-x-hidden relative ${plusJakartaSans.className}`}>
         {/* Hero Section */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(148,51,236,0.1),transparent_50%)] animate-pulse-slow" />
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <span className="inline-block px-4 py-1.5 mb-8 text-[10px] font-bold tracking-[0.3em] uppercase border border-white/10 rounded-full bg-white/5 text-white/60 animate-fade-in-down">
-              Premier Developer Club
-            </span>
-            <h1 className="text-6xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1] animate-fade-in-up">
-              About <span className="text-white text-glow">Lambda</span> <br />
-              <span className="text-primary">IIT Hyderabad</span>
-            </h1>
-            <p className="text-lg lg:text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in">
-              A collective of builders, thinkers, and innovators pushing the boundaries of technology at the heart of IITH.
-            </p>
-          </div>
-        </section>
+        <Hero />
 
         {/* Mission & Vision */}
         <section className="px-6 lg:px-24 py-24 animate-fade-in">
