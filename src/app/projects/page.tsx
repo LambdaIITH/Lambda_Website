@@ -2,13 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Geist } from 'next/font/google';
 import projectData from '@/data/projectData.json';
-
-const geist = Geist({
-  subsets: ['latin'],
-  weight: ['100','200','300','400','500','600','700','800','900']
-});
 
 type ProjectPost = {
   slug: string,
@@ -84,19 +78,18 @@ export default function ProjectPage() {
     <main
       className={`w-screen
       bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
-      text-white flex flex-col items-center pt-20 pb-4
-      ${geist.className}`}
+      text-white flex flex-col items-center pt-20 pb-4`}
     >
       <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
       <div className="fixed bottom-0 left-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4"></div>
 
       {/* Title */}
       <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-24">
-        <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white">
+        <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white">
           Projects <span className="text-[#9433EC]">.</span>
         </h2>
-        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed font-light">
-          Cool stuff we’ve built—innovative, bold, and kinda awesome.
+        <p className="text-md text-slate-400 max-w-2xl leading-relaxed font-light">
+          Cool stuff we`ve built—innovative, bold, and kinda awesome.
         </p>
       </section>
 
@@ -130,7 +123,7 @@ export default function ProjectPage() {
       </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[90vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[90vw] md:w-[80vw] mb-24">
         {paginatedPosts.map(post => (
           <article 
             key={post.slug}
@@ -142,10 +135,9 @@ export default function ProjectPage() {
               <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
                 <span>{post.date}</span>
                 <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-                <span>{post.readTime}</span>
               </div>
 
-              <h3 className="text-3xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight">
+              <h3 className="text-xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight">
                 {post.name}
               </h3>
 

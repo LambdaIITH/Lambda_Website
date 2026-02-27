@@ -2,13 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Geist } from 'next/font/google';
 import blogData from '@/data/blogData.json';
-
-const geist = Geist({
-  subsets: ['latin'],
-  weight: ['100','200','300','400','500','600','700','800','900']
-});
 
 type BlogPost = {
   id: string;
@@ -91,17 +85,16 @@ export default function BlogPage() {
     <main
       className={`w-screen
       bg-linear-to-b from-[#050505] via-[#0b0212] to-[#050505]
-      text-white flex flex-col items-center pt-20 pb-4
-      ${geist.className}`}
+      text-white flex flex-col items-center pt-20 pb-4`}
     >
       <div className="fixed top-0 right-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3"></div>
       <div className="fixed bottom-0 left-0 w-90 h-90 bg-[#9433EC]/15 rounded-full filter blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4"></div>
       {/* Title */}
       <section className="text-center md:text-left w-[90vw] md:w-[80vw] mt-20 mb-20">
-        <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter text-white">
+        <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white">
           Insights <span className="text-[#9433EC]">.</span>
         </h2>
-        <p className="text-xl text-slate-400 max-w-2xl leading-relaxed font-light">
+        <p className="text-md text-slate-400 max-w-2xl leading-relaxed font-light">
           Documenting our journey through engineering, research, and collaborative development at IIT Hyderabad.
         </p>
       </section>
@@ -163,14 +156,14 @@ export default function BlogPage() {
       </section> */}
 
       {/* Posts */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-[80vw] md:w-[80vw] mb-24">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[80vw] md:w-[80vw] mb-24">
         {paginatedPosts.map((post) => (
           <Link 
             key={post.id}
             href={`/blog/${post.id}`} 
             className='block'
           >
-            <article className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[320px] md:h-[400px]">
+            <article className="rounded-3xl overflow-hidden flex flex-col cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 transition-all hover:-translate-y-1 hover:border-[#9433EC] hover:shadow-[0_0_30px_rgba(148,51,236,0.3)] h-[250px] md:h-[330px]">
               {/* Big category + badges */}
               {/* <div className="h-40 relative flex items-center justify-center border-b border-white/10 bg-[#9433EC]/10">
                 <span className="text-[#9433EC]/20 text-7xl font-black absolute select-none">
@@ -190,18 +183,18 @@ export default function BlogPage() {
 
               {/* Content */}
               <div className="px-5 py-6 md:p-8 flex flex-col flex-1">
-                <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-4">
+                <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-4">
                   <span>{post.date}</span>
                   <span className="w-1 h-1 rounded-full bg-slate-700"></span>
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer">
+                <h3 className="text-xl font-bold mb-4 text-white hover:text-[#9433EC] transition-colors leading-tight cursor-pointer line-clamp-2">
                   {post.title}
                 </h3>
 
                 {post.desc && (
-                  <p className="text-slate-400 text-sm leading-relaxed mb-10 font-light line-clamp-3">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-3 font-light line-clamp-3">
                     {post.desc}
                   </p>
                 )}

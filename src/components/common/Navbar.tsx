@@ -1,76 +1,52 @@
-"use client";
+'use client'
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+export default function Portfolio() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-export default function Navbar() {
-  const path = usePathname();
-  if (!path) return null;
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
-    { name: "Projects", href: "/projects" },
-    { name: "Team", href: "/team" },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/blog', label: 'Blogs' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/team', label: 'Team' },
   ];
 
-  // const rightIcons = [
-  //   { src: "/navbar_assets/search_icon.svg", alt: "Search Icon"},
-  //   { src: "/navbar_assets/network_icon.svg", alt: "Network Icon", href: "#" },
-    // {
-    //   src: "/navbar_assets/dark_mode_icon.svg",
-    //   alt: "Dark Mode Icon",
-    //   href: "#",
-    // },
-  // ];
-
-  const handleSearch = () => {
-    if (!searchQuery.trim()) return;
-
-    const elements = document.querySelectorAll(
-      "p, span, h1, h2, h3, h4, li"
-    );
-
-    for (const el of elements) {
-      if (
-        el.textContent &&
-        el.textContent.toLowerCase().includes(searchQuery.toLowerCase())
-      ) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        el.classList.add("ring-2", "ring-purple-400");
-
-        setTimeout(() => {
-          el.classList.remove("ring-2", "ring-purple-400");
-        }, 2000);
-
-        break;
-      }
-    }
-  };
-
   return (
-    <nav>
-      {/* main nav container */}
-      <div
-        className="fixed top-2 left-1/2 -translate-x-1/2
-             flex justify-between items-center
-             w-[75vw] h-[9vh] min-h-[50px] max-h-[70px]
-             bg-linear-to-r from-[rgba(66,0,100,0.75)] to-[rgba(40,0,80,0.75)]
-             text-white rounded-3xl z-50
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]
-             lg:px-[2vw] px-[5vw]"
+    <div className=" bg-zinc-900">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+          scrolled ? 'py-3' : 'py-6'
+        }`}
       >
-        {/* left logo */}
-        <div className="flex items-center gap-[0.5vw]">
+        <div
+          className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
+            scrolled
+              ? 'px-4 md:px-6'
+              : 'px-6 md:px-10'
+          }`}
+        >
+          <div
+            className={`backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
+              scrolled
+                ? 'shadow-lg shadow-black/20'
+                : 'shadow-md shadow-black/10'
+            }`}
+          >
+            <div className="px-6 md:px-8 py-4 flex justify-between items-center">
+              <div className="flex items-center gap-[0.5vw]">
           <Link href="/" className="flex items-center gap-[0.4vw]">
             <Image
               src="navbar_assets/lambda_logo.svg"
@@ -93,167 +69,81 @@ export default function Navbar() {
               Lambda IITH
             </span>
           </Link>
-        </div>
+          </div>
 
-        {/* center (desktop only) */}
-        <div className="hidden lg:flex justify-center items-center h-full">
-          <ul className="relative flex justify-around items-center gap-[1.2vw]">
-            {navLinks.map((link) => {
-              const isActive = path === link.href;
-              return (
-                <li
-                  key={link.href}
-                  className="relative px-[0.9vw] py-[0.3vw] rounded-2xl
-                            transition-all duration-300
-                            hover:bg-white/20 hover:ring-1 hover:ring-white/30 cursor-pointer"
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="absolute inset-0 bg-white rounded-2xl"
-                      transition={{
-                        type: "spring",
-                        stiffness: 140,
-                        damping: 18,
-                      }}
-                    />
-                  )}
+              {/* Desktop Nav Links */}
+              <ul className="hidden md:flex gap-6 lg:gap-10 list-none">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:bottom-[-4px] after:transition-all after:duration-300 hover:after:w-full"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
 
-                  <Link
-                    href={link.href}
-                    className={`relative z-10 transition-colors duration-300 ${
-                      isActive
-                          ? "text-black font-semibold tracking-wider"
-                          : "text-white font-medium"
-
-                    }`}
-                    style={{
-                      fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
-                    }}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-
-              );
-            })}
-          </ul>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div className="flex items-center gap-4">
-              {/* SEARCH INPUT */}
-              <AnimatePresence>
-                {searchOpen && (
-                  <motion.input
-                    autoFocus
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: "14rem", opacity: 1 }}
-                    exit={{ width: 0, opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") handleSearch();
-                      if (e.key === "Escape") setSearchOpen(false);
-                    }}
-                    placeholder="Search on page..."
-                    className="px-4 py-2 rounded-xl bg-white/20
-                    text-white placeholder-white/60 outline-none
-                    border border-white/20"
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* SEARCH ICON */}
-              <Image
-                src="/navbar_assets/search_icon.svg"
-                alt="Search"
-                width={22}
-                height={22}
-                className="cursor-pointer"
-                onClick={() => setSearchOpen((prev) => !prev)}
-              />
-
-              <Image
-                src="/navbar_assets/network_icon.svg"
-                alt="Network"
-                width={22}
-                height={22}
-                className="cursor-default"
-              />
-
-
-              {/* HAMBURGER (MOBILE) */}
+              {/* Mobile Menu Button */}
               <button
-                className="lg:hidden flex flex-col gap-1"
-                onClick={() => setMenuOpen((prev) => !prev)}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden text-white p-2 hover:bg-white/10 transition-all"
+                aria-label="Toggle menu"
               >
-                <span className="w-6 h-0.5 bg-white" />
-                <span className="w-6 h-0.5 bg-white" />
-                <span className="w-6 h-0.5 bg-white" />
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
+
+            {/* Mobile Menu */}
+            <div
+              className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="border-t border-white/10 px-6 pb-4">
+                <ul className="flex flex-col gap-1 pt-4">
+                  {navLinks.map((link, index) => (
+                    <li
+                      key={link.href}
+                      className={`transform transition-all duration-300 ease-out ${
+                        mobileMenuOpen
+                          ? 'translate-y-0 opacity-100'
+                          : '-translate-y-4 opacity-0'
+                      }`}
+                      style={{ transitionDelay: mobileMenuOpen ? `${index * 50}ms` : '0ms' }}
+                    >
+                      <a
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block py-3 text-sm tracking-wide transition-opacity hover:opacity-70 text-white"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                  <li
+                    className={`pt-2 transform transition-all duration-300 ease-out ${
+                      mobileMenuOpen
+                        ? 'translate-y-0 opacity-100'
+                        : '-translate-y-4 opacity-0'
+                    }`}
+                    style={{ transitionDelay: mobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+                  >
+                    <a
+                      href="/contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-center py-3 bg-white/10 border border-white/20 rounded-full text-sm transition-all hover:bg-white/20 hover:border-white/30 text-white"
+                    >
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          {/* hamburger (mobile only) */}
-          {/* <button
-            className="lg:hidden flex flex-col justify-center items-center gap-1"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <motion.span
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
-              className="block w-6 h-0.5 bg-white rounded-full"
-            />
-          </button> */}
-        {/* </div> */}
-      {/* </div> */}
-
-      {/* mobile dropdown */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="dropdown"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden fixed left-1/2 -translate-x-1/2
-             top-[calc(6vh+2.5rem)] sm:top-[calc(6vh+3rem)] md:top-[calc(6vh+3.5rem)]
-             w-[90vw] sm:w-[80vw] md:w-[60vw]
-             text-white rounded-3xl
-             flex flex-col items-center p-4 z-40
-             bg-linear-to-r from-[rgba(66,0,100,0.75)] to-[rgba(40,0,80,0.75)]
-             shadow-[0_8px_32px_rgba(0,0,0,0.37)]
-             backdrop-blur-xl border border-[rgba(255,255,255,0.18)]"
-          >
-            {navLinks.map((link) => {
-              const isActive = path === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`py-2 w-full text-center rounded-xl transition-all
-                    hover:bg-white/20 hover:ring-1 hover:ring-white/30
-                    ${isActive ? "bg-white text-black font-bold" : "text-white"}
-                  `}
-
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 }
