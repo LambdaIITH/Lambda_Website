@@ -19,7 +19,7 @@ export default function Portfolio() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/blogs', label: 'Blogs' },
+    { href: '/blog', label: 'Blogs' },
     { href: '/projects', label: 'Projects' },
     { href: '/team', label: 'Team' },
   ];

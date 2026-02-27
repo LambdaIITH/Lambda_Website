@@ -264,9 +264,9 @@ export default function HomePage() {
         <section className="py-24 px-6">
           <div className="max-w-6xl mx-auto">
             <ScrollAnimatedSection>
-              <div className="relative rounded-4xl bg-[#0d0d0d] border border-white/10 overflow-hidden p-12 lg:p-20 animate-scale-rotate">
+              <div className="relative backdrop-blur-xl rounded-4xl bg-white/5 border border-white/10 overflow-hidden p-12 lg:p-20 animate-scale-rotate">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/10 to-transparent pointer-events-none"></div>
-                <div className="absolute -top-24 -right-24 size-96 bg-primary/20 rounded-full blur-[100px] animate-morph-blob"></div>
+                <div className="absolute -top-24 -right-24 size-66 bg-primary/20 rounded-full blur-[100px] animate-morph-blob"></div>
                 <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                   <div className="animate-blur-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">

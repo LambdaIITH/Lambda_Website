@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-import { Geist } from "next/font/google";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -9,11 +8,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import blogData from "@/data/blogData.json";
-
-const geist = Geist({
-  subsets: ["latin"],
-  weight: ["100","200","300","400","500","600","700","800","900"],
-});
 
 interface BlogPageProps {
   params: {
@@ -36,7 +30,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
     return (
       <div
         className={`w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
-        text-white flex items-center justify-center ${geist.className}`}
+        text-white flex items-center justify-center`}
       >
         <div className="text-center">
           <h1 className="text-6xl font-black mb-4">404</h1>
@@ -61,7 +55,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   return (
     <main
       className={`w-screen bg-gradient-to-b from-[#0d0014] via-[#16001e] to-[#1d0837]
-      text-white ${geist.className}`}
+      text-white`}
     >
       {/* Back Button */}
       <div className="w-[90vw] md:w-[70vw] mx-auto pt-24 md:pt-24">
