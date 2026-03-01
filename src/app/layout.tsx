@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import ConsoleArt from "@/components/common/ConsoleArt";
 import { IntroProvider } from "./context/introContext";
 
 const inter = Inter({
@@ -53,6 +54,7 @@ export default function RootLayout({
         className={`${inter.variable} antialiased flex flex-col min-h-screen`}
       >
         <IntroProvider>
+          <ConsoleArt />
           <Navbar />
           {children}
           <Footer />
