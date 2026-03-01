@@ -40,16 +40,8 @@ export default function Portfolio() {
 
   return (
     <div className="bg-zinc-900">
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          scrolled ? "py-3" : "py-6"
-        }`}
-      >
-        <div
-          className={`max-w-6xl mx-auto transition-all duration-500 ease-out ${
-            scrolled ? "px-4 md:px-6" : "px-6 md:px-10"
-          }`}
-        >
+      <nav className="fixed top-0 left-0 right-0 z-50 py-6">
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div
             ref={navRef}
             className="relative p-[1px] rounded-4xl overflow-hidden"
@@ -57,7 +49,7 @@ export default function Portfolio() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="absolute inset-0 rounded-4xl">
+            {/* <div className="absolute inset-0 rounded-4xl">
               <MovingBorder
                 rx="20%"
                 ry="20%"
@@ -66,14 +58,8 @@ export default function Portfolio() {
               >
                 <div className="h-32 w-32 bg-[radial-gradient(#4c1887_40%,transparent_60%)] opacity-[0.8]" />
               </MovingBorder>
-            </div>
-            <div
-              className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
-                scrolled
-                  ? "shadow-lg shadow-black/20"
-                  : "shadow-md shadow-black/10"
-              }`}
-            >
+            </div> */}
+            <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl shadow-md shadow-black/10">
               <div className="px-6 md:px-8 py-4 flex justify-between items-center">
                 <div className="flex items-center gap-[0.5vw]">
                   <Link href="/" className="flex items-center gap-[0.4vw]">

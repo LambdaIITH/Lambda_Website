@@ -11,7 +11,7 @@ import Link from "next/link";
 import blogData from "@/data/blogData.json";
 import projectData from "@/data/projectData.json";
 import Meteors from "@/components/home-components/Meteors";
-import { CanvasText } from "@/components/ui/canvas-text";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 type BlogPost = {
   id: string;
@@ -78,6 +78,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="relative isolate min-h-[90vh] flex items-center justify-center pt-20 hero-glow bg-background-dark">
           <div className="absolute inset-0 overflow-hidden -z-10">
+            {/* <BackgroundBeams /> */}
+            <Meteors />
             <div
               className={`absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] ${introFinished ? "animate-blob-fade-in animate-morph-blob" : "opacity-0"}`}
               style={{
@@ -112,25 +114,16 @@ export default function HomePage() {
               </span>
               IIT Hyderabad's Home for Developers
             </div>
-            <div
-              className={`h-[20rem] mb-4 flex items-center justify-center ${introFinished ? "animate-text-reveal" : "opacity-0"}`}
+            <h1
+              className={`text-9xl md:text-[12rem] lg:text-[16rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#B24BF3] via-[#9433EC] to-[#4c1887] mb-4 ${introFinished ? "animate-text-reveal" : "opacity-0"}`}
               style={{
                 animationDelay: "0.3s",
                 opacity: 0,
                 animationFillMode: "forwards",
               }}
             >
-              <CanvasText
-                text="Lambda"
-                className="text-9xl md:text-[12rem] lg:text-[16rem] font-bold"
-                backgroundClassName="bg-[#0d0d0d]"
-                colors={["#9433EC", "#B24BF3", "#6E026F", "#4c1887"]}
-                lineGap={8}
-                animationDuration={8}
-                lineWidth={2}
-                curveIntensity={80}
-              />
-            </div>
+              Lambda
+            </h1>
             <h2
               className={`text-2xl md:text-4xl font-mono font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-purple-400 mb-8 ${introFinished ? "animate-blur-fade-in" : "opacity-0"}`}
               style={{
