@@ -31,16 +31,16 @@ export default function IntroOverlay() {
       style={{ willChange: fadeOut ? "auto" : "opacity" }}
     >
       <div
-        className="relative w-full h-24 flex items-center justify-center"
+        className="relative w-full h-32 flex items-center justify-center"
         style={{ transform: "translateZ(0)" }}
       >
-        <span className="absolute animate-intro-word delay-0 text-4xl md:text-5xl max-w-[90vw] text-center font-bold text-white">
+        <span className="absolute animate-intro-word delay-0 text-6xl md:text-8xl max-w-[90vw] text-center font-bold text-white">
           Dream.
         </span>
-        <span className="absolute animate-intro-word delay-1 text-4xl md:text-5xl max-w-[90vw] text-center font-bold text-white">
+        <span className="absolute animate-intro-word delay-1 text-6xl md:text-8xl max-w-[90vw] text-center font-bold text-white">
           Develop.
         </span>
-        <span className="absolute animate-intro-word delay-2 text-4xl md:text-5xl max-w-[90vw] text-center font-bold text-white">
+        <span className="absolute animate-intro-word delay-2 text-6xl md:text-8xl max-w-[90vw] text-center font-bold text-white">
           Do.
         </span>
       </div>

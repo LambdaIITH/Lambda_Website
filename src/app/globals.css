@@ -416,28 +416,42 @@
   }
 
   @keyframes textReveal {
-    from {
+    0% {
       opacity: 0;
-      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      transform: translateY(20px) scale(0.95);
+      filter: blur(4px);
     }
 
-    to {
+    100% {
       opacity: 1;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      transform: translateY(0) scale(1);
+      filter: blur(0);
     }
   }
 
   @keyframes blurFadeIn {
-    from {
+    0% {
       opacity: 0;
-      filter: blur(10px);
-      transform: translateY(30px);
+      filter: blur(8px);
+      transform: translateY(24px);
     }
 
-    to {
+    100% {
       opacity: 1;
       filter: blur(0);
       transform: translateY(0);
+    }
+  }
+
+  @keyframes blobFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -492,16 +506,12 @@
   @keyframes bounceIn {
     0% {
       opacity: 0;
-      transform: scale(0.3) translateY(-50px);
+      transform: scale(0.9) translateY(-10px);
     }
 
-    50% {
+    60% {
       opacity: 1;
-      transform: scale(1.05);
-    }
-
-    70% {
-      transform: scale(0.95);
+      transform: scale(1.02);
     }
 
     100% {
@@ -538,22 +548,22 @@
     0%,
     100% {
       border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-      transform: rotate(0deg) scale(1);
+      transform: rotate(0deg) scale(1) translate(0, 0);
     }
 
     25% {
       border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-      transform: rotate(5deg) scale(1.05);
+      transform: rotate(2deg) scale(1.02) translate(8px, 8px);
     }
 
     50% {
       border-radius: 50% 40% 60% 40% / 40% 70% 60% 50%;
-      transform: rotate(-5deg) scale(1);
+      transform: rotate(-2deg) scale(0.99) translate(-8px, 4px);
     }
 
     75% {
       border-radius: 40% 60% 50% 60% / 70% 50% 40% 50%;
-      transform: rotate(3deg) scale(1.03);
+      transform: rotate(1deg) scale(1.01) translate(4px, -8px);
     }
   }
 
@@ -597,11 +607,15 @@
   }
 
   .animate-text-reveal {
-    animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-blur-fade-in {
-    animation: blurFadeIn 0.8s ease-out forwards;
+    animation: blurFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-blob-fade-in {
+    animation: blobFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-scale-rotate {
@@ -617,7 +631,7 @@
   }
 
   .animate-bounce-in {
-    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation: bounceIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
   /* Project card staggered animations */
@@ -661,7 +675,7 @@
   }
 
   .animate-morph-blob {
-    animation: morphBlob 10s ease-in-out 5s infinite;
+    animation: morphBlob 15s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   }
 
   .animate-gradient-shift {

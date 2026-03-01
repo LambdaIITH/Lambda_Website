@@ -1,12 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +19,16 @@ export default function Portfolio() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (navRef.current) {
+      const rect = navRef.current.getBoundingClientRect();
+      setCursorPos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -37,114 +51,132 @@ export default function Portfolio() {
           }`}
         >
           <div
-            className={`backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
-              scrolled
-                ? "shadow-lg shadow-black/20"
-                : "shadow-md shadow-black/10"
-            }`}
+            ref={navRef}
+            className="relative p-[1px] rounded-4xl overflow-hidden"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="px-6 md:px-8 py-4 flex justify-between items-center">
-              <div className="flex items-center gap-[0.5vw]">
-                <Link href="/" className="flex items-center gap-[0.4vw]">
-                  <Image
-                    src="navbar_assets/lambda_logo.svg"
-                    alt="Lambda Logo"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{
-                      width: "clamp(15px, 1.2vw, 22px)",
-                      height: "auto",
-                    }}
-                    // priority
-                  />
-                  <span
-                    className="font-semibold"
-                    style={{
-                      fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
-                    }}
-                  >
-                    Lambda IITH
-                  </span>
-                </Link>
-              </div>
-
-              {/* Desktop Nav Links */}
-              <ul className="hidden md:flex gap-6 lg:gap-10 list-none">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:bottom-[-4px] after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden text-white p-2 hover:bg-white/10 transition-all"
-                aria-label="Toggle menu"
+            <div className="absolute inset-0 rounded-4xl">
+              <MovingBorder
+                rx="20%"
+                ry="20%"
+                cursorPosition={cursorPos}
+                isVisible={isHovered}
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
+                <div className="h-32 w-32 bg-[radial-gradient(#4c1887_40%,transparent_60%)] opacity-[0.8]" />
+              </MovingBorder>
             </div>
-
-            {/* Mobile Menu */}
             <div
-              className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-                mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
+                scrolled
+                  ? "shadow-lg shadow-black/20"
+                  : "shadow-md shadow-black/10"
               }`}
             >
-              <div className="border-t border-white/10 px-6 pb-4">
-                <ul className="flex flex-col gap-1 pt-4">
-                  {navLinks.map((link, index) => (
+              <div className="px-6 md:px-8 py-4 flex justify-between items-center">
+                <div className="flex items-center gap-[0.5vw]">
+                  <Link href="/" className="flex items-center gap-[0.4vw]">
+                    <Image
+                      src="navbar_assets/lambda_logo.svg"
+                      alt="Lambda Logo"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{
+                        width: "clamp(15px, 1.2vw, 22px)",
+                        height: "auto",
+                      }}
+                      // priority
+                    />
+                    <span
+                      className="font-semibold"
+                      style={{
+                        fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
+                      }}
+                    >
+                      Lambda IITH
+                    </span>
+                  </Link>
+                </div>
+
+                {/* Desktop Nav Links */}
+                <ul className="hidden md:flex gap-6 lg:gap-10 list-none">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:bottom-[-4px] after:transition-all after:duration-300 hover:after:w-full"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="md:hidden text-white p-2 hover:bg-white/10 transition-all"
+                  aria-label="Toggle menu"
+                >
+                  {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
+
+              {/* Mobile Menu */}
+              <div
+                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+                  mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="border-t border-white/10 px-6 pb-4">
+                  <ul className="flex flex-col gap-1 pt-4">
+                    {navLinks.map((link, index) => (
+                      <li
+                        key={link.href}
+                        className={`transform transition-all duration-300 ease-out ${
+                          mobileMenuOpen
+                            ? "translate-y-0 opacity-100"
+                            : "-translate-y-4 opacity-0"
+                        }`}
+                        style={{
+                          transitionDelay: mobileMenuOpen
+                            ? `${index * 50}ms`
+                            : "0ms",
+                        }}
+                      >
+                        <a
+                          href={link.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-3 text-sm tracking-wide transition-opacity hover:opacity-70 text-white"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
                     <li
-                      key={link.href}
-                      className={`transform transition-all duration-300 ease-out ${
+                      className={`pt-2 transform transition-all duration-300 ease-out ${
                         mobileMenuOpen
                           ? "translate-y-0 opacity-100"
                           : "-translate-y-4 opacity-0"
                       }`}
                       style={{
                         transitionDelay: mobileMenuOpen
-                          ? `${index * 50}ms`
+                          ? `${navLinks.length * 50}ms`
                           : "0ms",
                       }}
                     >
                       <a
-                        href={link.href}
+                        href="/contact"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-3 text-sm tracking-wide transition-opacity hover:opacity-70 text-white"
+                        className="block text-center py-3 bg-white/10 border border-white/20 rounded-full text-sm transition-all hover:bg-white/20 hover:border-white/30 text-white"
                       >
-                        {link.label}
+                        Contact
                       </a>
                     </li>
-                  ))}
-                  <li
-                    className={`pt-2 transform transition-all duration-300 ease-out ${
-                      mobileMenuOpen
-                        ? "translate-y-0 opacity-100"
-                        : "-translate-y-4 opacity-0"
-                    }`}
-                    style={{
-                      transitionDelay: mobileMenuOpen
-                        ? `${navLinks.length * 50}ms`
-                        : "0ms",
-                    }}
-                  >
-                    <a
-                      href="/contact"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-center py-3 bg-white/10 border border-white/20 rounded-full text-sm transition-all hover:bg-white/20 hover:border-white/30 text-white"
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
