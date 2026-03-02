@@ -152,7 +152,7 @@ export default function HomePage() {
         </section>
         {/* About Section */}
         <section className="py-24 px-6 md:px-12 lg:px-32 xl:px-64 bg-background-light dark:bg-[#0d0d0d] relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(148,51,236,0.15),transparent_70%)] pointer-events-none animate-pulse-slow" />
+          {/* <div className="border absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(148,51,236,0.15),transparent_70%)] pointer-events-none animate-pulse-slow" /> */}
           <div className="max-w-full mx-auto relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <ScrollAnimatedSection>
@@ -220,8 +220,8 @@ export default function HomePage() {
               </ScrollAnimatedSection>
               <ScrollAnimatedSection>
                 <div className="relative">
-                  <div className="absolute -inset-8  bg-primary/20 rounded-full blur-[80px] opacity-60 animate-glow-pulse" />
-                  <div className="w-full lg:w-[125%] bg-[#1e1e1e] rounded-xl border border-primary/20 overflow-hidden flex flex-col relative z-10 shadow-[20px_20px_80px_rgba(148,51,236,0.35)] hover:shadow-[25px_25px_100px_rgba(148,51,236,0.5)] transition-all duration-500 card-3d">
+                  <div className="absolute -inset-8 rounded-full blur-[80px] opacity-60 animate-glow-pulse" />
+                  <div className="w-full lg:w-[125%] bg-[#1e1e1e] rounded-xl overflow-hidden flex flex-col relative z-10 shadow-[10px_10px_40px_rgba(148,51,236,0.25)] hover:shadow-[12px_12px_50px_rgba(148,51,236,0.35)] transition-all duration-500">
                     <div className="h-8 md:h-10 bg-[#2d2d2d] flex items-center px-3 md:px-4 gap-2 border-b border-white/5">
                       <div className="size-2 md:size-3 rounded-full bg-[#ff5f56]"></div>
                       <div className="size-2 md:size-3 rounded-full bg-[#ffbd2e]"></div>

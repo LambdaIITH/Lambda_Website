@@ -787,7 +787,7 @@
 
   .card-3d:hover {
     transform: perspective(1000px) translateZ(40px) rotateX(-4deg) rotateY(4deg)
-      scale(1.03);
+      scale(1);
   }
 
   /* Magnetic hover effect */
