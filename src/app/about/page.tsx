@@ -89,7 +89,7 @@ export default function AboutPage() {
                   title="Evolution & Handover"
                   description="Documenting architectural decisions and ensuring a seamless transition for the succeeding batch of developers."
                   isLeft={false}
-                  isActive={false}
+                  isActive={true}
                 />
               </div>
             </div>

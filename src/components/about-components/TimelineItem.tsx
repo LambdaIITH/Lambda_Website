@@ -45,8 +45,7 @@ export default function TimelineItem({
 
   if (isLeft) {
     return (
-      <div ref={itemRef} className="relative flex items-start flex-col md:flex-row
-          md:justify-between w-full">
+      <div ref={itemRef} className="relative flex items-start flex-col md:flex-row md:justify-between w-full">
         {/* Phase Number (desktop left) */}
         <div className="hidden md:block w-5/12 text-right pr-12">
           <h4
@@ -70,7 +69,7 @@ export default function TimelineItem({
           </span>
 
           <div className={isVisible&&hasMounted ? "timeline-item-right" : "opacity-0"}>
-            <h5 className="text-xl font-semibold mb-3 text-left">
+            <h5 className="text-xl font-semibold  text-left">
               {title}
             </h5>
             <p className="text-white/50 text-sm leading-relaxed font-light text-left">
@@ -92,7 +91,7 @@ export default function TimelineItem({
         </span>
 
         <div className={isVisible && hasMounted ? "timeline-item-left" : "opacity-0"}>
-          <h5 className="text-xl font-semibold mb-3 md:text-right text-left">
+          <h5 className="text-xl font-semibold mb-1 md:text-right text-left">
             {title}
           </h5>
           <p className="text-white/50 text-sm leading-relaxed font-light md:text-right text-left">

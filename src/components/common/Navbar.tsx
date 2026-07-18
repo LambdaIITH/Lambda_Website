@@ -40,7 +40,7 @@ export default function Portfolio() {
           }`}
         >
           <div
-            className={`backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
+            className={`backdrop-blur-xl bg-white/5 border border-primary/30 rounded-4xl transition-all duration-500 ease-out ${
               scrolled
                 ? 'shadow-lg shadow-black/20'
                 : 'shadow-md shadow-black/10'
