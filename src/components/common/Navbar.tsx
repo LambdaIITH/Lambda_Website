@@ -9,6 +9,7 @@ export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    setScrolled(window.scrollY > 50);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -49,7 +50,7 @@ export default function Portfolio() {
               <div className="flex items-center gap-[0.5vw]">
           <Link href="/" className="flex items-center gap-[0.4vw]">
             <Image
-              src="navbar_assets/lambda_logo.svg"
+              src="/navbar_assets/lambda_logo.svg"
               alt="Lambda Logo"
               width={0}
               height={0}
@@ -58,7 +59,7 @@ export default function Portfolio() {
                 width: "clamp(15px, 1.2vw, 22px)",
                 height: "auto",
               }}
-              // priority
+              priority
             />
             <span
               className="font-semibold"
@@ -75,12 +76,12 @@ export default function Portfolio() {
               <ul className="hidden md:flex gap-6 lg:gap-10 list-none">
                 {navLinks.map((link) => (
                   <li key={link.href}>
-                    <a
+                    <Link
                       href={link.href}
-                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:bottom-[-4px] after:transition-all after:duration-300 hover:after:w-full"
+                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-white after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -113,13 +114,13 @@ export default function Portfolio() {
                       }`}
                       style={{ transitionDelay: mobileMenuOpen ? `${index * 50}ms` : '0ms' }}
                     >
-                      <a
+                      <Link
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className="block py-3 text-sm tracking-wide transition-opacity hover:opacity-70 text-white"
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                   <li
@@ -130,13 +131,13 @@ export default function Portfolio() {
                     }`}
                     style={{ transitionDelay: mobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms' }}
                   >
-                    <a
+                    <Link
                       href="/contact"
                       onClick={() => setMobileMenuOpen(false)}
                       className="block text-center py-3 bg-white/10 border border-white/20 rounded-full text-sm transition-all hover:bg-white/20 hover:border-white/30 text-white"
                     >
                       Contact
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
