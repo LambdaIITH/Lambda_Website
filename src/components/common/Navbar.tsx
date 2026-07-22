@@ -85,6 +85,23 @@ export default function Portfolio() {
                 ))}
               </ul>
 
+              <Link
+                href="/contact"
+                className="
+                  hidden md:block
+                  px-5 py-2.5
+                  rounded-full
+                  bg-white/10
+                  border border-white/20
+                  text-sm
+                  transition-all
+                  hover:bg-white/20
+                  hover:border-white/30
+                "
+              >
+                Contact Us
+              </Link>
+
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -135,7 +152,7 @@ export default function Portfolio() {
                       onClick={() => setMobileMenuOpen(false)}
                       className="block text-center py-3 bg-white/10 border border-white/20 rounded-full text-sm transition-all hover:bg-white/20 hover:border-white/30 text-white"
                     >
-                      Contact
+                      Contact Us
                     </a>
                   </li>
                 </ul>

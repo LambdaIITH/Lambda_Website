@@ -260,7 +260,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Collaboration Section */}
+        {/* Collaboration Section 
         <section className="py-24 px-6">
           <div className="max-w-6xl mx-auto">
             <ScrollAnimatedSection>
@@ -270,7 +270,7 @@ export default function HomePage() {
                 <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                   <div className="animate-blur-fade-in">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                      Let's <span className="text-primary">Collaborate</span>
+                      <span className="text-primary">Let's Collaborate</span>
                     </h2>
                     <p className="text-slate-400 text-lg mb-10 leading-relaxed">
                       Are you a student looking to build? Or a partner interested in hosting a workshop? We're always open to new ideas and ambitious projects.
@@ -310,7 +310,7 @@ export default function HomePage() {
               </div>
             </ScrollAnimatedSection>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );
