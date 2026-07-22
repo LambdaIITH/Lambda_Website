@@ -1,0 +1,22 @@
+{
+  "sessions": [
+    {
+      "title": "Intro to React",
+      "date": "2025-08-14",
+      "description": "A hands-on walkthrough of React fundamentals: components, props, state, and hooks for members getting started with frontend development.",
+      "image": "/sessions_data/session3.png"
+    },
+    {
+      "title": " Dual Booting and Linux Commands",
+      "date": "2025-09-02",
+      "description": "In the Dual Booting session, we helped the community install Linux distros on their laptops.In the Linux Commands session, we introduced various commands that every programmer should know.",
+      "image": "/sessions_data/session1.jpeg"
+    },
+    {
+      "title": "Internet Basics",
+      "date": "2025-10-18",
+      "description": "An introductory session exploring how the internet works and how to use it effectively.",
+      "image": "/sessions_data/session2.png"
+    }
+  ]
+}
