@@ -905,3 +905,20 @@
     opacity: 0;
   }
 }
+@keyframes footer-link-hover {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(10);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-footer-link-hover {
+  animation: footer-link-hover 1s ease-in infinite;
+}
