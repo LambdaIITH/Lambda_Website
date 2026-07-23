@@ -45,8 +45,7 @@ export default function TimelineItem({
 
   if (isLeft) {
     return (
-      <div ref={itemRef} className="relative flex items-start flex-col md:flex-row
-          md:justify-between w-full">
+      <div ref={itemRef} className="relative flex items-start flex-col md:flex-row md:justify-between w-full">
         {/* Phase Number (desktop left) */}
         <div className="hidden md:block w-5/12 text-right pr-12">
           <h4

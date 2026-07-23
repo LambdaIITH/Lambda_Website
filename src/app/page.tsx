@@ -30,6 +30,7 @@ type ProjectPost = {
   link: string;
   date: string;
   readTime: string;
+  icon: string;
 };
 
 export default function HomePage() {
@@ -61,6 +62,7 @@ export default function HomePage() {
     link: p.link,
     date: p.date,
     readTime: p.readTime,
+    icon: p.icon,
   }));
 
   /* ---------- GET TOP 3 ITEMS ---------- */
@@ -215,6 +217,7 @@ export default function HomePage() {
                       desc={project.desc}
                       tags={project.technologies}
                       link={project.link}
+                      icon={project.icon}
                     />
                   </div>
                 </ScrollAnimatedSection>

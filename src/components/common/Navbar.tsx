@@ -49,7 +49,7 @@ export default function Portfolio() {
               <div className="flex items-center gap-[0.5vw]">
           <Link href="/" className="flex items-center gap-[0.4vw]">
             <Image
-              src="navbar_assets/lambda_logo.svg"
+              src="/navbar_assets/lambda_logo.svg"
               alt="Lambda Logo"
               width={0}
               height={0}

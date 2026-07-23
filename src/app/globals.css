@@ -905,3 +905,46 @@
     opacity: 0;
   }
 }
+
+.tags-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tags-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.tags-scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.tags-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tags-scroll:hover::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Firefox */
+.tags-scroll {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.tags-scroll:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+.tag-row {
+  height: 2rem;
+  padding-bottom: 0.625rem; /* reserved space for the scrollbar, doesn't add to total height */
+  box-sizing: content-box;
+}
+
+.tag-row-overflowing {
+   mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+   -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+}
