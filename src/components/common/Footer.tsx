@@ -46,15 +46,18 @@ export default function Footer() {
   return (
     <>
       {/* Back to top */}
-      <section className="py-5 bg-[#050505]">
+      <section className="py-5 bg-[#080808]">
         <Container size="lg">
           <div className="flex items-center justify-center sm:justify-end">
             <BackToTopButton />
           </div>
         </Container>
       </section>
-      <footer className="relative bg-linear-to-br from-black to-primary rounded-t-4xl border-t border-primary transition-all duration-500">
-        {/*<div className="absolute top-20 left-0 w-0.5 h-0.5 bg-primary opacity-10 rounded-2xl  z-0 animate-meteor shadow-primary shadow-[0_0_3px_3px]" ></div>*/}
+      <footer className="relative overflow-hidden bg-[#090909] rounded-t-3xl border-t border-purple-500/20 transition-all duration-500">
+        {/* Purple ambient glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
+        {/* Purple top line */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"/>
         <div className="relative animate z-10">
           {/* Status */}
           <section className="pb-5 pt-7 overflow-hidden whitespace-nowrap">
@@ -72,7 +75,7 @@ export default function Footer() {
                       width={32}
                       height={32}
                     />
-                    <span className="hover:text-primary">Lambda IITH</span>
+                    <span className="hover:text-primary transition-colors">Lambda IITH</span>
                   </a>
                 </div>
                 <StatusComponent />
@@ -83,43 +86,43 @@ export default function Footer() {
           {/* Legal + Social */}
           <section className="py-5 overflow-hidden whitespace-nowrap">
             <Container size="lg">
-              <div className="h-full grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="order-2 sm:order-1 flex flex-col items-center justify-center sm:items-start">
-                  <div className="legal">
+                  <div className="text-white/80">
                     <a
                       href="/legal/terms"
-                      className="text-current hover:text-black dark:hover:text-white duration-300 ease-in-out transition-all hover:text-[1.1rem]"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       Terms
                     </a>{" "}
                     |{" "}
                     <a
                       href="/legal/privacy"
-                      className="text-current hover:text-black dark:hover:text-white duration-300 ease-in-out transition-all hover:text-[1.1rem]"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       Privacy
                     </a>{" "}
                     |{" "}
                     <a
                       href="/contact-us"
-                      className="text-current hover:text-black dark:hover:text-white duration-300 ease-in-out transition-all hover:text-[1.1rem]"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       Contact Us
                     </a>
                   </div>
-                  <div className="text-sm mt-2">
+                  <div className="text-sm mt-2 text-white/50">
                     &copy; {new Date().getFullYear()} | All rights reserved
                   </div>
                 </div>
                 <div className="order-1 sm:order-2 flex justify-center sm:justify-end">
-                  <div className="flex flex-wrap gap-1 items-center justify-center">
+                  <div className="flex gap-2 items-center">
                     {SOCIALS.map((SOCIAL: any) => (
                       <a
                         key={SOCIAL.NAME}
                         href={SOCIAL.HREF}
                         target="_blank"
                         aria-label={`Lambda IITH on ${SOCIAL.NAME}`}
-                        className="group size-10 rounded-full p-2 items-center justify-center transition-all hover:bg-black/5 dark:hover:bg-white/20 blend hover:scale-125"
+                        className="group size-10 rounded-full p-2 items-center justify-center transition-all duration-300 hover:bg-purple-500/20 hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:scale-110"
                       >
                         <svg icon-color={SOCIAL.COLOR} className={`size-full fill-current ${SOCIAL.COLOR_CSS} blend`}>
                           <use href={`/footer_assets/social.svg#${SOCIAL.ICON}`} />
