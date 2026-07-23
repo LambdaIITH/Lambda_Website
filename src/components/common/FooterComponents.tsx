@@ -2,15 +2,23 @@
 import { useState, useEffect } from "react";
 type statusCache = {
     status: string,
-    timeStamp: number
+    timeStamp: number | null
 }
 const cacheExpiry = 40_000;
 export function StatusComponent() {
-    const previousSave: statusCache = JSON.parse(localStorage.getItem('footerStatusCache') ?? `{"status":"Loading status ...","timeStamp":null}`);
-    const [status, setStatus] = useState(previousSave.status);
+    const [status, setStatus] = useState("Loading status ...");
 
     useEffect(() => {
         let shouldFetchStatus = false;
+        let previousSave:statusCache;
+        if (typeof window !== 'undefined') {
+            previousSave = JSON.parse(localStorage.getItem('footerStatusCache') ?? `{"status":"Loading status ...","timeStamp":null}`);
+        }else{
+            previousSave = {
+                status:"Loading status ...",
+                timeStamp: null
+            };
+        }
         try {
             if (previousSave?.timeStamp == null || Date.now() > previousSave.timeStamp + cacheExpiry) {
                 shouldFetchStatus = true;
