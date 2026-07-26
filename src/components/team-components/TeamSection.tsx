@@ -1,3 +1,4 @@
+import { TeamMember } from "../../../public/team_data/data"
 import MemberCard from "./MemberCard"
 
 export default function TeamSection({
@@ -5,7 +6,7 @@ export default function TeamSection({
   members,
 }: {
   title: string
-  members: any[]
+  members: TeamMember[]
 }) {
   return (
     <section className="max-w-7xl mx-auto mb-20">
