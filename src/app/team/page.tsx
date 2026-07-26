@@ -5,7 +5,7 @@ import BackToTop from "@/components/common/BackToTop"
 import { Teams } from "../../../public/team_data/data"
 
 export default function TeamPage() {
-  const [teamYear, setTeamYear] = useState<"2024-25" | "2025-26" | "2026-27">("2025-26");
+  const [teamYear, setTeamYear] = useState<string>(Teams[0].year);
 
   return (
     <>
@@ -34,8 +34,9 @@ export default function TeamPage() {
             <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-64 rounded-2xl glass-dropdown overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
               <div className="p-2 space-y-1">
                 {/* Moved to seprate component*/}
-                <DropDownButton currentTeamYear={teamYear} teamYear="2025-26" onclick={() => { setTeamYear("2025-26") }} />
                 <DropDownButton currentTeamYear={teamYear} teamYear="2024-25" onclick={() => { setTeamYear("2024-25") }} />
+                <DropDownButton currentTeamYear={teamYear} teamYear="2025-26" onclick={() => { setTeamYear("2025-26") }} />
+                <DropDownButton currentTeamYear={teamYear} teamYear="2026-27" onclick={() => { setTeamYear("2026-27") }} />
                 {/*<button
                   onClick={() => setTeamYear("2025-26")}
                   className={`flex items-center justify-between px-5 py-3 text-sm font-black rounded-xl w-full ${teamYear === "2025-26"
@@ -66,37 +67,42 @@ export default function TeamPage() {
         </div>
 
         {/* Sections */}
-        {Teams.filter((team) => team.year === teamYear).map((team) =>
-          <div key={team.year} className="max-w-7xl mx-auto space-y-28">
-            {/* Mentors */}
-            {team.mentors && (
-              <section id="mentors">
-                <TeamSection title="Mentors" members={team.mentors} />
-              </section>
-            )}
+        {
+          Teams.filter((team) => team.year === teamYear).map(
+            (team) => {
+              return (
+                <div key={team.year} className="max-w-7xl mx-auto space-y-28">
+                  {/* Mentors */}
+                  {team.mentors && (
+                    <section id="mentors">
+                      <TeamSection title="Mentors" members={team.mentors} />
+                    </section>
+                  )}
 
-            {/* Heads */}
-            <section id="heads">
-              {team.heads && (
-                <TeamSection title="Heads" members={team.heads} />
-              )}
-            </section>
+                  {/* Heads */}
+                  <section id="heads">
+                    {team.heads && (
+                      <TeamSection title="Heads" members={team.heads} />
+                    )}
+                  </section>
 
-            {/* Core Members */}
-            <section id="core">
-              {team.cores && (
-                <TeamSection title="Core Members" members={team.cores} />
-              )}
-            </section>
+                  {/* Core Members */}
+                  <section id="core">
+                    {team.cores && (
+                      <TeamSection title="Core Members" members={team.cores} />
+                    )}
+                  </section>
 
-            {/* UI/UX Team */}
-            <section id="uiux">
-              {team.uiux && (
-                <TeamSection title="UI/UX Team" members={team.uiux} />
-              )}
-            </section>
-          </div>
-        )
+                  {/* UI/UX Team */}
+                  <section id="uiux">
+                    {team.uiux && (
+                      <TeamSection title="UI/UX Team" members={team.uiux} />
+                    )}
+                  </section>
+                </div>
+              )
+            }
+          )
         }
       </main>
       <BackToTop />
