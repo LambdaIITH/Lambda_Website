@@ -101,14 +101,7 @@ export default function BlogPage() {
 
       {/* Tags Bar */}
       <section className="mb-20 w-[80vw] sticky top-18 z-10">
-        <div className="
-          flex items-center gap-3
-          overflow-x-auto
-          tag-scrollbar
-          rounded-2xl bg-white/5 backdrop-blur-md
-          p-4 border border-white/10
-          whitespace-nowrap
-        ">
+        <div className="flex items-center gap-3 overflow-x-auto tag-scrollbar rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10 whitespace-nowrap">
           {/* All Topics */}
           <button
             onClick={() => setSelectedTags([])}
