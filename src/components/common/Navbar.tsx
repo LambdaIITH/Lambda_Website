@@ -21,7 +21,9 @@ export default function Portfolio() {
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blogs' },
     { href: '/projects', label: 'Projects' },
+    { href: '/sessions', label: 'Sessions' },
     { href: '/team', label: 'Team' },
+
   ];
 
   return (
