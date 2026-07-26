@@ -71,7 +71,8 @@ export default function Portfolio() {
           </Link>
           </div>
 
-              {/* Desktop Nav Links */}
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center gap-6 lg:gap-8">
               <ul className="hidden md:flex gap-6 lg:gap-10 list-none">
                 {navLinks.map((link) => (
                   <li key={link.href}>
@@ -101,6 +102,7 @@ export default function Portfolio() {
               >
                 Contact Us
               </Link>
+            </div>
 
               {/* Mobile Menu Button */}
               <button

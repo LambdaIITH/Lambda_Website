@@ -20,18 +20,40 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = async(e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    // TODO: Replace with Apps Script fetch
-    const response = await fetch("BACKEND_URL", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-  };
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbxKtS4S5EMxFkd8vwEj8Q88-9bU7AWb7-DKRzScorKKemd5Z-mlqHJIKT3dp8etPp7h/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Message sent successfully!");
+
+    // Optional: Clear the form after submission
+    // setFormData({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    //   subject: "",
+    //   message: "",
+    // });
+
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+};
 
   return (
     <div
