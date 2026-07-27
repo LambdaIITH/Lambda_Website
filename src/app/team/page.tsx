@@ -34,9 +34,11 @@ export default function TeamPage() {
             <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-64 rounded-2xl glass-dropdown overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
               <div className="p-2 space-y-1">
                 {/* Moved to seprate component*/}
-                <DropDownButton currentTeamYear={teamYear} teamYear="2024-25" onclick={() => { setTeamYear("2024-25") }} />
-                <DropDownButton currentTeamYear={teamYear} teamYear="2025-26" onclick={() => { setTeamYear("2025-26") }} />
-                <DropDownButton currentTeamYear={teamYear} teamYear="2026-27" onclick={() => { setTeamYear("2026-27") }} />
+                {
+                  Teams.map(
+                    (team) =><DropDownButton currentTeamYear={teamYear} teamYear={team.year} key={team.year} onclick={() => { setTeamYear(team.year) }} />
+                  )
+                }
                 {/*<button
                   onClick={() => setTeamYear("2025-26")}
                   className={`flex items-center justify-between px-5 py-3 text-sm font-black rounded-xl w-full ${teamYear === "2025-26"

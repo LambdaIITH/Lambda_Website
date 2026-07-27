@@ -750,14 +750,14 @@ const cores24_25: TeamMember[] = [
   },
 ];
 const Team25_26:Team = {
-  year:"2025-26",
+  year:"2025-2026",
   mentors:mentors25_26,
   heads:heads25_26,
   cores:cores25_26,
   uiux:uiux25_26
 }
 const Team24_25:Team = {
-  year:"2024-25",
+  year:"2024-2025",
   heads:heads24_25,
   cores:cores24_25,
   uiux:uiux24_25
