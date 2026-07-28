@@ -20,7 +20,7 @@ export default function TestimonialCarousel({
   const [shouldScroll, setShouldScroll] = useState<boolean | null>(null);
   const [trackWidth, setTrackWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Always duplicate testimonials for measurement, but only animate if needed
@@ -28,12 +28,13 @@ export default function TestimonialCarousel({
 
   // Measure actual DOM and determine if scrolling is needed
   useEffect(() => {
+
+    if (!measureRef.current || !containerRef.current) return;
     const measureAndDecide = () => {
-      if (!trackRef.current || !containerRef.current) return;
-      
+      if (!measureRef.current || !containerRef.current) return;
       const containerWidth = containerRef.current.offsetWidth;
       // Total width of all duplicated items
-      const fullTrackWidth = trackRef.current.scrollWidth;
+      const fullTrackWidth = measureRef.current.scrollWidth;
       // Width of original items (half of duplicated)
       const originalWidth = fullTrackWidth / 2;
       
@@ -44,16 +45,11 @@ export default function TestimonialCarousel({
       setIsReady(true);
     };
 
-    // Use requestAnimationFrame to ensure DOM is painted
-    const raf = requestAnimationFrame(() => {
-      measureAndDecide();
-    });
+    const ro = new ResizeObserver(() => measureAndDecide());
+    ro.observe(containerRef.current);
+    ro.observe(measureRef.current);
 
-    window.addEventListener("resize", measureAndDecide);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", measureAndDecide);
-    };
+    return () => ro.disconnect();
   }, [testimonials.length]);
 
   // Handle pause on hover/click
@@ -83,13 +79,32 @@ export default function TestimonialCarousel({
   };
 
   // Animation duration - 3 seconds per card
-  const animationDuration = testimonials.length * 3;
+  const animationDuration = testimonials.length * 10;
 
   // Determine which items to actually show
   const itemsToRender = (shouldScroll === false) ? testimonials : displayTestimonials;
 
   return (
     <div ref={containerRef} className="relative overflow-hidden">
+      <div
+        ref={measureRef}
+        aria-hidden
+        className="flex absolute top-0 left-0 invisible pointer-events-none -z-10"
+      >
+        {displayTestimonials.map((testimonial, idx) => (
+        <div
+          key={`measure-${testimonial.name}-${idx}`}
+          className="shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] px-3 md:px-4"
+        >
+          <TestimonialCard
+            name={testimonial.name}
+            role={testimonial.role}
+            quote={testimonial.quote}
+            avatar={testimonial.avatar}
+          />
+        </div>
+        ))}
+      </div>  
       {/* Gradient masks for smooth edges - only show if scrolling */}
       {shouldScroll && (
         <>
@@ -100,7 +115,6 @@ export default function TestimonialCarousel({
 
       {/* Scrolling Track */}
       <div
-        ref={trackRef}
         className={`flex py-4 ${shouldScroll === false ? "justify-center gap-6 flex-wrap" : ""} ${isPaused ? "testimonial-paused" : ""}`}
         onMouseEnter={handlePause}
         onMouseLeave={handleResume}

@@ -103,7 +103,9 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold mb-4">Member Insights</h2>
               <p className="text-white/40 font-light">What it means to be a part of the Lambda family.</p>
             </div>
-            <TestimonialCarousel testimonials={testimonials} />
+            <div className="-mx-6 lg:-mx-24">
+              <TestimonialCarousel testimonials={testimonials} />
+            </div>
           </div>
         </section>
       </main>

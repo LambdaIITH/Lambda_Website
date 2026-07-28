@@ -7,7 +7,8 @@
         "technologies": ["NextJS", "TailwindCSS", "TypeScript"],
         "link": "https://github.com/LambdaIITH/Lambda_Website",
         "date":"2026-01-16",
-        "readTime":"2 min read"
+        "readTime":"2 min read",
+        "icon": "language"
         },
         {
         "slug": "dashboard",
@@ -16,7 +17,8 @@
         "technologies": ["Astro", "Javascript", "TypeScript","TailwindCSS","SolidJS"],
         "link": "https://github.com/LambdaIITH/Dashboard",
         "date":"2025-01-15",
-        "readTime":"1 min read"
+        "readTime":"1 min read",
+        "icon": "dashboard.svg"
         }
     ]
 }
