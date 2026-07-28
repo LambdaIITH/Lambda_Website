@@ -94,7 +94,7 @@
 
   .social-icon:hover {
     color: var(--color-primary);
-    background-color: rgba(148, 51, 236, 0.1);
+    background-color: #8f2aee/*rgba(148, 51, 236, 0.1);*/
   }
 
   .social-icon svg {

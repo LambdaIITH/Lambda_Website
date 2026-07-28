@@ -19,7 +19,6 @@ export function StatusComponent() {
                 timeStamp: null
             };
         }
-        console.log(previousSave);
         try {
             if (previousSave?.timeStamp == null || Date.now() > previousSave.timeStamp + cacheExpiry) {
                 shouldFetchStatus = true;
@@ -40,7 +39,7 @@ export function StatusComponent() {
         }else{
             setStatus(previousSave.status);
         }
-    });
+    }, []);
 
     let statusColor = "";
     if (status === "All systems operational") {

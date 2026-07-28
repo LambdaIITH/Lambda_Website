@@ -57,7 +57,7 @@ export default function Footer() {
         {/* Purple ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[150px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
         {/* Purple top line */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"/>
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
         <div className="relative animate z-10">
           {/* Status */}
           <section className="pb-5 pt-7 overflow-hidden whitespace-nowrap">
@@ -116,19 +116,25 @@ export default function Footer() {
                 </div>
                 <div className="order-1 sm:order-2 flex justify-center sm:justify-end">
                   <div className="flex gap-2 items-center">
-                    {SOCIALS.map((SOCIAL: any) => (
-                      <a
-                        key={SOCIAL.NAME}
-                        href={SOCIAL.HREF}
-                        target="_blank"
-                        aria-label={`Lambda IITH on ${SOCIAL.NAME}`}
-                        className="group size-10 rounded-full p-2 items-center justify-center transition-all duration-300 hover:bg-purple-500/20 hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:scale-110"
-                      >
-                        <svg icon-color={SOCIAL.COLOR} className={`size-full fill-current ${SOCIAL.COLOR_CSS} blend`}>
-                          <use href={`/footer_assets/social.svg#${SOCIAL.ICON}`} />
-                        </svg>
-                      </a>
-                    ))}
+                    {
+                      SOCIALS.map(
+                        (SOCIAL: any) => {
+                          return (
+                            <a
+                              key={SOCIAL.NAME}
+                              href={SOCIAL.HREF}
+                              target="_blank"
+                              aria-label={`Lambda IITH on ${SOCIAL.NAME}`}
+                              className="group size-10 rounded-full p-2 items-center justify-center transition-all duration-300 hover:bg-purple-500/20 hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] hover:scale-110"
+                            >
+                              <svg className={`size-full fill-current ${SOCIAL.COLOR_CSS} blend`}>
+                                <use href={`/footer_assets/social.svg#${SOCIAL.ICON}`} />
+                              </svg>
+                            </a>
+                          )
+                        }
+                      )
+                    }
                   </div>
                 </div>
               </div>
