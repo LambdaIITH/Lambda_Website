@@ -82,6 +82,14 @@ import shravanBadgujarLastImg from "./images/Cores_Last/Shravan Badgujar.png";
 import vssusiKrishnaLastImg from "./images/Cores_Last/V S Susi Krishna.png";
 import vindhyaPaidalaLastImg from "./images/Cores_Last/Vindhya Paidala.png";
 
+export interface Team {
+  year: string,
+  mentors?: TeamMember[],
+  heads?: TeamMember[],
+  cores?: TeamMember[],
+  uiux?: TeamMember[]
+}
+//See teams at last
 
 // Define the TeamMember type
 export interface TeamMember {
@@ -97,7 +105,7 @@ export interface TeamMember {
   };
 }
 
-export const mentors: TeamMember[] = [
+const mentors25_26: TeamMember[] = [
   // {
   //   name: "Dr. Anita Sharma",
   //   role: "Faculty Advisor",
@@ -165,7 +173,7 @@ export const mentors: TeamMember[] = [
   },
 ];
 
-export const uiux: TeamMember[] = [
+const uiux25_26: TeamMember[] = [
   {
     name: "Smaron Boruah",
     role: "UI/UX",
@@ -198,7 +206,7 @@ export const uiux: TeamMember[] = [
   },
 ];
 
-export const heads: TeamMember[] = [
+const heads25_26: TeamMember[] = [
   {
     name: "Ganeswar Velvadapu",
     role: "Club Head",
@@ -249,7 +257,7 @@ export const heads: TeamMember[] = [
   },
 ];
 
-export const cores: TeamMember[] = [
+const cores25_26: TeamMember[] = [
   {
     name: "Adishesh Balaji",
     role: "Core",
@@ -502,7 +510,7 @@ export const cores: TeamMember[] = [
   },
 ];
 
-export const heads_last: TeamMember[] = [
+const heads24_25: TeamMember[] = [
   {
     name: "Adhith T",
     role: "Club Head",
@@ -553,7 +561,7 @@ export const heads_last: TeamMember[] = [
   },
 ];
 
-export const uiux_last: TeamMember[] = [
+const uiux24_25: TeamMember[] = [
   {
     name: "Pranav",
     role: "UI/UX",
@@ -589,7 +597,7 @@ export const uiux_last: TeamMember[] = [
   },
 ];
 
-export const cores_last: TeamMember[] = [
+const cores24_25: TeamMember[] = [
   {
     name: "Abdul Muqeeth",
     role: "Core",
@@ -741,3 +749,17 @@ export const cores_last: TeamMember[] = [
     socialLinks: { github: "", linkedin: "", instagram: "" },
   },
 ];
+const Team25_26:Team = {
+  year:"2025-2026",
+  mentors:mentors25_26,
+  heads:heads25_26,
+  cores:cores25_26,
+  uiux:uiux25_26
+}
+const Team24_25:Team = {
+  year:"2024-2025",
+  heads:heads24_25,
+  cores:cores24_25,
+  uiux:uiux24_25
+}
+export const Teams: Team[] = [Team24_25, Team25_26];
