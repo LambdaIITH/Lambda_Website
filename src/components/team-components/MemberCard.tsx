@@ -59,21 +59,21 @@ export default function MemberCard({ name, role, image, socialLinks }: Member) {
             </div>
 
             {/* Content */}
-            <div className="pb-3 px-1 w-full">
+            <div className="pb-3 px-1 w-full hover:scale-110 transition-all">
                 {/* Name */}
                 <h3 className="text-lg font-bold text-white mb-0.5">
                     {name}
                 </h3>
 
                 {/* Role */}
-                <p className="text-primary font-mono text-[10px] uppercase tracking-wider mb-3">
+                {/*<p className="text-primary font-mono text-[10px] uppercase tracking-wider mb-3">
                     {role}
-                </p>
+                </p>*/}
 
                 {/* Icons */}
                 <div className="flex justify-center gap-2">
                     {socialLinks.github && (
-                        <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="group social-icon">
                             <svg className={`size-full fill-current ${SOCIALS[1].COLOR_CSS} blend`}>
                                 <use href={`/footer_assets/social.svg#${SOCIALS[1].ICON}`} />
                               </svg>
@@ -81,7 +81,7 @@ export default function MemberCard({ name, role, image, socialLinks }: Member) {
                     )}
 
                     {socialLinks.email && (
-                        <a href={socialLinks.email} target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href={socialLinks.email} target="_blank" rel="noopener noreferrer" className="group social-icon">
                             <svg className={`size-full fill-current ${SOCIALS[0].COLOR_CSS} blend`}>
                                 <use href={`/footer_assets/social.svg#${SOCIALS[0].ICON}`} />
                               </svg>
@@ -89,7 +89,7 @@ export default function MemberCard({ name, role, image, socialLinks }: Member) {
                     )}
 
                     {socialLinks.instagram && (
-                        <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="group social-icon">
                             <svg className={`size-full fill-current ${SOCIALS[2].COLOR_CSS} blend`}>
                                 <use href={`/footer_assets/social.svg#${SOCIALS[2].ICON}`} />
                               </svg>
@@ -97,7 +97,7 @@ export default function MemberCard({ name, role, image, socialLinks }: Member) {
                     )}
 
                     {socialLinks.linkedin && (
-                        <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon">
+                        <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="group social-icon">
                             <svg className={`size-full fill-current ${SOCIALS[3].COLOR_CSS} blend`}>
                                 <use href={`/footer_assets/social.svg#${SOCIALS[3].ICON}`} />
                               </svg>
