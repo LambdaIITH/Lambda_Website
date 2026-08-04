@@ -143,7 +143,7 @@ export default function Hero() {
                         variants={wipeVariant}
                         initial="hidden"
                         animate="show"
-                        className="inline-block bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-500 bg-clip-text text-transparent"
+                        className="inline-block bg-linear-to-r from-purple-400 via-fuchsia-400 to-purple-500 bg-clip-text text-transparent"
                     >
                         IIT Hyderabad
                     </motion.span>

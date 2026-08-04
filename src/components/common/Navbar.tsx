@@ -10,6 +10,7 @@ export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    setScrolled(window.scrollY > 50);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -40,7 +41,7 @@ export default function Portfolio() {
           }`}
         >
           <div
-            className={`backdrop-blur-xl bg-white/5 border border-white/10 rounded-4xl transition-all duration-500 ease-out ${
+            className={`backdrop-blur-xl bg-white/5 border border-primary/30 rounded-4xl transition-all duration-500 ease-out ${
               scrolled
                 ? 'shadow-lg shadow-black/20'
                 : 'shadow-md shadow-black/10'
@@ -49,28 +50,29 @@ export default function Portfolio() {
             <div className="px-6 md:px-8 py-4 flex justify-between items-center">
               {/* Logo */}
               <div className="flex items-center gap-[0.5vw]">
-                <Link href="/" className="flex items-center gap-[0.4vw]">
-                  <Image
-                    src="navbar_assets/lambda_logo.svg"
-                    alt="Lambda Logo"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{
-                      width: 'clamp(15px, 1.2vw, 22px)',
-                      height: 'auto',
-                    }}
-                  />
-                  <span
-                    className="font-semibold"
-                    style={{
-                      fontSize: 'clamp(0.8rem, 0.9vw, 1rem)',
-                    }}
-                  >
-                    Lambda IITH
-                  </span>
-                </Link>
-              </div>
+          <Link href="/" className="flex items-center gap-[0.4vw]">
+            <Image
+              src="/navbar_assets/lambda_logo.svg"
+              alt="Lambda Logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{
+                width: "clamp(15px, 1.2vw, 22px)",
+                height: "auto",
+              }}
+              priority
+            />
+            <span
+              className="font-semibold"
+              style={{
+                fontSize: "clamp(0.8rem, 0.9vw, 1rem)",
+              }}
+            >
+              Lambda IITH
+            </span>
+          </Link>
+          </div>
 
               {/* Desktop Navigation */}
               <ul className="hidden md:flex items-center gap-6 lg:gap-10 list-none">
@@ -78,7 +80,7 @@ export default function Portfolio() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-white after:left-0 after:bottom-[-4px] after:transition-all after:duration-300 hover:after:w-full"
+                      className="text-sm tracking-wide transition-opacity hover:opacity-70 text-white relative inline-block after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-white after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </Link>
