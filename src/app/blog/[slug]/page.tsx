@@ -29,8 +29,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   if (!blog) {
     return (
       <div
-        className={`w-screen bg-gradient-to-b from-[#050505] via-[#0b0212] to-[#050505]
-        text-white flex items-center justify-center`}
+        className={`w-screen min-h-screen bg-[#050505] text-white flex items-center justify-center pt-24`}
       >
         <div className="text-center">
           <h1 className="text-6xl font-black mb-4">404</h1>
@@ -54,7 +53,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <main
-      className={`w-screen bg-gradient-to-b from-[#0d0014] via-[#16001e] to-[#1d0837]
+      className={`w-screen bg-[#0d0014]
       text-white`}
     >
       {/* Back Button */}

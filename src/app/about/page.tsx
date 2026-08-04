@@ -287,7 +287,9 @@ export default function AboutPage() {
                 What it means to be a part of the Lambda family.
               </p>
             </div>
-            <TestimonialCarousel testimonials={testimonials} />
+            <div className="-mx-6 lg:-mx-24">
+              <TestimonialCarousel testimonials={testimonials} />
+            </div>
           </div>
         </section>
       </main>
